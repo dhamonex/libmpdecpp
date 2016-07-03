@@ -16,16 +16,16 @@ namespace mpdecimal
   {
     public:
       Decimal();
-      Decimal( double value );
-      Decimal( int32_t value );
-      Decimal( int64_t value );
-      Decimal( uint32_t value );
-      Decimal( uint64_t value );
-      Decimal( const std::string &value );
+      explicit Decimal( double value );
+      explicit Decimal( int32_t value );
+      explicit Decimal( int64_t value );
+      explicit Decimal( uint32_t value );
+      explicit Decimal( uint64_t value );
+      explicit Decimal( const std::string &value );
       
       ~Decimal();
       
-      Decimal( const Decimal &other );
+      explicit Decimal( const Decimal &other );
       Decimal &operator=( const Decimal &other );
       
       static void decimalInit( std::size_t precision );
