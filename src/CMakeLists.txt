@@ -12,6 +12,8 @@ set(libdecimal++_HEADER
 add_library(libmpdecimal++ SHARED ${libmpdecimal++_SRC})
 add_library(libmpdecimal++_static STATIC ${libmpdecimal++_SRC})
 
+target_link_libraries(libmpdecimal++ ${LIBMPDEC_LIBRARY})
+
 generate_export_header(libmpdecimal++
   BASE_NAME libmpdecimal
 )
