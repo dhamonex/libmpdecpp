@@ -2,6 +2,9 @@
 #include <memory>
 #include <string>
 
+#ifndef U82ED56306C020E36CB5D80FFF178BA63
+#define U82ED56306C020E36CB5D80FFF178BA63
+
 namespace mpdecimal
 {
   namespace detail 
@@ -29,3 +32,5 @@ namespace mpdecimal
       std::unique_ptr<detail::DecimalPrivate> m_private;
   };
 }
+
+#endif // U82ED56306C020E36CB5D80FFF178BA63
