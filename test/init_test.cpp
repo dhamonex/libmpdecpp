@@ -14,5 +14,7 @@ BOOST_AUTO_TEST_CASE( default_init_test )
   mpdecimal::Decimal::decimalInit( 128 );
   
   mpdecimal::Decimal decimal;
+  
+  BOOST_CHECK( "0" == decimal.toString() );
 }
 

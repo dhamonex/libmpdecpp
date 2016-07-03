@@ -28,6 +28,9 @@ namespace mpdecimal
       explicit Decimal( const Decimal &other );
       Decimal &operator=( const Decimal &other );
       
+      std::string toString( unsigned int precision ) const;
+      std::string toString() const;
+      
       static void decimalInit( std::size_t precision );
       
     private:
