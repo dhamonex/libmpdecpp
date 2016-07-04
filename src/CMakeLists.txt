@@ -2,6 +2,7 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 set(libmpdecimal++_SRC
   decimal.cpp
+  decimalprivate.cpp
 )
 
 set(libdecimal++_HEADER
