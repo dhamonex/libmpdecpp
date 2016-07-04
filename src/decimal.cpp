@@ -20,6 +20,7 @@ Decimal::~Decimal()
 
 std::string Decimal::toString(unsigned int precision) const
 {
+  m_private->resetStatus();
   const std::string formatString( "." + boost::lexical_cast<std::string>( precision ) + "f" );
   detail::MPDecimalCharPointer formatedResult( mpd_format( m_private->mpdDecimal.get(), formatString.c_str(), &m_private->context ) );
   
@@ -32,6 +33,7 @@ std::string Decimal::toString(unsigned int precision) const
 
 std::string Decimal::toString() const
 {
+  m_private->resetStatus();
   detail::MPDecimalCharPointer formatedResult( mpd_to_eng( m_private->mpdDecimal.get(), 0 ) );
   
   if ( m_private->context.status != 0 ) {

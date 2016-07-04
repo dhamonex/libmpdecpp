@@ -13,12 +13,17 @@ namespace detail
   {
     DecimalPrivate();
     
+    std::string statusFlags() const;
+    
+    void resetStatus();
+    
     mpd_context_t context;
     MPDDecimalPointer mpdDecimal;
     
-    
     static mpd_ssize_t precision;
     static mpd_context_t defaultContext;
+    
+    static constexpr unsigned int charBufferSize = 1000;
   };
 }
 

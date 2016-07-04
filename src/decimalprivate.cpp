@@ -8,7 +8,7 @@ MPDECIMAL_NAMESPACE_BEGIN
 namespace detail
 {
   mpd_ssize_t DecimalPrivate::precision = 0;
-  mpd_context_t DecimalPrivate::defaultContext;
+  mpd_context_t DecimalPrivate::defaultContext; 
   
   DecimalPrivate::DecimalPrivate()
     : context(), mpdDecimal()
@@ -25,13 +25,26 @@ namespace detail
     
     mpdDecimal.reset( mpd_new( &context ) );
     if ( context.status != 0 ) {
-      BOOST_THROW_EXCEPTION( DecimalException() << ErrorString( "Could not create new decimal" ) << ErrorCode( context.status ) );
+      BOOST_THROW_EXCEPTION( DecimalException() << ErrorString( "Could not create new decimal" ) << ErrorCode( context.status ) << StatusFlags( statusFlags() ) );
     }
     
     mpd_set_uint( mpdDecimal.get(), 0, &context );
     if ( context.status != 0 ) {
-      BOOST_THROW_EXCEPTION( DecimalException() << ErrorString( "Could not initalize decimal" ) << ErrorCode( context.status ) );
+      BOOST_THROW_EXCEPTION( DecimalException() << ErrorString( "Could not initalize decimal" ) << ErrorCode( context.status ) << StatusFlags( statusFlags() ) );
     }
+  }
+  
+  void DecimalPrivate::resetStatus()
+  {
+    context.status = 0;
+  }
+  
+  std::string DecimalPrivate::statusFlags() const
+  {
+    char buffer[charBufferSize];
+    mpd_snprint_flags( buffer, charBufferSize, context.status );
+    
+    return buffer;
   }
 }
 
