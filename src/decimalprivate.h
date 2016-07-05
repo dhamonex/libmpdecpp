@@ -12,6 +12,10 @@ namespace detail
   struct LIBMPDECIMAL_NO_EXPORT DecimalPrivate
   {
     DecimalPrivate();
+    
+    DecimalPrivate( const DecimalPrivate &other );
+    
+    void createDecimal();
 
     void setDecNumberValue( int32_t value );
     void setDecNumberValue( int64_t value );

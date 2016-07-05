@@ -16,6 +16,8 @@ namespace mpdecimal
   {
     public:
       Decimal();
+      Decimal( const Decimal &other );
+      
       explicit Decimal( double value );
       explicit Decimal( int32_t value );
       explicit Decimal( int64_t value );
@@ -25,7 +27,6 @@ namespace mpdecimal
       
       ~Decimal();
       
-      explicit Decimal( const Decimal &other );
       Decimal &operator=( const Decimal &other );
       
       std::string toString( unsigned int precision ) const;

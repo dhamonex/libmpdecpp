@@ -34,12 +34,31 @@ namespace detail
         << ErrorString( "Decimal not initialized. Use Decimal::decimalInit to set precition and initialize decimal library" ) );
     }
     
+    createDecimal();
+    setDecNumberValue( 0 );
+  }
+  
+  DecimalPrivate::DecimalPrivate( const DecimalPrivate &other )
+    : mpdDecimal()
+  {
+    createDecimal();
+    
+    uint32_t status = 0;
+    if ( !mpd_qcopy( mpdDecimal.get(), other.mpdDecimal.get(), &status ) ) {
+      BOOST_THROW_EXCEPTION( DecimalException() 
+        << ErrorString( "Could not copy decimal value" )
+        << ErrorCode( status )
+        << StatusFlags( statusFlags( status ) ) );
+    }
+    
+  }
+  
+  void DecimalPrivate::createDecimal()
+  {
     mpdDecimal.reset( mpd_qnew() );
     if ( !mpdDecimal ) {
       BOOST_THROW_EXCEPTION( DecimalException() << ErrorString( "Could not create new decimal" ) );
     }
-    
-    setDecNumberValue( 0 );
   }
   
   void DecimalPrivate::setDecNumberValue( int32_t value )
