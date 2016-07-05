@@ -13,7 +13,7 @@ namespace mpdecimal
   
   typedef boost::error_info<struct tag_error_message, std::string> ErrorString;
   typedef boost::error_info<struct tag_error_code, int>            ErrorCode;
-  typedef boost::errno_info<struct tag_status_flags, std::string>  StatusFlags;
+  typedef boost::error_info<struct tag_status_flags, std::string>  StatusFlags;
 }
 
 #endif // U167A1973DEC053EE9709BC5063087D0A

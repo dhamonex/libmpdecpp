@@ -4,6 +4,8 @@
 #include <decimal.h>
 #include <decimalexceptions.h>
 
+#include <boost/exception/diagnostic_information.hpp>
+
 BOOST_AUTO_TEST_CASE( uninit_exception_test )
 {
   BOOST_CHECK_THROW( mpdecimal::Decimal(), mpdecimal::NotInitialized );

@@ -12,13 +12,28 @@ namespace detail
   struct LIBMPDECIMAL_NO_EXPORT DecimalPrivate
   {
     DecimalPrivate();
+
+    void setDecNumberValue( int32_t value );
+    void setDecNumberValue( int64_t value );
+    void setDecNumberValue( uint32_t value );
+    void setDecNumberValue( uint64_t value );
+    void setDecNumberValue( const std::string &value );
     
-    std::string statusFlags() const;
+    std::string toString() const;
+    std::string toString( unsigned int precision ) const;
+    std::string toString( const std::string &format ) const;
+    std::string toSciString( int fmt ) const;
+    std::string toEngString( int fmt ) const;
+    int32_t toInt32() const;
+    int64_t toInt64() const;
+    uint32_t toUInt32() const;
+    uint64_t toUInt64() const;
     
-    void resetStatus();
     
-    mpd_context_t context;
     MPDDecimalPointer mpdDecimal;
+    
+    
+    static std::string statusFlags( uint32_t status );
     
     static mpd_ssize_t precision;
     static mpd_context_t defaultContext;
