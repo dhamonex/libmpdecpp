@@ -10,16 +10,16 @@ set(libdecimal++_HEADER
   libmpdecimal_export.h
 )
 
-add_library(libmpdecimal++ SHARED ${libmpdecimal++_SRC})
-add_library(libmpdecimal++_static STATIC ${libmpdecimal++_SRC})
+add_library(mpdecimal++ SHARED ${libmpdecimal++_SRC})
+add_library(mpdecimal++_static STATIC ${libmpdecimal++_SRC})
 
-target_link_libraries(libmpdecimal++ ${LIBMPDEC_LIBRARY})
+target_link_libraries(mpdecimal++ ${LIBMPDEC_LIBRARY})
 
-generate_export_header(libmpdecimal++
+generate_export_header(mpdecimal++
   BASE_NAME libmpdecimal
 )
 
-set_target_properties(libmpdecimal++_static PROPERTIES OUTPUT_NAME libmpdecimal++)
+set_target_properties(mpdecimal++_static PROPERTIES OUTPUT_NAME libmpdecimal++)
 
-install(TARGETS libmpdecimal++ DESTINATION ${CMAKE_INSTALL_LIBDIR})
-install(TARGETS libmpdecimal++_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(TARGETS mpdecimal++ DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(TARGETS mpdecimal++_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
