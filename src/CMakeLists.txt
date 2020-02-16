@@ -1,25 +1,27 @@
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-set(libmpdecimal++_SRC
+set(mpdecpp_SRC
   decimal.cpp
   decimalprivate.cpp
 )
 
-set(libdecimal++_HEADER
+set(mpdecpp_HEADER
   decimal.h
   libmpdecimal_export.h
 )
 
-add_library(mpdecimal++ SHARED ${libmpdecimal++_SRC})
-add_library(mpdecimal++_static STATIC ${libmpdecimal++_SRC})
+add_library(mpdecpp SHARED ${mpdecpp_SRC})
+add_library(mpdecpp_static STATIC ${mpdecpp_SRC})
 
-target_link_libraries(mpdecimal++ ${LIBMPDEC_LIBRARY})
-
-generate_export_header(mpdecimal++
-  BASE_NAME libmpdecimal
+target_link_libraries(mpdecpp 
+  ${LIBMPDEC_LIBRARIES}
 )
 
-set_target_properties(mpdecimal++_static PROPERTIES OUTPUT_NAME libmpdecimal++)
+generate_export_header(mpdecpp
+  BASE_NAME libmpdecpp
+)
 
-install(TARGETS mpdecimal++ DESTINATION ${CMAKE_INSTALL_LIBDIR})
-install(TARGETS mpdecimal++_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
+set_target_properties(mpdecpp_static PROPERTIES OUTPUT_NAME mpdecpp)
+
+install(TARGETS mpdecpp DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(TARGETS mpdecpp_static DESTINATION ${CMAKE_INSTALL_LIBDIR})

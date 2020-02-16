@@ -14,19 +14,19 @@ find_path(LIBMPDEC_INCLUDE_DIR
   NAMES
     mpdecimal.h
   HINTS 
-    ${PC_LIBMPDEC_INCLUDEDIR} 
-    ${PC_LIBMPDEC_INCLUDE_DIRS}
-    ${PC_LIBMPDEC_INSTALL_DIR}/include
+    ${LIBMPDEC_INCLUDEDIR} 
+    ${LIBMPDEC_INCLUDE_DIRS}
+    ${LIBMPDEC_INSTALL_DIR}/include
 )
 
 find_library(LIBMPDEC_LIBRARY 
   NAMES 
     mpdec
   HINTS 
-    ${PC_LIBMPDEC_LIBDIR} 
-    ${PC_LIBMPDEC_LIBRARY_DIRS} 
-    ${PC_LIBMPDEC_INSTALL_DIR}/lib64/
-    ${PC_LIBMPDEC_INSTALL_DIR}/lib/
+    ${IBMPDEC_LIBDIR} 
+    ${LIBMPDEC_LIBRARY_DIRS} 
+    ${LIBMPDEC_INSTALL_DIR}/lib64/
+    ${LIBMPDEC_INSTALL_DIR}/lib/
 )
 
 include(FindPackageHandleStandardArgs)

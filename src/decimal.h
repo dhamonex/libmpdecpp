@@ -1,7 +1,7 @@
 #ifndef U82ED56306C020E36CB5D80FFF178BA63
 #define U82ED56306C020E36CB5D80FFF178BA63
 
-#include <libmpdecimal_export.h>
+#include <libmpdecpp_export.h>
 #include <memory>
 #include <string>
 
@@ -12,7 +12,7 @@ namespace mpdecimal
     struct DecimalPrivate;
   }
   
-  class LIBMPDECIMAL_EXPORT Decimal
+  class LIBMPDECPP_EXPORT Decimal
   {
     public:
       Decimal();

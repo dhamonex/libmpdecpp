@@ -3,13 +3,13 @@
 
 #include "mpdecimalnamespace.h"
 #include "decimaltypes.h"
-#include "libmpdecimal_export.h"
+#include "libmpdecpp_export.h"
 
 MPDECIMAL_NAMESPACE_BEGIN
 
 namespace detail
 {
-  struct LIBMPDECIMAL_NO_EXPORT DecimalPrivate
+  struct LIBMPDECPP_NO_EXPORT DecimalPrivate
   {
     DecimalPrivate();
     
