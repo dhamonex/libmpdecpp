@@ -3,10 +3,12 @@ project(libmpdecpp)
 cmake_minimum_required(VERSION 3.10)
 set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
-ADD_DEFINITIONS("-DBOOST_LOG_DYN_LINK -std=c++17 -Wall")
-find_package(LibMPDecimal REQUIRED)
-find_package(Boost COMPONENTS unit_test_framework REQUIRED)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+find_package(LibMPDecimal REQUIRED)
+
+find_package(Boost REQUIRED)
 find_package(GTest)
 find_package(GMock)
 
