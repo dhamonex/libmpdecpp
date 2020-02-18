@@ -33,9 +33,9 @@ namespace detail
     uint32_t toUInt32() const;
     uint64_t toUInt64() const;
     
-    
     MPDDecimalPointer mpdDecimal;
     
+    static mpd_context_t *threadLocalContext();
     
     static std::string statusFlags( uint32_t status );
     

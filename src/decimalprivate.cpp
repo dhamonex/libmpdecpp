@@ -26,20 +26,33 @@ namespace detail
   mpd_ssize_t DecimalPrivate::precision = 0;
   mpd_context_t DecimalPrivate::defaultContext; 
   
-  DecimalPrivate::DecimalPrivate()
-    : mpdDecimal()
+  mpd_context_t *DecimalPrivate::threadLocalContext()
   {
     if ( precision == 0 ) {
       BOOST_THROW_EXCEPTION( NotInitialized() 
         << ErrorString( "Decimal not initialized. Use Decimal::decimalInit to set precition and initialize decimal library" ) );
     }
     
+    thread_local mpd_context_t context;
+    thread_local bool isInitialized{ false };
+    
+    if ( isInitialized ) {
+      return &context;
+    }
+    
+    mpd_defaultcontext( &context );
+    return &context;
+  }
+  
+  DecimalPrivate::DecimalPrivate()
+    : mpdDecimal{}
+  {
     createDecimal();
     setDecNumberValue( 0 );
   }
   
   DecimalPrivate::DecimalPrivate( const DecimalPrivate &other )
-    : mpdDecimal()
+    : mpdDecimal{}
   {
     createDecimal();
     
@@ -64,35 +77,35 @@ namespace detail
   void DecimalPrivate::setDecNumberValue( int32_t value )
   {
     uint32_t status = 0;
-    mpd_qset_i32( mpdDecimal.get(), value, &defaultContext, &status );
+    mpd_qset_i32( mpdDecimal.get(), value, threadLocalContext(), &status );
     CHECK_MPD_SET_STATUS
   }
   
   void DecimalPrivate::setDecNumberValue( int64_t value )
   {
     uint32_t status = 0;
-    mpd_qset_i64( mpdDecimal.get(), value, &defaultContext, &status );
+    mpd_qset_i64( mpdDecimal.get(), value, threadLocalContext(), &status );
     CHECK_MPD_SET_STATUS
   }
   
   void DecimalPrivate::setDecNumberValue( uint32_t value )
   {
     uint32_t status = 0;
-    mpd_qset_u32( mpdDecimal.get(), value, &defaultContext, &status );
+    mpd_qset_u32( mpdDecimal.get(), value, threadLocalContext(), &status );
     CHECK_MPD_SET_STATUS
   }
   
   void DecimalPrivate::setDecNumberValue( uint64_t value )
   {
     uint32_t status = 0;
-    mpd_qset_u64( mpdDecimal.get(), value, &defaultContext, &status );
+    mpd_qset_u64( mpdDecimal.get(), value, threadLocalContext(), &status );
     CHECK_MPD_SET_STATUS
   }
   
   void DecimalPrivate::setDecNumberValue( const std::string &value )
   {
     uint32_t status = 0;
-    mpd_qset_string( mpdDecimal.get(), value.c_str(), &defaultContext, &status );
+    mpd_qset_string( mpdDecimal.get(), value.c_str(), threadLocalContext(), &status );
     CHECK_MPD_SET_STATUS
   }
   
@@ -109,7 +122,7 @@ namespace detail
   std::string DecimalPrivate::toString( const std::string &format ) const
   {
     uint32_t status = 0;
-    MPDecimalCharPointer result( mpd_qformat( mpdDecimal.get(), format.c_str(), &defaultContext, &status ) );
+    MPDecimalCharPointer result( mpd_qformat( mpdDecimal.get(), format.c_str(), threadLocalContext(), &status ) );
     
     if ( status != 0 ) {
       BOOST_THROW_EXCEPTION( DecimalException() 
