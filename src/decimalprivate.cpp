@@ -33,14 +33,7 @@ namespace detail
         << ErrorString( "Decimal not initialized. Use Decimal::decimalInit to set precition and initialize decimal library" ) );
     }
     
-    thread_local mpd_context_t context;
-    thread_local bool isInitialized{ false };
-    
-    if ( isInitialized ) {
-      return &context;
-    }
-    
-    mpd_defaultcontext( &context );
+    thread_local mpd_context_t context{ defaultContext };
     return &context;
   }
   
