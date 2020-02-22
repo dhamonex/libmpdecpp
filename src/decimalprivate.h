@@ -4,6 +4,7 @@
 #include "mpdecimalnamespace.h"
 #include "decimaltypes.h"
 #include "libmpdecpp_export.h"
+#include "roundmode.h"
 
 MPDECIMAL_NAMESPACE_BEGIN
 
@@ -36,6 +37,7 @@ namespace detail
     MPDDecimalPointer mpdDecimal;
     
     static mpd_context_t *threadLocalContext();
+    static void setContextRoundMode( mpd_context_t *context, RoundMode roundMode );
     
     static std::string statusFlags( uint32_t status );
     

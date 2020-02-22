@@ -76,11 +76,13 @@ std::string Decimal::toString() const
   return m_private->toString();
 }
 
-void Decimal::decimalInit( std::size_t precision )
+void Decimal::decimalInit( std::size_t precision, 
+                           RoundMode defaultRoundMode )
 {
   assert( detail::DecimalPrivate::precision == 0 );
   
   mpd_init( &detail::DecimalPrivate::defaultContext, precision );
+  detail::DecimalPrivate::setContextRoundMode( &detail::DecimalPrivate::defaultContext, defaultRoundMode );
   detail::DecimalPrivate::precision = precision;
 }
 

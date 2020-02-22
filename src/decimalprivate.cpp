@@ -37,6 +37,21 @@ namespace detail
     return &context;
   }
   
+  void DecimalPrivate::setContextRoundMode( mpd_context_t *context, RoundMode roundMode )
+  {
+    switch ( roundMode ) {
+      case RoundMode::RoundUp:        context->round = MPD_ROUND_UP; break;
+      case RoundMode::RoundDown:      context->round = MPD_ROUND_DOWN; break;
+      case RoundMode::RoundCeiling:   context->round = MPD_ROUND_CEILING; break;
+      case RoundMode::RoundFloor:     context->round = MPD_ROUND_FLOOR; break;
+      case RoundMode::RoundHalfUp:    context->round = MPD_ROUND_HALF_UP; break;
+      case RoundMode::RoundHalfDown:  context->round = MPD_ROUND_HALF_DOWN; break;
+      case RoundMode::RoundHalfEven:  context->round = MPD_ROUND_HALF_EVEN; break;
+      case RoundMode::Round05Up:      context->round = MPD_ROUND_05UP; break;
+      case RoundMode::RoundTrunc:     context->round = MPD_ROUND_TRUNC; break;
+    }
+  }
+  
   DecimalPrivate::DecimalPrivate()
     : mpdDecimal{}
   {

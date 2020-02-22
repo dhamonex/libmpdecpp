@@ -32,7 +32,14 @@ namespace mpdecimal
       std::string toString( unsigned int precision ) const;
       std::string toString() const;
       
-      static void decimalInit( std::size_t precision );
+      /** Intialize library default settings.
+       * Call this functions one time at program start to initialize decimal
+       * library and set some default settings.
+       * @param precision The precision for all generated decimal types.
+       * @param defaultRoundMode set default round mode, default is RoundHalfEven.
+       */
+      static void decimalInit( std::size_t precision, 
+                               RoundMode defaultRoundMode = RoundMode::RoundHalfEven );
       
     private:
       std::unique_ptr<detail::DecimalPrivate> m_private;
