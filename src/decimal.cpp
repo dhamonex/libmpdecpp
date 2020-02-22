@@ -14,10 +14,16 @@ Decimal::Decimal()
 {
 }
 
-Decimal::Decimal(const mpdecimal::Decimal& other)
-  : m_private( new detail::DecimalPrivate( *other.m_private ) )
+Decimal::Decimal ( const Decimal& other )
+  : m_private( std::make_unique<detail::DecimalPrivate>( *other.m_private ) )
 {
   
+}
+
+Decimal::Decimal( Decimal &&other )
+  : m_private( std::move( other.m_private ) )
+{
+  other = Decimal();
 }
 
 Decimal::~Decimal()
@@ -60,9 +66,16 @@ Decimal::Decimal( uint64_t value )
   m_private->setDecNumberValue( value );
 }
 
-Decimal &Decimal::operator=( const mpdecimal::Decimal& other )
+Decimal &Decimal::operator=( const Decimal& other )
 {
-  m_private.reset( new detail::DecimalPrivate( *other.m_private ) );
+  m_private = std::make_unique<detail::DecimalPrivate>( *other.m_private );
+  return *this;
+}
+
+Decimal &Decimal::operator=( Decimal &&other )
+{
+  m_private = std::move( other.m_private );
+  other.m_private = std::make_unique<detail::DecimalPrivate>();
   return *this;
 }
 

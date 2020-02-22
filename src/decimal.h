@@ -4,6 +4,7 @@
 #include <libmpdecpp_export.h>
 #include <memory>
 #include <string>
+#include "roundmode.h"
 
 namespace mpdecimal
 {
@@ -15,8 +16,22 @@ namespace mpdecimal
   class LIBMPDECPP_EXPORT Decimal
   {
     public:
+      /** Construct Decimal initialized with 0.
+       * Construct a decimal with a zero value.
+       */
       Decimal();
+      
+      /** Copy constructor.
+       * Construct Decimal from another decimal.
+       * @param other other Decimal value.
+       */
       Decimal( const Decimal &other );
+      
+      /** Move constructor.
+       * Move other Decimal value to this instance.
+       * @param other other Decimal which will be moved.
+       */
+      Decimal( Decimal &&other );
       
       explicit Decimal( double value );
       explicit Decimal( int32_t value );
@@ -28,6 +43,7 @@ namespace mpdecimal
       ~Decimal();
       
       Decimal &operator=( const Decimal &other );
+      Decimal &operator=( Decimal &&other );
       
       std::string toString( unsigned int precision ) const;
       std::string toString() const;
