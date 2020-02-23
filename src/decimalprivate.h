@@ -10,13 +10,20 @@ MPDECIMAL_NAMESPACE_BEGIN
 
 namespace detail
 {
+  enum class ComparisonResult
+  {
+    Less,
+    Equal,
+    Greater
+  };
+  
+  using mpd_status_t = uint32_t;
+  
   struct LIBMPDECPP_NO_EXPORT DecimalPrivate
   {
     DecimalPrivate();
     
     DecimalPrivate( const DecimalPrivate &other );
-    
-    void createDecimal();
 
     void setDecNumberValue( int32_t value );
     void setDecNumberValue( int64_t value );
@@ -34,7 +41,11 @@ namespace detail
     uint32_t toUInt32() const;
     uint64_t toUInt64() const;
     
+    ComparisonResult compareToOtherValue( const DecimalPrivate &other );
+    
     MPDDecimalPointer mpdDecimal;
+    
+    static MPDDecimalPointer createDecimal();
     
     static mpd_context_t *threadLocalContext();
     static void setContextRoundMode( mpd_context_t *context, RoundMode roundMode );

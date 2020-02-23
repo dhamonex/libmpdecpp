@@ -63,13 +63,34 @@ namespace mpdecimal
        */
       Decimal( const std::string &value );
       
+      /** Destructor.
+       * Removes internal data structures of mpdecimal.
+       */
       ~Decimal();
       
+      
+      /** Copy assign operator.
+       * Assigns the value of the given decimal.
+       * @param other other decimal value.
+       */
       Decimal &operator=( const Decimal &other );
+      
+      /** Copy move assign operator.
+       * Moves the value of the other decimal value to this.
+       * The other decimal is afterwards initialized with 0.
+       * @param other the other decimal value.
+       */
       Decimal &operator=( Decimal &&other );
       
-      std::string toString( unsigned int precision ) const;
+      std::string toString( unsigned int precision ) const; // TODO Rounding
       std::string toString() const;
+      
+      /** Equality comparision operator.
+       * Compares this decimal to ohter value.
+       * @param other other decimal value for comparion.
+       * @return True if other decimal value is equal this decimal value.
+       */
+      bool operator==( const Decimal &other );
       
       /** Intialize library default settings.
        * Call this functions one time at program start to initialize decimal

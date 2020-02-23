@@ -73,6 +73,11 @@ Decimal &Decimal::operator=( Decimal &&other )
   return *this;
 }
 
+bool mpdecimal::Decimal::operator== ( const mpdecimal::Decimal &other )
+{
+  return detail::ComparisonResult::Equal == m_private->compareToOtherValue( *other.m_private );
+}
+
 std::string Decimal::toString(unsigned int precision) const
 {
   return m_private->toString( precision );
@@ -94,3 +99,4 @@ void Decimal::decimalInit( std::size_t precision,
 }
 
 MPDECIMAL_NAMESPACE_END
+

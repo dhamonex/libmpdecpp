@@ -1,3 +1,5 @@
+#ifndef H_F9358506B15F44BBB06B42EDB1A94810
+#define H_F9358506B15F44BBB06B42EDB1A94810
 
 TEST( DecimalInitialization, initialize_on_construction )
 {
@@ -75,3 +77,4 @@ TEST( DecimalInitialization, move_assign_initialize )
   ASSERT_THAT( dec.toString(), Eq( "0" ) );
 }
 
+#endif // H_F9358506B15F44BBB06B42EDB1A94810

@@ -4,19 +4,20 @@
 #include <boost/throw_exception.hpp>
 #include <boost/lexical_cast.hpp>
 
+#define THROW_DECIMAL_EXCEPTION( message ) \
+  BOOST_THROW_EXCEPTION( DecimalException() \
+        << ErrorString( message ) \
+        << ErrorCode( status ) \
+        << StatusFlags( statusFlags( status ) ) )
+
 #define CHECK_MPD_SET_STATUS \
     if ( status != 0 ) { \
-      BOOST_THROW_EXCEPTION( DecimalException() \
-        << ErrorString( "Could not set decimal from value: " + boost::lexical_cast<std::string>( value ) ) \
-        << ErrorCode( status ) << StatusFlags( statusFlags( status ) ) ); \
+      THROW_DECIMAL_EXCEPTION( "Could not set decimal from value: " + boost::lexical_cast<std::string>( value ) ); \
     }
   
 #define CHECK_INTEGER_CONVERT \
     if ( status != 0 ) { \
-      BOOST_THROW_EXCEPTION( DecimalException() \
-        << ErrorString( "Could not convert to integer value" ) \
-        << ErrorCode( status ) \
-        << StatusFlags( statusFlags( status ) ) ); \
+      THROW_DECIMAL_EXCEPTION( "Could not convert to integer value" ); \
     }
 
 MPDECIMAL_NAMESPACE_BEGIN
@@ -53,17 +54,14 @@ namespace detail
   }
   
   DecimalPrivate::DecimalPrivate()
-    : mpdDecimal{}
+    : mpdDecimal{ createDecimal() }
   {
-    createDecimal();
     setDecNumberValue( 0 );
   }
   
   DecimalPrivate::DecimalPrivate( const DecimalPrivate &other )
-    : mpdDecimal{}
+    : mpdDecimal{ createDecimal() }
   {
-    createDecimal();
-    
     uint32_t status = 0;
     if ( !mpd_qcopy( mpdDecimal.get(), other.mpdDecimal.get(), &status ) ) {
       BOOST_THROW_EXCEPTION( DecimalException() 
@@ -74,47 +72,59 @@ namespace detail
     
   }
   
-  void DecimalPrivate::createDecimal()
-  {
-    mpdDecimal.reset( mpd_qnew() );
-    if ( !mpdDecimal ) {
-      BOOST_THROW_EXCEPTION( DecimalException() << ErrorString( "Could not create new decimal" ) );
-    }
-  }
-  
   void DecimalPrivate::setDecNumberValue( int32_t value )
   {
-    uint32_t status = 0;
+    mpd_status_t status = 0;
     mpd_qset_i32( mpdDecimal.get(), value, threadLocalContext(), &status );
     CHECK_MPD_SET_STATUS
   }
   
   void DecimalPrivate::setDecNumberValue( int64_t value )
   {
-    uint32_t status = 0;
+    mpd_status_t status = 0;
     mpd_qset_i64( mpdDecimal.get(), value, threadLocalContext(), &status );
     CHECK_MPD_SET_STATUS
   }
   
   void DecimalPrivate::setDecNumberValue( uint32_t value )
   {
-    uint32_t status = 0;
+    mpd_status_t status = 0;
     mpd_qset_u32( mpdDecimal.get(), value, threadLocalContext(), &status );
     CHECK_MPD_SET_STATUS
   }
   
   void DecimalPrivate::setDecNumberValue( uint64_t value )
   {
-    uint32_t status = 0;
+    mpd_status_t status = 0;
     mpd_qset_u64( mpdDecimal.get(), value, threadLocalContext(), &status );
     CHECK_MPD_SET_STATUS
   }
   
   void DecimalPrivate::setDecNumberValue( const std::string &value )
   {
-    uint32_t status = 0;
+    mpd_status_t status = 0;
     mpd_qset_string( mpdDecimal.get(), value.c_str(), threadLocalContext(), &status );
     CHECK_MPD_SET_STATUS
+  }
+  
+  ComparisonResult DecimalPrivate::compareToOtherValue( const DecimalPrivate &other )
+  {
+    auto result = createDecimal();
+    mpd_status_t status = 0;
+    const auto cmpResult = mpd_qcompare_signal( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
+    
+    if ( status != 0 ) {
+      THROW_DECIMAL_EXCEPTION( "Could not compare decimal values" );
+    }
+    
+    if ( cmpResult > 0 ) {
+      return ComparisonResult::Greater;
+      
+    } else if ( cmpResult < 0 ) {
+      return ComparisonResult::Less;
+    }
+    
+    return ComparisonResult::Equal;
   }
   
   std::string DecimalPrivate::toString() const
@@ -192,6 +202,16 @@ namespace detail
     CHECK_INTEGER_CONVERT
     
     return result;
+  }
+  
+  MPDDecimalPointer DecimalPrivate::createDecimal()
+  {
+    MPDDecimalPointer mpdDecimal( mpd_qnew() );
+    if ( !mpdDecimal ) {
+      BOOST_THROW_EXCEPTION( DecimalException() << ErrorString( "Could not create new decimal" ) );
+    }
+    
+    return mpdDecimal;
   }
   
   std::string DecimalPrivate::statusFlags( uint32_t status )
