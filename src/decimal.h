@@ -33,11 +33,34 @@ namespace mpdecimal
        */
       Decimal( Decimal &&other );
       
-      explicit Decimal( double value );
+      /** Init decimal from an int32_t.
+       * Constructor for int32_t initialisation.
+       * @param value value used for initalizsation.
+       */
       explicit Decimal( int32_t value );
+      
+      /** Init decimal from an int64_t.
+       * Constructor for int64_t initialisation.
+       * @param value value used for initalizsation.
+       */
       explicit Decimal( int64_t value );
+      
+      /** Init decimal from an uint32_t.
+       * Constructor for uint32_t initialisation.
+       * @param value value used for initalizsation.
+       */
       explicit Decimal( uint32_t value );
+      
+      /** Init decimal from an uint64_t.
+       * Constructor for uint64_t initialisation.
+       * @param value value used for initalizsation.
+       */
       explicit Decimal( uint64_t value );
+      
+      /** Init decimal from a string.
+       * Constructor for string initialisation.
+       * @param value value used for initalizsation.
+       */
       explicit Decimal( const std::string &value );
       
       ~Decimal();

@@ -10,11 +10,7 @@
 
 using namespace ::testing;
 
-TEST( Decimal, default_construction_test )
-{
-  mpdecimal::Decimal decimal;
-  ASSERT_THAT( decimal.toString(), Eq( "0" ) );
-}
+#include "initialization_tests.h"
 
 int main( int argc, char **argv )
 {

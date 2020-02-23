@@ -36,12 +36,6 @@ Decimal::Decimal( const std::string &value )
   m_private->setDecNumberValue( value );
 }
 
-Decimal::Decimal( double value )
-  : m_private( new detail::DecimalPrivate )
-{
-  m_private->setDecNumberValue( boost::lexical_cast<std::string>( value ) );
-}
-
 Decimal::Decimal( int32_t value )
   : m_private( new detail::DecimalPrivate )
 {
@@ -98,6 +92,5 @@ void Decimal::decimalInit( std::size_t precision,
   detail::DecimalPrivate::setContextRoundMode( &detail::DecimalPrivate::defaultContext, defaultRoundMode );
   detail::DecimalPrivate::precision = precision;
 }
-
 
 MPDECIMAL_NAMESPACE_END
