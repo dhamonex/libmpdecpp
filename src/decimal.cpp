@@ -30,7 +30,7 @@ Decimal::~Decimal()
 {
 }
 
-Decimal::Decimal( std::string_view value )
+Decimal::Decimal( const std::string &value )
   : m_private( new detail::DecimalPrivate )
 {
   m_private->setDecNumberValue( value );

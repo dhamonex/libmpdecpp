@@ -62,7 +62,7 @@ namespace mpdecimal
        * Constructor for string initialisation.
        * @param value value used for initalizsation.
        */
-      Decimal( std::string_view value );
+      Decimal( const std::string &value );
       
       /** Init decimal from c string.
        * Constructor for cstring initalisation.
@@ -101,6 +101,7 @@ namespace mpdecimal
                                RoundMode defaultRoundMode = RoundMode::RoundHalfEven );
       
       friend bool operator==( const Decimal &lhs, const Decimal &rhs );
+      friend bool operator<( const Decimal &lhs, const Decimal &rhs );
       
     private:
       std::unique_ptr<detail::DecimalPrivate> m_private;
