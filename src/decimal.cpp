@@ -30,7 +30,13 @@ Decimal::~Decimal()
 {
 }
 
-Decimal::Decimal( const std::string &value )
+Decimal::Decimal( std::string_view value )
+  : m_private( new detail::DecimalPrivate )
+{
+  m_private->setDecNumberValue( value );
+}
+
+Decimal::Decimal( const char *value )
   : m_private( new detail::DecimalPrivate )
 {
   m_private->setDecNumberValue( value );
@@ -71,11 +77,6 @@ Decimal &Decimal::operator=( Decimal &&other )
   m_private = std::move( other.m_private );
   other.m_private = std::make_unique<detail::DecimalPrivate>();
   return *this;
-}
-
-bool mpdecimal::Decimal::operator== ( const mpdecimal::Decimal &other )
-{
-  return detail::ComparisonResult::Equal == m_private->compareToOtherValue( *other.m_private );
 }
 
 std::string Decimal::toString(unsigned int precision) const

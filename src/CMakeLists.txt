@@ -3,6 +3,7 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 set(mpdecpp_SRC
   decimal.cpp
   decimalprivate.cpp
+  operations.cpp
 )
 
 set(mpdecpp_HEADER

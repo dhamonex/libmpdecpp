@@ -5,6 +5,7 @@
 #include <memory>
 #include <string>
 #include "roundmode.h"
+#include "operations.h"
 
 namespace mpdecimal
 {
@@ -61,7 +62,12 @@ namespace mpdecimal
        * Constructor for string initialisation.
        * @param value value used for initalizsation.
        */
-      Decimal( const std::string &value );
+      Decimal( std::string_view value );
+      
+      /** Init decimal from c string.
+       * Constructor for cstring initalisation.
+       */
+      Decimal( const char *value );
       
       /** Destructor.
        * Removes internal data structures of mpdecimal.
@@ -85,13 +91,6 @@ namespace mpdecimal
       std::string toString( unsigned int precision ) const; // TODO Rounding
       std::string toString() const;
       
-      /** Equality comparision operator.
-       * Compares this decimal to ohter value.
-       * @param other other decimal value for comparion.
-       * @return True if other decimal value is equal this decimal value.
-       */
-      bool operator==( const Decimal &other );
-      
       /** Intialize library default settings.
        * Call this functions one time at program start to initialize decimal
        * library and set some default settings.
@@ -100,6 +99,8 @@ namespace mpdecimal
        */
       static void decimalInit( std::size_t precision, 
                                RoundMode defaultRoundMode = RoundMode::RoundHalfEven );
+      
+      friend bool operator==( const Decimal &lhs, const Decimal &rhs );
       
     private:
       std::unique_ptr<detail::DecimalPrivate> m_private;

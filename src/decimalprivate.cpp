@@ -100,16 +100,16 @@ namespace detail
     CHECK_MPD_SET_STATUS
   }
   
-  void DecimalPrivate::setDecNumberValue( const std::string &value )
+  void DecimalPrivate::setDecNumberValue( std::string_view value )
   {
     mpd_status_t status = 0;
-    mpd_qset_string( mpdDecimal.get(), value.c_str(), threadLocalContext(), &status );
+    mpd_qset_string( mpdDecimal.get(), value.data(), threadLocalContext(), &status );
     CHECK_MPD_SET_STATUS
   }
   
   ComparisonResult DecimalPrivate::compareToOtherValue( const DecimalPrivate &other )
   {
-    auto result = createDecimal();
+    [[maybe_unused]] auto result = createDecimal();
     mpd_status_t status = 0;
     const auto cmpResult = mpd_qcompare_signal( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
     

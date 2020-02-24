@@ -29,7 +29,7 @@ namespace detail
     void setDecNumberValue( int64_t value );
     void setDecNumberValue( uint32_t value );
     void setDecNumberValue( uint64_t value );
-    void setDecNumberValue( const std::string &value );
+    void setDecNumberValue( std::string_view value );
     
     std::string toString() const;
     std::string toString( unsigned int precision ) const;
