@@ -10,6 +10,7 @@ class DecimalComparionTest : public Test
   protected:
     mpdecimal::Decimal a;
     mpdecimal::Decimal b;
+    mpdecimal::Decimal c;
 };
 
 class DecimalEqualComparionTest : public DecimalComparionTest
@@ -94,6 +95,49 @@ TEST_F( DecimalLessThanComparisonTest, test_less_than_other_int )
 TEST_F( DecimalLessThanComparisonTest, test_less_than_other_int_symmetric )
 {
   ASSERT_TRUE( b < 5ul );
+}
+
+// ============ Less Than or Equal Tests ==================
+
+class DecimalLessThanOrEqualComparisonTest : public DecimalComparionTest
+{
+  protected:
+    void SetUp() override
+    {
+      a = 5;
+      b = 4;
+      c = 5;
+    }
+};
+
+TEST_F( DecimalLessThanOrEqualComparisonTest, test_less_or_equal_than_other_value )
+{
+  ASSERT_TRUE( b <= a );
+  ASSERT_TRUE( c <= a );
+}
+
+TEST_F( DecimalLessThanOrEqualComparisonTest, test_less_or_equal_than_other_string_value )
+{
+  ASSERT_TRUE( "4" <= a );
+  ASSERT_TRUE( c.toString() <= a );
+}
+
+TEST_F( DecimalLessThanOrEqualComparisonTest, test_less_or_equal_than_other_string_value_symmetric )
+{
+  ASSERT_TRUE( b <= "5" );
+  ASSERT_TRUE( c <= a.toString() );
+}
+
+TEST_F( DecimalLessThanOrEqualComparisonTest, test_less_or_equal_than_other_int_value )
+{
+  ASSERT_TRUE( 4 <= a );
+  ASSERT_TRUE( 5ul <= a );
+}
+
+TEST_F( DecimalLessThanOrEqualComparisonTest, test_less_or_equal_than_other_int_value_symmetric )
+{
+  ASSERT_TRUE( b <= 5 );
+  ASSERT_TRUE( c <= 5ul );
 }
 
 #endif // H_E999A6B99C1048C9A29168D7795B395A
