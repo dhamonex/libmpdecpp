@@ -177,4 +177,47 @@ TEST_F( DecimalGreaterThanComparisonTest, test_greater_than_other_int_value_symm
   ASSERT_TRUE( b > 4ul );
 }
 
+// ============ Greater Than or Equal Tests ==================
+
+class DecimalGreaterThanOrEqualComparisonTest : public DecimalComparionTest
+{
+  protected:
+    void SetUp() override
+    {
+      a = 4;
+      b = 5;
+      c = 4;
+    }
+};
+
+TEST_F( DecimalGreaterThanOrEqualComparisonTest, test_greater_than_or_equal_value )
+{
+  ASSERT_TRUE( b >= a );
+  ASSERT_TRUE( c >= a );
+}
+
+TEST_F( DecimalGreaterThanOrEqualComparisonTest, test_greater_than_or_equal_string_value )
+{
+  ASSERT_TRUE( b.toString() >= a );
+  ASSERT_TRUE( "5" >= a );
+}
+
+TEST_F( DecimalGreaterThanOrEqualComparisonTest, test_greater_than_or_equal_string_value_symmetric )
+{
+  ASSERT_TRUE( b >= "4" );
+  ASSERT_TRUE( c >= "4" );
+}
+
+TEST_F( DecimalGreaterThanOrEqualComparisonTest, test_greater_than_or_equal_int_value )
+{
+  ASSERT_TRUE( 4 >= a );
+  ASSERT_TRUE( 5ul >= a );
+}
+
+TEST_F( DecimalGreaterThanOrEqualComparisonTest, test_greater_than_or_equal_int_value_symmetric )
+{
+  ASSERT_TRUE( b >= 4 );
+  ASSERT_TRUE( c >= 4ul );
+}
+
 #endif // H_E999A6B99C1048C9A29168D7795B395A
