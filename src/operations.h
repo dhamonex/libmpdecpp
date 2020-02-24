@@ -31,6 +31,14 @@ namespace mpdecimal
   * @return True if lhs is less or equal than rhs
   */
   LIBMPDECPP_EXPORT bool operator<=( const Decimal &lhs, const Decimal &rhs );
+  
+  /** Greater than comparision operator.
+  * Compares to Decimal values on and returns true if rhs is greater than lhs
+  * @param lhs left hand side decimal value.
+  * @param rhs right hand side decimal value.
+  * @return True if lhs is greater than rhs
+  */
+  LIBMPDECPP_EXPORT bool operator>( const Decimal &lhs, const Decimal &rhs );
 }
 
 #endif // H_E3F615B483B54E9488FC4CE6F08D791E
