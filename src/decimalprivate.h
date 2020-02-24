@@ -9,16 +9,7 @@
 MPDECIMAL_NAMESPACE_BEGIN
 
 namespace detail
-{
-  enum class ComparisonResult
-  {
-    Less,
-    Equal,
-    Greater
-  };
-  
-  using mpd_status_t = uint32_t;
-  
+{  
   struct LIBMPDECPP_NO_EXPORT DecimalPrivate
   {
     DecimalPrivate();

@@ -26,6 +26,15 @@ namespace mpdecimal
     
     using MPDDecimalPointer = std::unique_ptr<mpd_t, MPDecimalDeleter>;
     using MPDecimalCharPointer = std::unique_ptr<char[], MPDecimalCharDeleter>;
+    
+    enum class ComparisonResult
+    {
+      Less,
+      Equal,
+      Greater
+    };
+      
+    using mpd_status_t = uint32_t;
   }
 }
 
