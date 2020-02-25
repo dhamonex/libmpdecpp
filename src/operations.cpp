@@ -28,9 +28,14 @@ bool operator>( const Decimal &lhs, const Decimal &rhs )
   return detail::ComparisonResult::Greater == lhs.m_private->compareToOtherValue( *rhs.m_private );
 }
 
-bool operator>= ( const Decimal &lhs, const Decimal &rhs )
+bool operator>=( const Decimal &lhs, const Decimal &rhs )
 {
   return lhs == rhs || lhs > rhs;
+}
+
+bool operator!=( const mpdecimal::Decimal& lhs, const mpdecimal::Decimal& rhs )
+{
+  return !( lhs == rhs );
 }
 
 MPDECIMAL_NAMESPACE_END

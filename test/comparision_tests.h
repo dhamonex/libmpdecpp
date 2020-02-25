@@ -13,6 +13,8 @@ class DecimalComparionTest : public Test
     mpdecimal::Decimal c;
 };
 
+// ============ Equality Tests ==================
+
 class DecimalEqualComparionTest : public DecimalComparionTest
 {
   protected:
@@ -22,8 +24,6 @@ class DecimalEqualComparionTest : public DecimalComparionTest
       b = 5;
     }
 };
-
-// ============ Equality Tests ==================
 
 TEST_F( DecimalEqualComparionTest, test_on_equality )
 {
@@ -218,6 +218,34 @@ TEST_F( DecimalGreaterThanOrEqualComparisonTest, test_greater_than_or_equal_int_
 {
   ASSERT_TRUE( b >= 4 );
   ASSERT_TRUE( c >= 4ul );
+}
+
+// ============ Un-Equality Tests ==================
+
+class DecimalUnEqualComparionTest : public DecimalComparionTest
+{
+  protected:
+    void SetUp() override
+    {
+      a = 5;
+      b = 4;
+      c = 5;
+    }
+};
+
+TEST_F( DecimalUnEqualComparionTest, test_unequal_value )
+{
+  ASSERT_TRUE( a != b );
+}
+
+TEST_F( DecimalUnEqualComparionTest, test_false_on_equal_value )
+{
+  ASSERT_FALSE( a != c );
+}
+
+TEST_F( DecimalUnEqualComparionTest, test_unequal_string_value )
+{
+  ASSERT_TRUE( a != b.toString() );
 }
 
 #endif // H_E999A6B99C1048C9A29168D7795B395A
