@@ -9,42 +9,42 @@ namespace mpdecimal
   class Decimal;
 
   /** Equality comparision operator.
-  * Compares to Decimal values on equality
-  * @param lhs left hand side decimal value.
-  * @param rhs right hand side decimal value.
-  * @return True if other decimal value is equal this decimal value.
+  * Compares two Decimal values on equality
+  * @param lhs left hand side Decimal value.
+  * @param rhs right hand side Decimal value.
+  * @return True if other decimal value is equal this decimal value, false otherwise.
   */
   LIBMPDECPP_EXPORT bool operator==( const Decimal &lhs, const Decimal &rhs );
   
   /** Less than comparision operator.
-  * Compares to Decimal values on and returns true if rhs is less than lhs
+  * Compares two Decimal values on and returns true if rhs is less than lhs
   * @param lhs left hand side decimal value.
   * @param rhs right hand side decimal value.
-  * @return True if lhs is less than rhs
+  * @return True if lhs is less than rhs, false otherwise.
   */
   LIBMPDECPP_EXPORT bool operator<( const Decimal &lhs, const Decimal &rhs );
   
   /** Less than or equal comparision operator.
-  * Compares to Decimal values on and returns true if rhs is less or equal than lhs
-  * @param lhs left hand side decimal value.
-  * @param rhs right hand side decimal value.
-  * @return True if lhs is less or equal than rhs
+  * Compares two Decimal values on and returns true if rhs is less or equal than lhs
+  * @param lhs left hand side Decimal value.
+  * @param rhs right hand side Decimal value.
+  * @return True if lhs is less or equal than rhs, false otherwise.
   */
   LIBMPDECPP_EXPORT bool operator<=( const Decimal &lhs, const Decimal &rhs );
   
   /** Greater than comparision operator.
-  * Compares to Decimal values on and returns true if rhs is greater than lhs
-  * @param lhs left hand side decimal value.
-  * @param rhs right hand side decimal value.
-  * @return True if lhs is greater than rhs
+  * Compares two Decimal values on and returns true if rhs is greater than lhs
+  * @param lhs left hand side Decimal value.
+  * @param rhs right hand side Decimal value.
+  * @return True if lhs is greater than rhs, false otherwiese.
   */
   LIBMPDECPP_EXPORT bool operator>( const Decimal &lhs, const Decimal &rhs );
   
   /** Greater than comparision operator.
-  * Compares to Decimal values on and returns true if rhs is greater than lhs
-  * @param lhs left hand side decimal value.
-  * @param rhs right hand side decimal value.
-  * @return True if lhs is greater than rhs
+  * Compares two Decimal values on and returns true if rhs is greater than lhs
+  * @param lhs left hand side Decimal value.
+  * @param rhs right hand side Decimal value.
+  * @return True if lhs is greater than rhs, false otherwise.
   */
   LIBMPDECPP_EXPORT bool operator>=( const Decimal &lhs, const Decimal &rhs );
 }
