@@ -22,9 +22,9 @@ namespace detail
     void setDecNumberValue( uint64_t value );
     void setDecNumberValue( std::string_view value );
     
-    std::string toString() const;
-    std::string toString( unsigned int precision ) const;
-    std::string toString( const std::string &format ) const;
+    std::string toString( RoundMode roundMode ) const;
+    std::string toString( unsigned int precision, RoundMode roundMode ) const;
+    std::string toString( const std::string &format, RoundMode roundMode ) const;
     std::string toSciString( int fmt ) const;
     std::string toEngString( int fmt ) const;
     int32_t toInt32() const;
@@ -45,6 +45,7 @@ namespace detail
     
     static mpd_ssize_t precision;
     static mpd_context_t defaultContext;
+    static RoundMode defaultRoundMode;
     
     static constexpr unsigned int charBufferSize = 1000;
   };

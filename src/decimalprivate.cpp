@@ -24,8 +24,32 @@ MPDECIMAL_NAMESPACE_BEGIN
 
 namespace detail
 {
+  struct RoundModeGuard
+  {
+    RoundModeGuard( mpd_context_t *context, RoundMode roundMode )
+      : guardContext{ context },
+        resetRoundMode{ false }
+    {
+      if ( roundMode != RoundMode::Default ) {
+        DecimalPrivate::setContextRoundMode( guardContext, roundMode );
+        resetRoundMode = true;
+      }
+    }
+    
+    ~RoundModeGuard()
+    {
+      if ( resetRoundMode ) {
+        DecimalPrivate::setContextRoundMode( guardContext, DecimalPrivate::defaultRoundMode );
+      }
+    }
+    
+    mpd_context_t *guardContext;
+    bool resetRoundMode;
+  };
+  
   mpd_ssize_t DecimalPrivate::precision = 0;
-  mpd_context_t DecimalPrivate::defaultContext; 
+  mpd_context_t DecimalPrivate::defaultContext;
+  RoundMode DecimalPrivate::defaultRoundMode = RoundMode::Default;
   
   mpd_context_t *DecimalPrivate::threadLocalContext()
   {
@@ -50,6 +74,7 @@ namespace detail
       case RoundMode::RoundHalfEven:  context->round = MPD_ROUND_HALF_EVEN; break;
       case RoundMode::Round05Up:      context->round = MPD_ROUND_05UP; break;
       case RoundMode::RoundTrunc:     context->round = MPD_ROUND_TRUNC; break;
+      case RoundMode::Default:        context->round = MPD_ROUND_HALF_EVEN; break;
     }
   }
   
@@ -127,20 +152,22 @@ namespace detail
     return ComparisonResult::Equal;
   }
   
-  std::string DecimalPrivate::toString() const
+  std::string DecimalPrivate::toString( RoundMode roundMode ) const
   {
-    return toString( "f" );
+    return toString( "f", roundMode );
   }
   
-  std::string DecimalPrivate::toString( unsigned int precision ) const
+  std::string DecimalPrivate::toString( unsigned int precision, RoundMode roundMode ) const
   {
-    return toString( "." + boost::lexical_cast<std::string>( precision ) + "f" );
+    return toString( "." + boost::lexical_cast<std::string>( precision ) + "f", roundMode );
   }
   
-  std::string DecimalPrivate::toString( const std::string &format ) const
+  std::string DecimalPrivate::toString( const std::string &format, RoundMode roundMode ) const
   {
     uint32_t status = 0;
-    MPDecimalCharPointer result( mpd_qformat( mpdDecimal.get(), format.c_str(), threadLocalContext(), &status ) );
+    RoundModeGuard roundModeGuard( threadLocalContext(), roundMode );
+    
+    MPDecimalCharPointer result( mpd_qformat( mpdDecimal.get(), format.c_str(), roundModeGuard.guardContext, &status ) );
     
     if ( status != 0 ) {
       BOOST_THROW_EXCEPTION( DecimalException() 

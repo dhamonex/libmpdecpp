@@ -8,15 +8,16 @@ namespace mpdecimal
    */
   enum class RoundMode
   {
-    RoundUp,          ///< round away from 0
-    RoundDown,        ///< round toward 0 (truncate)
-    RoundCeiling,     ///< round toward +infinity
-    RoundFloor,       ///< round toward -infinity
-    RoundHalfUp,      ///< 0.5 is rounded up
-    RoundHalfDown,    ///< 0.5 is rounded down
-    RoundHalfEven,    ///< 0.5 is rounded to even
-    Round05Up,        ///< round zero or five away from 0
-    RoundTrunc        ///< truncate, but set infinities
+    RoundUp,          ///< round away from 0.
+    RoundDown,        ///< round toward 0 (truncate).
+    RoundCeiling,     ///< round toward +infinity.
+    RoundFloor,       ///< round toward -infinity.
+    RoundHalfUp,      ///< 0.5 is rounded up.
+    RoundHalfDown,    ///< 0.5 is rounded down.
+    RoundHalfEven,    ///< 0.5 is rounded to even.
+    Round05Up,        ///< round zero or five away from 0.
+    RoundTrunc,       ///< truncate, but set infinities.
+    Default           ///< Default rounding mode (on initialization this is RoundHalfEven).
   };
 }
 

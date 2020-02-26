@@ -79,14 +79,14 @@ Decimal &Decimal::operator=( Decimal &&other )
   return *this;
 }
 
-std::string Decimal::toString(unsigned int precision) const
+std::string Decimal::toString ( unsigned int precision, RoundMode roundMode ) const
 {
-  return m_private->toString( precision );
+  return m_private->toString( precision, roundMode );
 }
 
-std::string Decimal::toString() const
+std::string Decimal::toString( RoundMode roundMode ) const
 {
-  return m_private->toString();
+  return m_private->toString( roundMode );
 }
 
 void Decimal::decimalInit( std::size_t precision, 
@@ -97,6 +97,7 @@ void Decimal::decimalInit( std::size_t precision,
   mpd_init( &detail::DecimalPrivate::defaultContext, precision );
   detail::DecimalPrivate::setContextRoundMode( &detail::DecimalPrivate::defaultContext, defaultRoundMode );
   detail::DecimalPrivate::precision = precision;
+  detail::DecimalPrivate::defaultRoundMode = defaultRoundMode;
 }
 
 MPDECIMAL_NAMESPACE_END

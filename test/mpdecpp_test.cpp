@@ -11,6 +11,7 @@
 using namespace ::testing;
 
 #include "initialization_tests.h"
+#include "conversion_tests.h"
 #include "comparision_tests.h"
 
 int main( int argc, char **argv )

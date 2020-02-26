@@ -88,8 +88,16 @@ namespace mpdecimal
        */
       Decimal &operator=( Decimal &&other );
       
-      std::string toString( unsigned int precision ) const; // TODO Rounding
-      std::string toString() const;
+      /** Convert mpdecimal value to string with rounding.
+       * Converts the decimal value to a string with respect of the default rounding mode.
+       * @param precision the number of digits to round to.
+       * @param roundMode the used round mode, if default is used the round mode from decimalInit is used.
+       * @return the string representation of the decimal value.
+       */
+      std::string toString( unsigned int precision, 
+                            RoundMode roundMode = RoundMode::Default ) const;
+                            
+      std::string toString( RoundMode roundMode = RoundMode::Default ) const;
       
       /** Intialize library default settings.
        * Call this functions one time at program start to initialize decimal
