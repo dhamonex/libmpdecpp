@@ -89,6 +89,11 @@ std::string Decimal::toString( RoundMode roundMode ) const
   return m_private->toString( roundMode );
 }
 
+int32_t Decimal::toInt32() const
+{
+  return m_private->toInt32();
+}
+
 void Decimal::decimalInit( std::size_t precision, 
                            RoundMode defaultRoundMode )
 {
@@ -101,4 +106,3 @@ void Decimal::decimalInit( std::size_t precision,
 }
 
 MPDECIMAL_NAMESPACE_END
-

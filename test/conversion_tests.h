@@ -1,6 +1,7 @@
 #ifndef H_A7044423D0E2461989AA77A609704686
 #define H_A7044423D0E2461989AA77A609704686
 
+// ============== String Conversion ===================
 class StringConversionTest : public Test
 {
   public:
@@ -45,6 +46,27 @@ TEST_F( StringConversionTest, test_string_conversion_round_trunc )
   ASSERT_THAT( twoDigitDecimalValue.toString( 1, mpdecimal::RoundMode::RoundTrunc ), Eq( "5.5" ) );
   ASSERT_THAT( threeDigitDecimalValue.toString( 2, mpdecimal::RoundMode::RoundTrunc ), Eq( "-5.00" ) );
   ASSERT_THAT( fourDigitDecimalValue.toString( 2, mpdecimal::RoundMode::RoundTrunc ), Eq( "10.00" ) );
+}
+
+// ============== Integer Conversion ===================
+class IntegerConversionTest : public Test
+{
+  public:
+    IntegerConversionTest() = default;
+    ~IntegerConversionTest() override = default;
+    
+  protected:
+    void SetUp() override
+    {
+      decimalValue = "5";
+    }
+    
+    mpdecimal::Decimal decimalValue;
+};
+
+TEST_F( IntegerConversionTest, test_int32_conversion )
+{
+  ASSERT_THAT( decimalValue.toInt32(), Eq( 5 ) );
 }
 
 #endif // H_A7044423D0E2461989AA77A609704686

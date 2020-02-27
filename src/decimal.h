@@ -34,37 +34,37 @@ namespace mpdecimal
        */
       Decimal( Decimal &&other );
       
-      /** Init decimal from an int32_t.
+      /** Init Decimal from an int32_t.
        * Constructor for int32_t initialisation.
        * @param value value used for initalizsation.
        */
       Decimal( int32_t value );
       
-      /** Init decimal from an int64_t.
+      /** Init Decimal from an int64_t.
        * Constructor for int64_t initialisation.
        * @param value value used for initalizsation.
        */
       Decimal( int64_t value );
       
-      /** Init decimal from an uint32_t.
+      /** Init Decimal from an uint32_t.
        * Constructor for uint32_t initialisation.
        * @param value value used for initalizsation.
        */
       Decimal( uint32_t value );
       
-      /** Init decimal from an uint64_t.
+      /** Init Decimal from an uint64_t.
        * Constructor for uint64_t initialisation.
        * @param value value used for initalizsation.
        */
       Decimal( uint64_t value );
       
-      /** Init decimal from a string.
+      /** Init Decimal from a string.
        * Constructor for string initialisation.
        * @param value value used for initalizsation.
        */
       Decimal( const std::string &value );
       
-      /** Init decimal from c string.
+      /** Init Decimal from c string.
        * Constructor for cstring initalisation.
        */
       Decimal( const char *value );
@@ -76,33 +76,48 @@ namespace mpdecimal
       
       
       /** Copy assign operator.
-       * Assigns the value of the given decimal.
-       * @param other other decimal value.
+       * Assigns the value of the given Decimal.
+       * @param other other Decimal value.
        */
       Decimal &operator=( const Decimal &other );
       
       /** Copy move assign operator.
-       * Moves the value of the other decimal value to this.
-       * The other decimal is afterwards initialized with 0.
-       * @param other the other decimal value.
+       * Moves the value of the other Decimal value to this.
+       * The other Decimal is afterwards initialized with 0.
+       * @param other the other Decimal value.
        */
       Decimal &operator=( Decimal &&other );
       
-      /** Convert mpdecimal value to string with rounding.
-       * Converts the decimal value to a string with respect of the default rounding mode.
+      /** Convert Decimal value to string with rounding.
+       * Converts the Decimal value to a string with respect of the default rounding mode.
        * @param precision the number of digits to round to.
        * @param roundMode the used round mode, if default is used the round mode from decimalInit is used.
-       * @return the string representation of the decimal value.
+       * @return the string representation of the Decimal value.
        */
       std::string toString( unsigned int precision, 
                             RoundMode roundMode = RoundMode::Default ) const;
                             
+      /** Convert Decimal value to string with rounding.
+       * Converts the Decimal value to a string with respect of the default rounding mode.
+       * @param roundMode the used round mode, if default is used the round mode from decimalInit is used.
+       * @return the string representation of the Decimal value.
+       */
       std::string toString( RoundMode roundMode = RoundMode::Default ) const;
       
+      /** Convert Decimal to an int32_t.
+       * Converts the Decimal value to an int32_t, no rounding is applied.
+       * @return the converted value.
+       */
+      int32_t toInt32() const;
+      
+      int64_t toInt64() const;
+      uint32_t toUInt32() const;
+      uint64_t toUInt64() const;
+      
       /** Intialize library default settings.
-       * Call this functions one time at program start to initialize decimal
+       * Call this functions one time at program start to initialize Decimal
        * library and set some default settings.
-       * @param precision The precision for all generated decimal types.
+       * @param precision The precision for all generated Decimal types.
        * @param defaultRoundMode set default round mode, default is RoundHalfEven.
        */
       static void decimalInit( std::size_t precision, 

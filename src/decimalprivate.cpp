@@ -193,7 +193,7 @@ namespace detail
   
   int32_t DecimalPrivate::toInt32() const
   {
-    uint32_t status = 0;
+    mpd_status_t status = 0;
     int32_t result = mpd_qget_i32( mpdDecimal.get(), &status );
     
     CHECK_INTEGER_CONVERT
@@ -203,7 +203,7 @@ namespace detail
   
   int64_t DecimalPrivate::toInt64() const
   {
-    uint32_t status = 0;
+    mpd_status_t status = 0;
     int64_t result = mpd_qget_i64( mpdDecimal.get(), &status );
     
     CHECK_INTEGER_CONVERT
@@ -213,7 +213,7 @@ namespace detail
  
   uint32_t DecimalPrivate::toUInt32() const
   {
-    uint32_t status = 0;
+    mpd_status_t status = 0;
     uint32_t result = mpd_qget_u32( mpdDecimal.get(), &status );
     
     CHECK_INTEGER_CONVERT
@@ -223,7 +223,7 @@ namespace detail
   
   uint64_t DecimalPrivate::toUInt64() const
   {
-    uint32_t status = 0;
+    mpd_status_t status = 0;
     uint64_t result = mpd_qget_u64( mpdDecimal.get(), &status );
     
     CHECK_INTEGER_CONVERT
