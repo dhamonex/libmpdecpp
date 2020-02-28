@@ -67,6 +67,13 @@ class IntegerConversionTest : public Test
 TEST_F( IntegerConversionTest, test_int32_conversion )
 {
   ASSERT_THAT( decimalValue.toInt32(), Eq( 5 ) );
+  static_assert(std::is_same_v< decltype(std::declval<mpdecimal::Decimal>().toInt32()), int32_t> );
+}
+
+TEST_F( IntegerConversionTest, test_int64_conversion )
+{
+  ASSERT_THAT( decimalValue.toInt64(), Eq( 5 ) );
+  static_assert(std::is_same_v< decltype(std::declval<mpdecimal::Decimal>().toInt64()), int64_t> );
 }
 
 #endif // H_A7044423D0E2461989AA77A609704686

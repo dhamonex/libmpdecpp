@@ -106,11 +106,21 @@ namespace mpdecimal
       
       /** Convert Decimal to an int32_t.
        * Converts the Decimal value to an int32_t, no rounding is applied.
+       * If type is not convertable, for exmple it is a floating point, then
+       * an expetion is thrown.
        * @return the converted value.
        */
       int32_t toInt32() const;
       
+      /** Convert Decimal to an int64_t.
+       * Converts the Decimal value to an int64_t, no rounding is applied.
+       * If type is not convertable, for exmple it is a floating point, then
+       * an expetion is thrown.
+       * @return the converted value.
+       */
       int64_t toInt64() const;
+      
+      
       uint32_t toUInt32() const;
       uint64_t toUInt64() const;
       

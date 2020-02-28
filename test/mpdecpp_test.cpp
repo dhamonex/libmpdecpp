@@ -3,6 +3,7 @@
 #include <decimalexceptions.h>
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
+#include <utility>
 
 #include <boost/exception/diagnostic_information.hpp>
 
