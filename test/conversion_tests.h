@@ -14,11 +14,13 @@ class StringConversionTest : public Test
       twoDigitDecimalValue = "5.55";
       threeDigitDecimalValue = "-5.005";
       fourDigitDecimalValue = "10.0005";
+      exponentRepresentationValue = "123E+1";
     }
     
     mpdecimal::Decimal twoDigitDecimalValue;
     mpdecimal::Decimal threeDigitDecimalValue;
     mpdecimal::Decimal fourDigitDecimalValue;
+    mpdecimal::Decimal exponentRepresentationValue;
 };
 
 TEST_F( StringConversionTest, test_conversion_with_round_down_with_reset )
@@ -46,6 +48,26 @@ TEST_F( StringConversionTest, test_string_conversion_round_trunc )
   ASSERT_THAT( twoDigitDecimalValue.toString( 1, mpdecimal::RoundMode::RoundTrunc ), Eq( "5.5" ) );
   ASSERT_THAT( threeDigitDecimalValue.toString( 2, mpdecimal::RoundMode::RoundTrunc ), Eq( "-5.00" ) );
   ASSERT_THAT( fourDigitDecimalValue.toString( 2, mpdecimal::RoundMode::RoundTrunc ), Eq( "10.00" ) );
+}
+
+TEST_F( StringConversionTest, test_eng_string_conversion_lower_case_exponent )
+{
+  ASSERT_THAT( exponentRepresentationValue.toEngString( mpdecimal::SciEngStringConversionFormatFlag::LowerCaseExponentCharacter ), Eq( "1.23e+3" ) );
+}
+
+TEST_F( StringConversionTest, test_eng_string_conversion_upper_case_exponent )
+{
+  ASSERT_THAT( exponentRepresentationValue.toEngString( mpdecimal::SciEngStringConversionFormatFlag::UpperCaseExponentCharacter ), Eq( "1.23E+3" ) );
+}
+
+TEST_F( StringConversionTest, test_sci_string_conversion_lower_case_exponent )
+{
+  ASSERT_THAT( exponentRepresentationValue.toSciString( mpdecimal::SciEngStringConversionFormatFlag::LowerCaseExponentCharacter ), Eq( "1.23e+3" ) );
+}
+
+TEST_F( StringConversionTest, test_sci_string_conversion_upper_case_exponent )
+{
+  ASSERT_THAT( exponentRepresentationValue.toSciString( mpdecimal::SciEngStringConversionFormatFlag::UpperCaseExponentCharacter ), Eq( "1.23E+3" ) );
 }
 
 // ============== Integer Conversion ===================

@@ -6,6 +6,7 @@
 #include <string>
 #include "roundmode.h"
 #include "operations.h"
+#include "scienfstringconversionformatflag.h"
 
 namespace mpdecimal
 {
@@ -103,6 +104,26 @@ namespace mpdecimal
        * @return the string representation of the Decimal value.
        */
       std::string toString( RoundMode roundMode = RoundMode::Default ) const;
+      
+      /** Convert Decimal value to string in scientifc notation.
+       * @param format the format flag
+       * @return the string representation of the Decimal value in sci notation.
+       * @see SciEngStringConversionFormatFlag.
+       */
+      std::string toSciString( SciEngStringConversionFormatFlag format ) const;
+      
+      /** Convert Decimal to a string, using engineering notation if an exponent is needed.
+       * Engineering notation has an exponent which is a multiple of 3. This can leave up to 3 
+       * digits to the left of the decimal place and may require the addition of 
+       * either one or two trailing zeros.
+       * 
+       *  For example, this converts Decimal('123E+1') to Decimal('1.23E+3').
+       * 
+       * @param format the format flag
+       * @return the string representation of the Decimal value in eng notation.
+       * @see SciEngStringConversionFormatFlag.
+       */
+      std::string toEngString( SciEngStringConversionFormatFlag format ) const;
       
       /** Convert Decimal to an int32_t.
        * Converts the Decimal value to an int32_t, no rounding is applied.

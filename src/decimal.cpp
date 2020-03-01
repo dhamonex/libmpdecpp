@@ -84,6 +84,16 @@ std::string Decimal::toString ( unsigned int precision, RoundMode roundMode ) co
   return m_private->toString( precision, roundMode );
 }
 
+std::string Decimal::toSciString( SciEngStringConversionFormatFlag format ) const
+{
+  return m_private->toSciString( format );
+}
+
+std::string Decimal::toEngString( SciEngStringConversionFormatFlag format ) const
+{
+  return m_private->toEngString( format );
+}
+
 std::string Decimal::toString( RoundMode roundMode ) const
 {
   return m_private->toString( roundMode );

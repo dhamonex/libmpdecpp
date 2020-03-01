@@ -179,15 +179,15 @@ namespace detail
     return result.get();
   }
   
-  std::string DecimalPrivate::toSciString( int fmt ) const
+  std::string DecimalPrivate::toSciString( SciEngStringConversionFormatFlag format ) const
   {
-    MPDecimalCharPointer result( mpd_to_sci( mpdDecimal.get(), fmt ) );
+    MPDecimalCharPointer result( mpd_to_sci( mpdDecimal.get(), convertFormatFlag( format ) ) );
     return result.get();
   }
   
-  std::string DecimalPrivate::toEngString( int fmt ) const
+  std::string DecimalPrivate::toEngString( SciEngStringConversionFormatFlag format ) const
   {
-    MPDecimalCharPointer result( mpd_to_eng( mpdDecimal.get(), fmt ) );
+    MPDecimalCharPointer result( mpd_to_eng( mpdDecimal.get(), convertFormatFlag( format ) ) );
     return result.get();
   }
   
@@ -247,6 +247,15 @@ namespace detail
     mpd_snprint_flags( buffer, charBufferSize, status );
     
     return buffer;
+  }
+  
+  constexpr int DecimalPrivate::convertFormatFlag( SciEngStringConversionFormatFlag format )
+  {
+    if ( format == SciEngStringConversionFormatFlag::LowerCaseExponentCharacter ) {
+      return 0;
+    }
+    
+    return 1;
   }
 }
 

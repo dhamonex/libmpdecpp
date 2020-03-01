@@ -9,6 +9,8 @@ set(mpdecpp_SRC
 set(mpdecpp_HEADER
   decimal.h
   libmpdecimal_export.h
+  scienfstringconversionformatflag.h
+  roundmode.h
 )
 
 add_library(mpdecpp SHARED ${mpdecpp_SRC})

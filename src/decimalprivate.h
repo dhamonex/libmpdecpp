@@ -5,6 +5,7 @@
 #include "decimaltypes.h"
 #include "libmpdecpp_export.h"
 #include "roundmode.h"
+#include "scienfstringconversionformatflag.h"
 
 MPDECIMAL_NAMESPACE_BEGIN
 
@@ -25,8 +26,8 @@ namespace detail
     std::string toString( RoundMode roundMode ) const;
     std::string toString( unsigned int precision, RoundMode roundMode ) const;
     std::string toString( const std::string &format, RoundMode roundMode ) const;
-    std::string toSciString( int fmt ) const;
-    std::string toEngString( int fmt ) const;
+    std::string toSciString( SciEngStringConversionFormatFlag format ) const;
+    std::string toEngString( SciEngStringConversionFormatFlag format ) const;
     int32_t toInt32() const;
     int64_t toInt64() const;
     uint32_t toUInt32() const;
@@ -42,6 +43,8 @@ namespace detail
     static void setContextRoundMode( mpd_context_t *context, RoundMode roundMode );
     
     static std::string statusFlags( uint32_t status );
+    
+    static constexpr int convertFormatFlag( SciEngStringConversionFormatFlag format );
     
     static mpd_ssize_t precision;
     static mpd_context_t defaultContext;
