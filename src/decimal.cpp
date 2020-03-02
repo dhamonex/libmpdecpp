@@ -114,6 +114,11 @@ uint32_t Decimal::toUInt32() const
   return m_private->toUInt32();
 }
 
+uint64_t Decimal::toUInt64() const
+{
+  return m_private->toUInt64();
+}
+
 void Decimal::decimalInit( std::size_t precision, 
                            RoundMode defaultRoundMode )
 {

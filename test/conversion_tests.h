@@ -116,5 +116,17 @@ TEST_F( IntegerConversionTest, test_uint32_conversion)
   static_assert(std::is_same_v< decltype( convertedVal ), uint32_t> );
 }
 
+TEST_F( IntegerConversionTest, test_uint64_conversion)
+{
+  auto convertedVal = decimalValue.toUInt64();
+  ASSERT_THAT( convertedVal, Eq( 5 ) );
+  static_assert(std::is_same_v< decltype( convertedVal ), uint64_t> );
+}
+
+TEST_F( IntegerConversionTest, test_uint_converion_of_negative_value_throws_exception )
+{
+  ASSERT_THROW( negativeValue.toUInt64(), mpdecimal::DecimalException );
+}
+
 #endif // H_A7044423D0E2461989AA77A609704686
 
