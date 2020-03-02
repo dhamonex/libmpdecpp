@@ -141,8 +141,20 @@ namespace mpdecimal
        */
       int64_t toInt64() const;
       
-      
+      /** Convert Decimal to an uint32_t.
+       * Converts the Decimal value to an uint32_t, no rounding is applied.
+       * If type is not convertable, for exmple it is a negative number, then
+       * an expetion is thrown.
+       * @return the converted value.
+       */
       uint32_t toUInt32() const;
+      
+      /** Convert Decimal to an uint64_t.
+       * Converts the Decimal value to an uint64_t, no rounding is applied.
+       * If type is not convertable, for exmple it is a negative number, then
+       * an expetion is thrown.
+       * @return the converted value.
+       */
       uint64_t toUInt64() const;
       
       /** Intialize library default settings.

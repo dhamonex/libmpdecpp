@@ -94,19 +94,26 @@ TEST_F( IntegerConversionTest, test_int32_conversion )
 {
   ASSERT_THAT( decimalValue.toInt32(), Eq( 5 ) );
   ASSERT_THAT( negativeValue.toInt32(), Eq( -5 ) );
-  static_assert(std::is_same_v< decltype(std::declval<mpdecimal::Decimal>().toInt32()), int32_t> );
+  static_assert( std::is_same_v< decltype( std::declval<mpdecimal::Decimal>().toInt32() ), int32_t> );
 }
 
 TEST_F( IntegerConversionTest, test_int64_conversion )
 {
   ASSERT_THAT( decimalValue.toInt64(), Eq( 5 ) );
   ASSERT_THAT( negativeValue.toInt64(), Eq( -5 ) );
-  static_assert(std::is_same_v< decltype(std::declval<mpdecimal::Decimal>().toInt64()), int64_t> );
+  static_assert( std::is_same_v< decltype( std::declval<mpdecimal::Decimal>().toInt64() ), int64_t> );
 }
 
 TEST_F( IntegerConversionTest, test_exception_when_not_convertable )
 {
   ASSERT_THROW( notConvertable.toInt32(), mpdecimal::DecimalException );
+}
+
+TEST_F( IntegerConversionTest, test_uint32_conversion)
+{
+  auto convertedVal = decimalValue.toUInt32();
+  ASSERT_THAT( convertedVal, Eq( 5 ) );
+  static_assert(std::is_same_v< decltype( convertedVal ), uint32_t> );
 }
 
 #endif // H_A7044423D0E2461989AA77A609704686
