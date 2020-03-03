@@ -28,3 +28,4 @@ script:
      - make
      - make project1_coverage
      - ctest
+     
