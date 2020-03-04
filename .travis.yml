@@ -8,7 +8,7 @@ matrix:
       compiler: gcc
       addons:
       apt:
-        packages:
+        packages: &precise_latest_boost_packages
           - gcc
           - g++
           - clang
@@ -20,7 +20,8 @@ matrix:
           - libgtest-dev
           - google-mock
            
-        #sources:
+        sources: &precise_latest_boost_sources
+          -  ubuntu-toolchain-r-test
         #- sourceline: 'ppa:ubuntu-toolchain-r/test'
 
 script:
