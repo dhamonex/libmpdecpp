@@ -9,8 +9,8 @@ matrix:
       addons:
        apt:
          packages: &precise_latest_boost_packages
-           - gcc
-           - g++
+           - gcc-8
+           - g++-8
            - clang
            - python-yaml
            - lcov
@@ -20,9 +20,8 @@ matrix:
            - libgtest-dev
            - google-mock
            
-         sources: &precise_latest_boost_sources
-           - ubuntu-toolchain-r-test
-           - llvm-toolchain-precise-3.7
+        sources:  
+          - sourceline: "ppa:ubuntu-toolchain-r/test"
 
 script:
      - mkdir -p build
