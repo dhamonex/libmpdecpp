@@ -16,6 +16,7 @@ matrix:
            - lcov
            - libmpdec-dev
            - cmake
+           - libboost-dev
            
          sources: &precise_latest_boost_sources
            - ubuntu-toolchain-r-test
