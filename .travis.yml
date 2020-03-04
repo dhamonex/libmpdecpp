@@ -17,6 +17,8 @@ matrix:
            - libmpdec-dev
            - cmake
            - libboost-all-dev
+           - libgtest-dev
+           - google-mock
            
          sources: &precise_latest_boost_sources
            - ubuntu-toolchain-r-test
