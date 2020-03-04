@@ -20,8 +20,8 @@ matrix:
           - libgtest-dev
           - google-mock
            
-        sources:
-        - sourceline: 'ppa:ubuntu-toolchain-r/test'
+        #sources:
+        #- sourceline: 'ppa:ubuntu-toolchain-r/test'
 
 script:
      - mkdir -p build
