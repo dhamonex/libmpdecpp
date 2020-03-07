@@ -12,12 +12,14 @@ addons:
       - libmpdec-dev
       - cmake
       - libboost-all-dev
-      - libgtest-dev
-      - google-mock
+      - git
            
-    sources:
-      -  ubuntu-toolchain-r-test
-        #- sourceline: 'ppa:ubuntu-toolchain-r/test'
+    sourceline: 'ppa:ubuntu-toolchain-r/test'
+    
+before_script:
+  - git clone -b v1.8.x git@github.com:google/googletest.git gtest
+  - cd gtest && make build && cd build && cmake ../ && make && make install
+  
 
 script:
      - mkdir -p build
