@@ -2,6 +2,7 @@ language: cpp
 dist: bionic
 addons:
   apt:
+    update: true
     packages:
       - gcc
       - g++
@@ -12,7 +13,7 @@ addons:
       - cmake
       - libboost-all-dev
       - libgtest-dev
-        - google-mock
+      - google-mock
            
     sources:
       -  ubuntu-toolchain-r-test
