@@ -1,27 +1,21 @@
 language: cpp
-
-matrix:
-  include:
-    - os: linux
-      dist: bionic
-      sudo: true
-      compiler: gcc
-      addons:
-      apt:
-        packages:
-          - gcc
-          - g++
-          - clang
-          - python-yaml
-          - lcov
-          - libmpdec-dev
-          - cmake
-          - libboost-all-dev
-          - libgtest-dev
-          - google-mock
+dist: bionic
+addons:
+  apt:
+    packages:
+      - gcc
+      - g++
+      - clang
+      - python-yaml
+      - lcov
+      - libmpdec-dev
+      - cmake
+      - libboost-all-dev
+      - libgtest-dev
+        - google-mock
            
-        sources:
-          -  ubuntu-toolchain-r-test
+    sources:
+      -  ubuntu-toolchain-r-test
         #- sourceline: 'ppa:ubuntu-toolchain-r/test'
 
 script:
