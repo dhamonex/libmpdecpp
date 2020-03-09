@@ -55,6 +55,14 @@ namespace mpdecimal
    * @return True if lhs is not equal to rhs, false otherwise.
    */
   LIBMPDECPP_EXPORT bool operator!=( const Decimal &lhs, const Decimal &rhs );
+  
+  /** Multiply two Decimal values.
+   * Multiply the given two Decimal values and return the result as a copy.
+   * @param lhs left hand side Decimal value.
+   * @param rhs right hand side Decimal value.
+   * @return result of multiplication of the two decimal values.
+   */
+  LIBMPDECPP_EXPORT Decimal operator*( const Decimal &lhs, const Decimal &rhs );
 }
 
 #endif // H_E3F615B483B54E9488FC4CE6F08D791E
