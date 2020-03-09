@@ -9,16 +9,18 @@
         << ErrorString( message ) \
         << ErrorCode( status ) \
         << StatusFlags( statusFlags( status ) ) )
+  
+  
+#define CHECK_DECIMAL_OPERATION( message ) \
+  if ( status != 0 ) { \
+      THROW_DECIMAL_EXCEPTION( message ); \
+    }
 
 #define CHECK_MPD_SET_STATUS \
-    if ( status != 0 ) { \
-      THROW_DECIMAL_EXCEPTION( "Could not set decimal from value: " + boost::lexical_cast<std::string>( value ) ); \
-    }
+    CHECK_DECIMAL_OPERATION( "Could not set decimal from value: " + boost::lexical_cast<std::string>( value ) )
   
 #define CHECK_INTEGER_CONVERT \
-    if ( status != 0 ) { \
-      THROW_DECIMAL_EXCEPTION( "Could not convert to integer value" ); \
-    }
+    CHECK_DECIMAL_OPERATION( "Could not convert to integer value" )
 
 MPDECIMAL_NAMESPACE_BEGIN
 
@@ -83,7 +85,7 @@ namespace detail
   DecimalPrivate::DecimalPrivate( const DecimalPrivate &other )
     : mpdDecimal{ createDecimal() }
   {
-    uint32_t status = 0;
+    mpd_status_t status{ 0 };
     if ( !mpd_qcopy( mpdDecimal.get(), other.mpdDecimal.get(), &status ) ) {
       BOOST_THROW_EXCEPTION( DecimalException() 
         << ErrorString( "Could not copy decimal value" )
@@ -95,35 +97,35 @@ namespace detail
   
   void DecimalPrivate::setDecNumberValue( int32_t value )
   {
-    mpd_status_t status = 0;
+    mpd_status_t status{ 0 };
     mpd_qset_i32( mpdDecimal.get(), value, threadLocalContext(), &status );
     CHECK_MPD_SET_STATUS
   }
   
   void DecimalPrivate::setDecNumberValue( int64_t value )
   {
-    mpd_status_t status = 0;
+    mpd_status_t status{ 0 };
     mpd_qset_i64( mpdDecimal.get(), value, threadLocalContext(), &status );
     CHECK_MPD_SET_STATUS
   }
   
   void DecimalPrivate::setDecNumberValue( uint32_t value )
   {
-    mpd_status_t status = 0;
+    mpd_status_t status{ 0 };
     mpd_qset_u32( mpdDecimal.get(), value, threadLocalContext(), &status );
     CHECK_MPD_SET_STATUS
   }
   
   void DecimalPrivate::setDecNumberValue( uint64_t value )
   {
-    mpd_status_t status = 0;
+    mpd_status_t status{ 0 };
     mpd_qset_u64( mpdDecimal.get(), value, threadLocalContext(), &status );
     CHECK_MPD_SET_STATUS
   }
   
   void DecimalPrivate::setDecNumberValue( std::string_view value )
   {
-    mpd_status_t status = 0;
+    mpd_status_t status{ 0 };
     mpd_qset_string( mpdDecimal.get(), value.data(), threadLocalContext(), &status );
     CHECK_MPD_SET_STATUS
   }
@@ -131,7 +133,7 @@ namespace detail
   ComparisonResult DecimalPrivate::compareToOtherValue( const DecimalPrivate &other )
   {
     [[maybe_unused]] auto result = createDecimal();
-    mpd_status_t status = 0;
+    mpd_status_t status{ 0 };
     const auto cmpResult = mpd_qcompare_signal( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
     
     if ( status != 0 ) {
@@ -148,6 +150,17 @@ namespace detail
     return ComparisonResult::Equal;
   }
   
+  void DecimalPrivate::multiplyAssign( const DecimalPrivate &other )
+  {
+    auto result = createDecimal();
+    mpd_status_t status{ 0 };
+    
+    mpd_qmul( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
+    CHECK_DECIMAL_OPERATION( "Multiply of failed (" + toString( RoundMode::Default ) + " * " + other.toString( RoundMode::Default ) )
+    
+    mpdDecimal = std::move( result );
+  }
+  
   std::string DecimalPrivate::toString( RoundMode roundMode ) const
   {
     return toString( "f", roundMode );
@@ -160,7 +173,7 @@ namespace detail
   
   std::string DecimalPrivate::toString( const std::string &format, RoundMode roundMode ) const
   {
-    uint32_t status = 0;
+    mpd_status_t status{ 0 };
     RoundModeGuard roundModeGuard( threadLocalContext(), roundMode );
     
     MPDecimalCharPointer result( mpd_qformat( mpdDecimal.get(), format.c_str(), roundModeGuard.guardContext, &status ) );
@@ -189,7 +202,7 @@ namespace detail
   
   int32_t DecimalPrivate::toInt32() const
   {
-    mpd_status_t status = 0;
+    mpd_status_t status{ 0 };
     int32_t result = mpd_qget_i32( mpdDecimal.get(), &status );
     
     CHECK_INTEGER_CONVERT
@@ -199,7 +212,7 @@ namespace detail
   
   int64_t DecimalPrivate::toInt64() const
   {
-    mpd_status_t status = 0;
+    mpd_status_t status{ 0 };
     int64_t result = mpd_qget_i64( mpdDecimal.get(), &status );
     
     CHECK_INTEGER_CONVERT
@@ -209,7 +222,7 @@ namespace detail
  
   uint32_t DecimalPrivate::toUInt32() const
   {
-    mpd_status_t status = 0;
+    mpd_status_t status{ 0 };
     uint32_t result = mpd_qget_u32( mpdDecimal.get(), &status );
     
     CHECK_INTEGER_CONVERT
@@ -219,7 +232,7 @@ namespace detail
   
   uint64_t DecimalPrivate::toUInt64() const
   {
-    mpd_status_t status = 0;
+    mpd_status_t status{ 0 };
     uint64_t result = mpd_qget_u64( mpdDecimal.get(), &status );
     
     CHECK_INTEGER_CONVERT

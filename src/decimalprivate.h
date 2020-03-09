@@ -28,12 +28,15 @@ namespace detail
     std::string toString( const std::string &format, RoundMode roundMode ) const;
     std::string toSciString( SciEngStringConversionFormatFlag format ) const;
     std::string toEngString( SciEngStringConversionFormatFlag format ) const;
+    
     int32_t toInt32() const;
     int64_t toInt64() const;
     uint32_t toUInt32() const;
     uint64_t toUInt64() const;
     
     ComparisonResult compareToOtherValue( const DecimalPrivate &other );
+    
+    void multiplyAssign( const DecimalPrivate &other );
     
     MPDDecimalPointer mpdDecimal;
     

@@ -119,6 +119,12 @@ uint64_t Decimal::toUInt64() const
   return m_private->toUInt64();
 }
 
+Decimal &Decimal::operator*=( const Decimal &other )
+{
+  m_private->multiplyAssign( *other.m_private );
+  return *this;
+}
+
 void Decimal::decimalInit( std::size_t precision, 
                            RoundMode defaultRoundMode )
 {

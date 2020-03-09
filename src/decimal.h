@@ -157,6 +157,14 @@ namespace mpdecimal
        */
       uint64_t toUInt64() const;
       
+      /** Multiplication assignment operator.
+       * Multiply current Decimal value with other value and
+       * assign result to this.
+       * @param other other Decimal value.
+       * @return Reference to this.
+       */
+      Decimal &operator*=( const mpdecimal::Decimal &other );
+      
       /** Intialize library default settings.
        * Call this functions one time at program start to initialize Decimal
        * library and set some default settings.
