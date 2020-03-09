@@ -46,9 +46,9 @@ namespace detail
     
     static constexpr int convertFormatFlag( SciEngStringConversionFormatFlag format );
     
-    static mpd_ssize_t precision;
-    static mpd_context_t defaultContext;
-    static RoundMode defaultRoundMode;
+    static inline mpd_ssize_t precision = 0;
+    static inline mpd_context_t defaultContext;
+    static inline RoundMode defaultRoundMode = RoundMode::Default;
     
     static constexpr unsigned int charBufferSize = 1000;
   };

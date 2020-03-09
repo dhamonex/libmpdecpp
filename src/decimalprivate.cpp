@@ -47,10 +47,6 @@ namespace detail
     bool resetRoundMode;
   };
   
-  mpd_ssize_t DecimalPrivate::precision = 0;
-  mpd_context_t DecimalPrivate::defaultContext;
-  RoundMode DecimalPrivate::defaultRoundMode = RoundMode::Default;
-  
   mpd_context_t *DecimalPrivate::threadLocalContext()
   {
     if ( precision == 0 ) {
