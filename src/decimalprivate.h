@@ -37,6 +37,7 @@ namespace detail
     ComparisonResult compareToOtherValue( const DecimalPrivate &other );
     
     void multiplyAssign( const DecimalPrivate &other );
+    void addAssign( const DecimalPrivate &other );
     
     MPDDecimalPointer mpdDecimal;
     
