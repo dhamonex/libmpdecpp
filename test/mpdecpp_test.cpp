@@ -16,6 +16,7 @@ using namespace ::testing;
 #include "comparision_tests.h"
 #include "multiplication_tests.h"
 #include "summation_test.h"
+#include "subtraction_tests.h"
 
 int main( int argc, char **argv )
 {

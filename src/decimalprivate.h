@@ -38,6 +38,7 @@ namespace detail
     
     void multiplyAssign( const DecimalPrivate &other );
     void addAssign( const DecimalPrivate &other );
+    void subtractAssing( const DecimalPrivate &other );
     
     MPDDecimalPointer mpdDecimal;
     

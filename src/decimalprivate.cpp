@@ -172,6 +172,17 @@ namespace detail
     mpdDecimal = std::move( result );
   }
   
+  void DecimalPrivate::subtractAssing( const DecimalPrivate &other )
+  {
+    auto result = createDecimal();
+    mpd_status_t status{ 0 };
+    
+    mpd_qsub( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
+    CHECK_DECIMAL_OPERATION( "Subtraction failed (" + toString( RoundMode::Default ) + " - " + other.toString( RoundMode::Default ) )
+    
+    mpdDecimal = std::move( result );
+  }
+  
   std::string DecimalPrivate::toString( RoundMode roundMode ) const
   {
     return toString( "f", roundMode );
