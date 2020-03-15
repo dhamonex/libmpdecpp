@@ -161,6 +161,17 @@ namespace detail
     mpdDecimal = std::move( result );
   }
   
+  void DecimalPrivate::divideAssign( const DecimalPrivate &other )
+  {
+    auto result = createDecimal();
+    mpd_status_t status{ 0 };
+    
+    mpd_qdiv( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
+    CHECK_DECIMAL_OPERATION( "Divide failed (" + toString( RoundMode::Default ) + " / " + other.toString( RoundMode::Default ) + ")" )
+    
+    mpdDecimal = std::move( result );
+  }
+  
   void DecimalPrivate::addAssign( const DecimalPrivate &other )
   {
     auto result = createDecimal();

@@ -137,6 +137,12 @@ Decimal &Decimal::operator-=( const Decimal &other )
   return *this;
 }
 
+Decimal &Decimal::operator/=( const Decimal &other )
+{
+  m_private->divideAssign( *other.m_private );
+  return *this;
+}
+
 void Decimal::decimalInit( std::size_t precision, 
                            RoundMode defaultRoundMode )
 {
