@@ -62,5 +62,13 @@ mpdecimal::Decimal operator- ( const mpdecimal::Decimal &lhs, const mpdecimal::D
   return result;
 }
 
+mpdecimal::Decimal operator/ ( const mpdecimal::Decimal &lhs, const mpdecimal::Decimal &rhs )
+{
+  Decimal result{ lhs };
+  result /= rhs;
+  
+  return result;
+}
+
 MPDECIMAL_NAMESPACE_END
 

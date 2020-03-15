@@ -26,4 +26,18 @@ TEST_F( DivideTest, divide_assign_test )
   ASSERT_THAT( a.toInt64(), Eq( 2 ) );
 }
 
+TEST_F( DivideTest, divide_and_return_copy_test )
+{
+  auto result = a / b;
+  ASSERT_THAT( a.toInt64(), Eq( 10 ) );
+  ASSERT_THAT( b.toInt64(), Eq( 5 ) );
+  ASSERT_THAT( result.toInt64(), Eq( 2 ) );
+}
+
+TEST_F( DivideTest, divide_three_values_test )
+{
+  auto result = a / b / c;
+  ASSERT_THAT( result.toInt64(), Eq( 1 ) );
+}
+
 #endif // H_A46CBFFE0C9A455B9F3CF36E23A75889
