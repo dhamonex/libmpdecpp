@@ -78,5 +78,13 @@ mpdecimal::Decimal remainder ( const mpdecimal::Decimal& lhs, const mpdecimal::D
   return result;
 }
 
+mpdecimal::Decimal remainderNear( const mpdecimal::Decimal& lhs, const mpdecimal::Decimal& rhs )
+{
+  Decimal result{ lhs };
+  result.m_private->remainderNearAssign( *rhs.m_private );
+  
+  return result;
+}
+
 MPDECIMAL_NAMESPACE_END
 

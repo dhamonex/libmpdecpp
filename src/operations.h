@@ -95,6 +95,15 @@ namespace mpdecimal
    * @return remainder of division.
    */
   LIBMPDECPP_EXPORT Decimal remainder( const Decimal &lhs, const Decimal &rhs );
+  
+  /** Remainder near of integer division.
+   * Returns a - b * n, where n is the integer nearest the exact value of a / b. 
+   * If two integers are equally near then the even one is chosen.
+   * @param lhs left hand side Decimal value.
+   * @param rhs right hand side Decimal value.
+   * @return remainder near of division.
+   */
+  LIBMPDECPP_EXPORT Decimal remainderNear( const Decimal &lhs, const Decimal &rhs );
 }
 
 #endif // H_E3F615B483B54E9488FC4CE6F08D791E

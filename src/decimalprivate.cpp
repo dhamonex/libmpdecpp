@@ -194,6 +194,17 @@ namespace detail
     mpdDecimal = std::move( result );
   }
   
+  void DecimalPrivate::remainderNearAssign( const DecimalPrivate &other )
+  {
+    auto result = createDecimal();
+    mpd_status_t status{ 0 };
+    
+    mpd_qrem_near( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
+    CHECK_DECIMAL_OPERATION( "Remainder-Near failed (" + toString( RoundMode::Default ) + " - " + other.toString( RoundMode::Default ) )
+    
+    mpdDecimal = std::move( result );
+  }
+  
   std::string DecimalPrivate::toString( RoundMode roundMode ) const
   {
     return toString( "f", roundMode );
