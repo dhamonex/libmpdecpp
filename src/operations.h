@@ -88,13 +88,13 @@ namespace mpdecimal
    */
   LIBMPDECPP_EXPORT Decimal operator/( const Decimal &lhs, const Decimal &rhs );
   
-  /** Remainder of integer division.
-   * Determine the reminder of the division of the two given decimal values.
+  /** Modulo operator of two Decimal values.
+   * Divide two Decimal values and return the modulo value as copy.
    * @param lhs left hand side Decimal value.
    * @param rhs right hand side Decimal value.
-   * @return remainder of division.
+   * @return modulo value.
    */
-  LIBMPDECPP_EXPORT Decimal remainder( const Decimal &lhs, const Decimal &rhs );
+  LIBMPDECPP_EXPORT Decimal operator%( const Decimal &lhs, const Decimal &rhs );
   
   /** Remainder near of integer division.
    * Returns a - b * n, where n is the integer nearest the exact value of a / b. 

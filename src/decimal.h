@@ -186,6 +186,13 @@ namespace mpdecimal
        */
       Decimal &operator/=( const mpdecimal::Decimal &other );
       
+      /** Divide mod assignment operator.
+       * Use modulo operation of this and other Decimal and assign the result to this
+       * @param other other Decimal value.
+       * @return Reference to this.
+       */
+      Decimal &operator%=( const mpdecimal::Decimal &other );
+      
       /** Intialize library default settings.
        * Call this functions one time at program start to initialize Decimal
        * library and set some default settings.

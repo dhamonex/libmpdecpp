@@ -143,6 +143,12 @@ Decimal &Decimal::operator/=( const Decimal &other )
   return *this;
 }
 
+Decimal &Decimal::operator%=( const mpdecimal::Decimal &other )
+{
+  m_private->divideModAssign( *other.m_private );
+  return *this;
+}
+
 void Decimal::decimalInit( std::size_t precision, 
                            RoundMode defaultRoundMode )
 {

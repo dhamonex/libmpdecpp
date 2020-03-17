@@ -40,8 +40,8 @@ namespace detail
     void divideAssign( const DecimalPrivate &other );
     void addAssign( const DecimalPrivate &other );
     void subtractAssing( const DecimalPrivate &other );
-    void remainderAssign( const DecimalPrivate &other );
     void remainderNearAssign( const DecimalPrivate &other );
+    void divideModAssign( const DecimalPrivate &other );
     
     MPDDecimalPointer mpdDecimal;
     

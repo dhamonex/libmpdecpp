@@ -40,9 +40,16 @@ TEST_F( DivideTest, divide_three_values_test )
   ASSERT_THAT( result.toInt64(), Eq( 1 ) );
 }
 
-TEST_F( DivideTest, remainder_operation_test )
+TEST_F( DivideTest, modulo_operator_test )
 {
-  ASSERT_THAT( remainder( b, c ).toInt64(), Eq( 1 ) );
+  b %= c;
+  ASSERT_THAT( b.toInt64(), Eq( 1 ) );
+}
+
+TEST_F( DivideTest, modulo_operator_copy_test )
+{
+  auto res = b % c;
+  ASSERT_THAT( res.toInt64(), Eq( 1 ) );
 }
 
 TEST_F( DivideTest, remainder_near_operation_test )

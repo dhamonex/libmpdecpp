@@ -183,7 +183,7 @@ namespace detail
     mpdDecimal = std::move( result );
   }
   
-  void DecimalPrivate::remainderAssign( const DecimalPrivate &other )
+  void DecimalPrivate::divideModAssign( const DecimalPrivate &other )
   {
     auto result = createDecimal();
     mpd_status_t status{ 0 };
