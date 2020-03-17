@@ -1,5 +1,5 @@
-#ifndef U82ED56306C020E36CB5D80FFF178BA63
-#define U82ED56306C020E36CB5D80FFF178BA63
+#ifndef H_D0E32AA72D1A43D0941D5D5A56FED376
+#define H_D0E32AA72D1A43D0941D5D5A56FED376
 
 #include <libmpdecpp_export.h>
 #include <memory>
@@ -198,10 +198,11 @@ namespace mpdecimal
       friend bool operator==( const Decimal &lhs, const Decimal &rhs );
       friend bool operator<( const Decimal &lhs, const Decimal &rhs );
       friend bool operator>( const Decimal &lhs, const Decimal &rhs );
+      friend Decimal remainder( const Decimal &lhs, const Decimal &rhs );
       
     private:
       std::unique_ptr<detail::DecimalPrivate> m_private;
   };
 }
 
-#endif // U82ED56306C020E36CB5D80FFF178BA63
+#endif // H_D0E32AA72D1A43D0941D5D5A56FED376

@@ -87,6 +87,14 @@ namespace mpdecimal
    * @return result of division.
    */
   LIBMPDECPP_EXPORT Decimal operator/( const Decimal &lhs, const Decimal &rhs );
+  
+  /** Remainder of integer division.
+   * Determine the reminder of the division of the two given decimal values.
+   * @param lhs left hand side Decimal value.
+   * @param rhs right hand side Decimal value.
+   * @return remainder of division.
+   */
+  LIBMPDECPP_EXPORT Decimal remainder( const Decimal &lhs, const Decimal &rhs );
 }
 
 #endif // H_E3F615B483B54E9488FC4CE6F08D791E

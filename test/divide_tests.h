@@ -40,4 +40,9 @@ TEST_F( DivideTest, divide_three_values_test )
   ASSERT_THAT( result.toInt64(), Eq( 1 ) );
 }
 
+TEST_F( DivideTest, remainder_operation_test )
+{
+  ASSERT_THAT( remainder( b, c ).toInt64(), Eq( 1 ) );
+}
+
 #endif // H_A46CBFFE0C9A455B9F3CF36E23A75889

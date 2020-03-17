@@ -1,20 +1,9 @@
 #include "decimalprivate.h"
 #include "decimalexceptions.h"
+#include "errorchecks.h"
 
 #include <boost/throw_exception.hpp>
 #include <boost/lexical_cast.hpp>
-
-#define THROW_DECIMAL_EXCEPTION( message ) \
-  BOOST_THROW_EXCEPTION( DecimalException() \
-        << ErrorString( message ) \
-        << ErrorCode( status ) \
-        << StatusFlags( statusFlags( status ) ) )
-  
-  
-#define CHECK_DECIMAL_OPERATION( message ) \
-  if ( status != 0 ) { \
-      THROW_DECIMAL_EXCEPTION( message ); \
-    }
 
 #define CHECK_MPD_SET_STATUS \
     CHECK_DECIMAL_OPERATION( "Could not set decimal from value: " + boost::lexical_cast<std::string>( value ) )
@@ -190,6 +179,17 @@ namespace detail
     
     mpd_qsub( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
     CHECK_DECIMAL_OPERATION( "Subtraction failed (" + toString( RoundMode::Default ) + " - " + other.toString( RoundMode::Default ) )
+    
+    mpdDecimal = std::move( result );
+  }
+  
+  void DecimalPrivate::remainderAssign( const DecimalPrivate &other )
+  {
+    auto result = createDecimal();
+    mpd_status_t status{ 0 };
+    
+    mpd_qrem( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
+    CHECK_DECIMAL_OPERATION( "Remainder failed (" + toString( RoundMode::Default ) + " - " + other.toString( RoundMode::Default ) )
     
     mpdDecimal = std::move( result );
   }

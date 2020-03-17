@@ -1,5 +1,5 @@
-#ifndef U7F2A1D3DA63FF81E326BB20CE6F618F8
-#define U7F2A1D3DA63FF81E326BB20CE6F618F8
+#ifndef H_61C5A137BF3142709EE274715BE7EC2F
+#define H_61C5A137BF3142709EE274715BE7EC2F
 
 #include "mpdecimalnamespace.h"
 #include "decimaltypes.h"
@@ -40,6 +40,7 @@ namespace detail
     void divideAssign( const DecimalPrivate &other );
     void addAssign( const DecimalPrivate &other );
     void subtractAssing( const DecimalPrivate &other );
+    void remainderAssign( const DecimalPrivate &other );
     
     MPDDecimalPointer mpdDecimal;
     
@@ -63,4 +64,4 @@ namespace detail
 MPDECIMAL_NAMESPACE_END
 
 
-#endif // U7F2A1D3DA63FF81E326BB20CE6F618F8
+#endif // H_61C5A137BF3142709EE274715BE7EC2F
