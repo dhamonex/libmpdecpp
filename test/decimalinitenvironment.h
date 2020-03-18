@@ -1,3 +1,5 @@
+#ifndef H_A4E0DF4A6E1B4359BF34062CF3A10509
+#define H_A4E0DF4A6E1B4359BF34062CF3A10509
 
 #include <gtest/gtest.h>
 #include <decimal.h>
@@ -14,3 +16,4 @@ class DecimalInitEnvironment : public ::testing::Environment
     }
 };
 
+#endif // H_A4E0DF4A6E1B4359BF34062CF3A10509

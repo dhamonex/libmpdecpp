@@ -205,6 +205,20 @@ namespace detail
     mpdDecimal = std::move( result );
   }
   
+  void DecimalPrivate::expAndAssign()
+  {
+    auto result = createDecimal();
+    mpd_status_t status{ 0 };
+    
+    mpd_qexp( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
+    
+    if ( status != 0 && status != 4160 ) {
+      THROW_DECIMAL_EXCEPTION( "Exp failed (" + toString( RoundMode::Default ) + ")" );
+    }
+    
+    mpdDecimal = std::move( result );
+  }
+  
   std::string DecimalPrivate::toString( RoundMode roundMode ) const
   {
     return toString( "f", roundMode );

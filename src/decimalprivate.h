@@ -42,6 +42,7 @@ namespace detail
     void subtractAssing( const DecimalPrivate &other );
     void remainderNearAssign( const DecimalPrivate &other );
     void divideModAssign( const DecimalPrivate &other );
+    void expAndAssign();
     
     MPDDecimalPointer mpdDecimal;
     

@@ -205,8 +205,8 @@ namespace mpdecimal
       friend bool operator==( const Decimal &lhs, const Decimal &rhs );
       friend bool operator<( const Decimal &lhs, const Decimal &rhs );
       friend bool operator>( const Decimal &lhs, const Decimal &rhs );
-      friend Decimal remainder( const Decimal &lhs, const Decimal &rhs );
       friend Decimal remainderNear( const Decimal &lhs, const Decimal &rhs );
+      friend Decimal exp( const Decimal &value );
       
     private:
       std::unique_ptr<detail::DecimalPrivate> m_private;

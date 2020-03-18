@@ -18,6 +18,7 @@ using namespace ::testing;
 #include "summation_test.h"
 #include "subtraction_tests.h"
 #include "divide_tests.h"
+#include "power_and_logarithms_test.h"
 
 int main( int argc, char **argv )
 {

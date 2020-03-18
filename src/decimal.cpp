@@ -158,6 +158,7 @@ void Decimal::decimalInit( std::size_t precision,
   detail::DecimalPrivate::setContextRoundMode( &detail::DecimalPrivate::defaultContext, defaultRoundMode );
   detail::DecimalPrivate::precision = precision;
   detail::DecimalPrivate::defaultRoundMode = defaultRoundMode;
+  detail::DecimalPrivate::defaultContext.allcr = 1;
 }
 
 MPDECIMAL_NAMESPACE_END

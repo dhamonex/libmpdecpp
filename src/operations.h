@@ -104,6 +104,14 @@ namespace mpdecimal
    * @return remainder near of division.
    */
   LIBMPDECPP_EXPORT Decimal remainderNear( const Decimal &lhs, const Decimal &rhs );
+  
+  /** Exp operation.
+   * Returns e ** v where v is a Decimal value. "Inexact Rounded" Errors are ignored by this function
+   * and not throwing an exception.
+   * @param value Decimal value for exp function.
+   * @return e ** v.
+   */
+  LIBMPDECPP_EXPORT Decimal exp( const Decimal &value );
 }
 
 #endif // H_E3F615B483B54E9488FC4CE6F08D791E

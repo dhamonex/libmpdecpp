@@ -86,5 +86,13 @@ mpdecimal::Decimal remainderNear( const mpdecimal::Decimal& lhs, const mpdecimal
   return result;
 }
 
+mpdecimal::Decimal exp( const mpdecimal::Decimal &value )
+{
+  Decimal result{ value };
+  result.m_private->expAndAssign();
+  
+  return result;
+}
+
 MPDECIMAL_NAMESPACE_END
 
