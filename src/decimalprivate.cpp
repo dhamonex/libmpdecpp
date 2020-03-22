@@ -212,9 +212,18 @@ namespace detail
     
     mpd_qexp( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
     
-    if ( status != 0 && status != 4160 ) {
-      THROW_DECIMAL_EXCEPTION( "Exp failed (" + toString( RoundMode::Default ) + ")" );
-    }
+    CHECK_DECIMAL_OPERATION_IGNORE_INEXACT_VALUE( "Exp failed (" + toString( RoundMode::Default ) + ")" )
+    
+    mpdDecimal = std::move( result );
+  }
+  
+  void DecimalPrivate::lnAndAssign()
+  {
+    auto result = createDecimal();
+    mpd_status_t status{ 0 };
+    
+    mpd_qln( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
+    CHECK_DECIMAL_OPERATION_IGNORE_INEXACT_VALUE( "LN failed(" + toString( RoundMode::Default ) + ")" )
     
     mpdDecimal = std::move( result );
   }

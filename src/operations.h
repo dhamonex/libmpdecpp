@@ -112,6 +112,14 @@ namespace mpdecimal
    * @return e ** v.
    */
   LIBMPDECPP_EXPORT Decimal exp( const Decimal &value );
+  
+  /** Ln operation.
+   * Returns ln from value value. "Inexact Rounded" Errors are ignored by this function
+   * and not throwing an exception.
+   * @param value Decimal value for ln calculation.
+   * @return ln of value.
+   */
+  LIBMPDECPP_EXPORT Decimal ln( const Decimal &value );
 }
 
 #endif // H_E3F615B483B54E9488FC4CE6F08D791E

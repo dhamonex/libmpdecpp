@@ -94,5 +94,13 @@ mpdecimal::Decimal exp( const mpdecimal::Decimal &value )
   return result;
 }
 
+mpdecimal::Decimal ln( const mpdecimal::Decimal& value )
+{
+  Decimal result{ value };
+  result.m_private->lnAndAssign();
+  
+  return result;
+}
+
 MPDECIMAL_NAMESPACE_END
 
