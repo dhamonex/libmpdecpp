@@ -44,6 +44,7 @@ namespace detail
     void divideModAssign( const DecimalPrivate &other );
     void expAndAssign();
     void lnAndAssign();
+    void log10AndAssign();
     
     MPDDecimalPointer mpdDecimal;
     

@@ -120,6 +120,14 @@ namespace mpdecimal
    * @return ln of value.
    */
   LIBMPDECPP_EXPORT Decimal ln( const Decimal &value );
+  
+  /** Log 10 operation.
+   * Returns base-10 logarithm from value. "Inexact Rounded" Errors are ignored by this function
+   * and not throwing an exception.
+   * @param value Decimal value for log 10 calculation.
+   * @return log 10 of value.
+   */
+  LIBMPDECPP_EXPORT Decimal log( const Decimal &value );
 }
 
 #endif // H_E3F615B483B54E9488FC4CE6F08D791E

@@ -228,6 +228,17 @@ namespace detail
     mpdDecimal = std::move( result );
   }
   
+  void DecimalPrivate::log10AndAssign()
+  {
+    auto result = createDecimal();
+    mpd_status_t status{ 0 };
+    
+    mpd_qlog10( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
+    CHECK_DECIMAL_OPERATION_IGNORE_INEXACT_VALUE( "Log of base 10 failed (" + toString( RoundMode::Default ) + ")" )
+    
+    mpdDecimal = std::move( result );
+  }
+  
   std::string DecimalPrivate::toString( RoundMode roundMode ) const
   {
     return toString( "f", roundMode );

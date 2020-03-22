@@ -102,5 +102,13 @@ mpdecimal::Decimal ln( const mpdecimal::Decimal& value )
   return result;
 }
 
+mpdecimal::Decimal log( const mpdecimal::Decimal& value )
+{
+  Decimal result{ value };
+  result.m_private->log10AndAssign();
+  
+  return result;
+}
+
 MPDECIMAL_NAMESPACE_END
 

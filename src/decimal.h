@@ -208,6 +208,7 @@ namespace mpdecimal
       friend Decimal remainderNear( const Decimal &lhs, const Decimal &rhs );
       friend Decimal exp( const Decimal &value );
       friend Decimal ln( const Decimal &value );
+      friend Decimal log( const Decimal &value );
       
     private:
       std::unique_ptr<detail::DecimalPrivate> m_private;
