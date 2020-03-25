@@ -179,6 +179,18 @@ namespace mpdecimal
        */
       Decimal &operator-=( const mpdecimal::Decimal &other );
       
+      /** Pre decrement operation.
+       * Decrement Decimal value and return result.
+       * @return Reference to this.
+       */
+      Decimal &operator--();
+      
+      /** Post decrement operation.
+       * Return copy of this before decrement and decrement Decimal value.
+       * @return Copy before decrement.
+       */
+      Decimal operator--( int );
+      
       /** Divide assignment operator.
        * Divide other Decimal value with this value and assign result to this.
        * @param other other Decimal value.
