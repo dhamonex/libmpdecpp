@@ -38,4 +38,16 @@ TEST_F( SummationTest, sum_up_three_values_test )
   ASSERT_THAT( result.toInt64(), Eq( 14 ) );
 }
 
+TEST_F( SummationTest, pre_increment_operator_test )
+{
+  ASSERT_THAT( ++a, Eq( 6 ) );
+  ASSERT_THAT( a, Eq( 6 ) );
+}
+
+TEST_F( SummationTest, post_increment_operator_test )
+{
+  ASSERT_THAT( a++, Eq( 5 ) );
+  ASSERT_THAT( a, Eq( 6 ) );
+}
+
 #endif // H_C883E6DC0F574EBF938CFC13C70F203B

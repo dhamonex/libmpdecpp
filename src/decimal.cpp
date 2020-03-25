@@ -131,6 +131,19 @@ Decimal &Decimal::operator+=( const Decimal &other )
   return *this;
 }
 
+Decimal &Decimal::operator++()
+{
+  return operator+=( 1 );
+}
+
+Decimal Decimal::operator++( int )
+{
+  Decimal copy{ *this };
+  operator+=( 1 );
+  
+  return copy;
+}
+
 Decimal &Decimal::operator-=( const Decimal &other )
 {
   m_private->subtractAssing( *other.m_private );

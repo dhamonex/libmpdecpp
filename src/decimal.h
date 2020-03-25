@@ -172,6 +172,18 @@ namespace mpdecimal
        */
       Decimal &operator+=( const mpdecimal::Decimal &other );
       
+      /** Pre increment operation.
+       * Increment Decimal value and return result.
+       * @return Reference to this.
+       */
+      Decimal &operator++();
+      
+      /** Post increment operation.
+       * Return copy of this before increment and increment this Decimal value.
+       * @return Copy before increment.
+       */
+      Decimal operator++( int );
+      
       /** Subtraction assignment operator.
        * Subtract other Decimal value from this and assign result to this.
        * @param other other Decimal value.
