@@ -128,6 +128,15 @@ namespace mpdecimal
    * @return log 10 of value.
    */
   LIBMPDECPP_EXPORT Decimal log( const Decimal &value );
+  
+  /** Power operation.
+   * Returns power of base ** exp.
+   * and not throwing an exception.
+   * @param base the base Decimal value.
+   * @param exp the Decimal value exponent.
+   * @return base ** exp
+   */
+  LIBMPDECPP_EXPORT Decimal pow( const Decimal &base, const Decimal &exp );
 }
 
 #endif // H_E3F615B483B54E9488FC4CE6F08D791E

@@ -45,6 +45,7 @@ namespace detail
     void expAndAssign();
     void lnAndAssign();
     void log10AndAssign();
+    void powAndAssign( const DecimalPrivate &exp );
     
     MPDDecimalPointer mpdDecimal;
     

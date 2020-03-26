@@ -34,4 +34,9 @@ TEST_F( PowerAndLogarithmTest, log10_calculation_test )
   ASSERT_THAT( mpdecimal::log( b ).toString( 8 ), Eq( "0.69897000" ) );
 }
 
+TEST_F( PowerAndLogarithmTest, power_calculation_test )
+{
+  ASSERT_THAT( mpdecimal::pow( a, b ), Eq( 32 ) );
+}
+
 #endif // H_0C13CC5443174DC3A851D9738E7F2E87

@@ -239,6 +239,17 @@ namespace detail
     mpdDecimal = std::move( result );
   }
   
+  void DecimalPrivate::powAndAssign( const DecimalPrivate &exp )
+  {
+    auto result = createDecimal();
+    mpd_status_t status{ 0 };
+    
+    mpd_qpow( result.get(), mpdDecimal.get(), exp.mpdDecimal.get(), threadLocalContext(), &status );
+    CHECK_DECIMAL_OPERATION( "pow operation failed (" + toString( RoundMode::Default ) + " ** " + exp.toString( RoundMode::Default ) + ")" );
+    
+    mpdDecimal = std::move( result );
+  }
+  
   std::string DecimalPrivate::toString( RoundMode roundMode ) const
   {
     return toString( "f", roundMode );

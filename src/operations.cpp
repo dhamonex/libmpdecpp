@@ -110,5 +110,13 @@ mpdecimal::Decimal log( const mpdecimal::Decimal& value )
   return result;
 }
 
+mpdecimal::Decimal pow( const mpdecimal::Decimal& base, const mpdecimal::Decimal& exp )
+{
+  Decimal result{ base };
+  result.m_private->powAndAssign( *exp.m_private );
+  
+  return result;
+}
+
 MPDECIMAL_NAMESPACE_END
 
