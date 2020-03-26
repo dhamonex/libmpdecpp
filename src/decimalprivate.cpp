@@ -147,7 +147,7 @@ namespace detail
     mpd_qmul( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
     CHECK_DECIMAL_OPERATION( "Multiply failed (" + toString( RoundMode::Default ) + " * " + other.toString( RoundMode::Default ) + ")" )
     
-    mpdDecimal = std::move( result );
+    std::swap( mpdDecimal, result );
   }
   
   void DecimalPrivate::divideAssign( const DecimalPrivate &other )
@@ -158,7 +158,7 @@ namespace detail
     mpd_qdiv( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
     CHECK_DECIMAL_OPERATION( "Divide failed (" + toString( RoundMode::Default ) + " / " + other.toString( RoundMode::Default ) + ")" )
     
-    mpdDecimal = std::move( result );
+    std::swap( mpdDecimal, result );
   }
   
   void DecimalPrivate::addAssign( const DecimalPrivate &other )
@@ -169,7 +169,7 @@ namespace detail
     mpd_qadd( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
     CHECK_DECIMAL_OPERATION( "Addition failed (" + toString( RoundMode::Default ) + " + " + other.toString( RoundMode::Default ) )
     
-    mpdDecimal = std::move( result );
+    std::swap( mpdDecimal, result );
   }
   
   void DecimalPrivate::subtractAssing( const DecimalPrivate &other )
@@ -180,7 +180,7 @@ namespace detail
     mpd_qsub( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
     CHECK_DECIMAL_OPERATION( "Subtraction failed (" + toString( RoundMode::Default ) + " - " + other.toString( RoundMode::Default ) )
     
-    mpdDecimal = std::move( result );
+    std::swap( mpdDecimal, result );
   }
   
   void DecimalPrivate::divideModAssign( const DecimalPrivate &other )
@@ -191,7 +191,7 @@ namespace detail
     mpd_qrem( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
     CHECK_DECIMAL_OPERATION( "Remainder failed (" + toString( RoundMode::Default ) + " - " + other.toString( RoundMode::Default ) )
     
-    mpdDecimal = std::move( result );
+    std::swap( mpdDecimal, result );
   }
   
   void DecimalPrivate::remainderNearAssign( const DecimalPrivate &other )
@@ -202,7 +202,7 @@ namespace detail
     mpd_qrem_near( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
     CHECK_DECIMAL_OPERATION( "Remainder-Near failed (" + toString( RoundMode::Default ) + " - " + other.toString( RoundMode::Default ) )
     
-    mpdDecimal = std::move( result );
+    std::swap( mpdDecimal, result );
   }
   
   void DecimalPrivate::expAndAssign()
@@ -214,7 +214,7 @@ namespace detail
     
     CHECK_DECIMAL_OPERATION_IGNORE_INEXACT_VALUE( "Exp failed (" + toString( RoundMode::Default ) + ")" )
     
-    mpdDecimal = std::move( result );
+    std::swap( mpdDecimal, result );
   }
   
   void DecimalPrivate::lnAndAssign()
@@ -225,7 +225,7 @@ namespace detail
     mpd_qln( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
     CHECK_DECIMAL_OPERATION_IGNORE_INEXACT_VALUE( "LN failed(" + toString( RoundMode::Default ) + ")" )
     
-    mpdDecimal = std::move( result );
+    std::swap( mpdDecimal, result );
   }
   
   void DecimalPrivate::log10AndAssign()
@@ -236,7 +236,7 @@ namespace detail
     mpd_qlog10( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
     CHECK_DECIMAL_OPERATION_IGNORE_INEXACT_VALUE( "Log of base 10 failed (" + toString( RoundMode::Default ) + ")" )
     
-    mpdDecimal = std::move( result );
+    std::swap( mpdDecimal, result );
   }
   
   void DecimalPrivate::powAndAssign( const DecimalPrivate &exp )
@@ -247,7 +247,7 @@ namespace detail
     mpd_qpow( result.get(), mpdDecimal.get(), exp.mpdDecimal.get(), threadLocalContext(), &status );
     CHECK_DECIMAL_OPERATION( "pow operation failed (" + toString( RoundMode::Default ) + " ** " + exp.toString( RoundMode::Default ) + ")" );
     
-    mpdDecimal = std::move( result );
+    std::swap( mpdDecimal, result );
   }
   
   std::string DecimalPrivate::toString( RoundMode roundMode ) const
