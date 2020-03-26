@@ -131,12 +131,19 @@ namespace mpdecimal
   
   /** Power operation.
    * Returns power of base ** exp.
-   * and not throwing an exception.
    * @param base the base Decimal value.
    * @param exp the Decimal value exponent.
    * @return base ** exp
    */
   LIBMPDECPP_EXPORT Decimal pow( const Decimal &base, const Decimal &exp );
+  
+  /** Square root operation.
+   * Calculates the square root of the given Decimal value. 
+   * This function ignores "Inexact Rounded" Error and always uses the ROUND_HALF_EVEN mode.
+   * @param value Decimal value.
+   * @return square root of value.
+   */
+  LIBMPDECPP_EXPORT Decimal sqrt( const Decimal &value );
 }
 
 #endif // H_E3F615B483B54E9488FC4CE6F08D791E

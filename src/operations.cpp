@@ -118,5 +118,13 @@ mpdecimal::Decimal pow( const mpdecimal::Decimal& base, const mpdecimal::Decimal
   return result;
 }
 
+mpdecimal::Decimal sqrt( const mpdecimal::Decimal& value )
+{
+  Decimal result{ value };
+  result.m_private->sqrtAndAssign();
+  
+  return result;
+}
+
 MPDECIMAL_NAMESPACE_END
 

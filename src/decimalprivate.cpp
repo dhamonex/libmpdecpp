@@ -250,6 +250,17 @@ namespace detail
     std::swap( mpdDecimal, result );
   }
   
+  void DecimalPrivate::sqrtAndAssign()
+  {
+    auto result = createDecimal();
+    mpd_status_t status{ 0 };
+    
+    mpd_qsqrt( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
+    CHECK_DECIMAL_OPERATION_IGNORE_INEXACT_VALUE( "sqrt operation failed (" + toString( RoundMode::Default ) + ")" );
+    
+    std::swap( mpdDecimal, result );
+  }
+  
   std::string DecimalPrivate::toString( RoundMode roundMode ) const
   {
     return toString( "f", roundMode );

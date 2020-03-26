@@ -39,4 +39,9 @@ TEST_F( PowerAndLogarithmTest, power_calculation_test )
   ASSERT_THAT( mpdecimal::pow( a, b ), Eq( 32 ) );
 }
 
+TEST_F( PowerAndLogarithmTest, square_root_calculation_test )
+{
+  ASSERT_THAT( mpdecimal::sqrt( b ).toString( 8 ), Eq( "2.23606798" ) );
+}
+
 #endif // H_0C13CC5443174DC3A851D9738E7F2E87
