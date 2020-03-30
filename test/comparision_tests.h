@@ -248,4 +248,25 @@ TEST_F( DecimalUnEqualComparionTest, test_unequal_string_value )
   ASSERT_TRUE( a != b.toString() );
 }
 
+// ============DecimalMinMaxTest ==============
+class DecimalMinMaxTest : public DecimalComparionTest
+{
+  protected:
+    void SetUp() override
+    {
+      a = 5;
+      b = 4;
+    }
+};
+
+TEST_F( DecimalMinMaxTest, max_operator_test )
+{
+  ASSERT_THAT( mpdecimal::max( a, b ), Eq( 5 ) );
+}
+
+TEST_F( DecimalMinMaxTest, min_operator_test )
+{
+  ASSERT_THAT( mpdecimal::min( a, b ), Eq( 4 ) );
+}
+
 #endif // H_E999A6B99C1048C9A29168D7795B395A

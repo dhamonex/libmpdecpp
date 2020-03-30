@@ -33,6 +33,24 @@ bool operator>=( const Decimal &lhs, const Decimal &rhs )
   return lhs == rhs || lhs > rhs;
 }
 
+mpdecimal::Decimal max( const mpdecimal::Decimal &lhs, const mpdecimal::Decimal &rhs )
+{
+  if ( lhs > rhs ) {
+    return lhs;
+  }
+  
+  return rhs;
+}
+
+mpdecimal::Decimal min( const mpdecimal::Decimal &lhs, const mpdecimal::Decimal &rhs )
+{
+  if ( lhs < rhs ) {
+    return lhs;
+  }
+  
+  return rhs;
+}
+
 bool operator!=( const mpdecimal::Decimal& lhs, const mpdecimal::Decimal& rhs )
 {
   return !( lhs == rhs );

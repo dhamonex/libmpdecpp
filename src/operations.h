@@ -48,6 +48,22 @@ namespace mpdecimal
   */
   LIBMPDECPP_EXPORT bool operator>=( const Decimal &lhs, const Decimal &rhs );
   
+  /** Max function.
+  * Compares two Decimal values on and returns the maxium of both.
+  * @param lhs left hand side Decimal value.
+  * @param rhs right hand side Decimal value.
+  * @return max Decimal value.
+  */
+  LIBMPDECPP_EXPORT Decimal max( const Decimal &lhs, const Decimal &rhs );
+  
+  /** Min function.
+  * Compares two Decimal values on and returns the minimum of both.
+  * @param lhs left hand side Decimal value.
+  * @param rhs right hand side Decimal value.
+  * @return min Decimal value.
+  */
+  LIBMPDECPP_EXPORT Decimal min( const Decimal &lhs, const Decimal &rhs );
+  
   /** Unequal comparision operator.
    * Compares two Decimal values and returns true if they are not equal.
    * @param lhs left hand side Decimal value.
