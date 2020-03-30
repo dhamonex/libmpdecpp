@@ -235,6 +235,7 @@ namespace mpdecimal
       friend Decimal log( const Decimal &value );
       friend Decimal pow( const Decimal &base, const Decimal &exp );
       friend Decimal sqrt( const Decimal &value );
+      friend Decimal abs( const Decimal &value );
       
     private:
       std::unique_ptr<detail::DecimalPrivate> m_private;

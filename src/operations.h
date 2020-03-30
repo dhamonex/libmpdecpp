@@ -144,6 +144,13 @@ namespace mpdecimal
    * @return square root of value.
    */
   LIBMPDECPP_EXPORT Decimal sqrt( const Decimal &value );
+  
+  /** Absolute operation.
+   * Determine absolute value of given Decimal value.
+   * @param value Decimal value.
+   * @return absolute value.
+   */
+  LIBMPDECPP_EXPORT Decimal abs( const Decimal &value );
 }
 
 #endif // H_E3F615B483B54E9488FC4CE6F08D791E

@@ -126,5 +126,13 @@ mpdecimal::Decimal sqrt( const mpdecimal::Decimal& value )
   return result;
 }
 
+mpdecimal::Decimal abs( const mpdecimal::Decimal& value )
+{
+  Decimal result{ value };
+  result.m_private->abs();
+  
+  return result;
+}
+
 MPDECIMAL_NAMESPACE_END
 
