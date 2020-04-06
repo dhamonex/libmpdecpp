@@ -18,6 +18,7 @@ add_library(mpdecpp_static STATIC ${mpdecpp_SRC})
 
 target_link_libraries(mpdecpp 
   ${LIBMPDEC_LIBRARIES}
+  fmt::fmt
 )
 
 generate_export_header(mpdecpp

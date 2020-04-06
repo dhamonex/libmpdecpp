@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 option(BUILD_TESTS "Build all automatic test cases." OFF)
 
 find_package(LibMPDecimal REQUIRED)
-
+find_package(fmt REQUIRED)
 find_package(Boost REQUIRED)
 
 include(GNUInstallDirs)

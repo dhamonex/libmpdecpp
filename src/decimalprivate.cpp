@@ -4,6 +4,7 @@
 
 #include <boost/throw_exception.hpp>
 #include <boost/lexical_cast.hpp>
+#include <fmt/format.h>
 
 #define CHECK_MPD_SET_STATUS \
     CHECK_DECIMAL_OPERATION( "Could not set decimal from value: " + boost::lexical_cast<std::string>( value ) )
@@ -139,6 +140,24 @@ namespace detail
     return ComparisonResult::Equal;
   }
   
+  void DecimalPrivate::applyUnaryOperation( const UnaryMpdecimalFunction &function, 
+                                            const std::string &errorMessageFormat, 
+                                            ErrorCheckMode checkMode )
+  {
+    auto result = createDecimal();
+    mpd_status_t status{ 0 };
+    
+    function( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
+    
+    if ( checkMode == ErrorCheckMode::IgnoreInexactRounding ) {
+      CHECK_DECIMAL_OPERATION_IGNORE_INEXACT_VALUE( fmt::format( errorMessageFormat, toString( RoundMode::Default ) ) );
+    } else {
+      CHECK_DECIMAL_OPERATION( fmt::format( errorMessageFormat, toString( RoundMode::Default ) ) );
+    }
+    
+    std::swap( mpdDecimal, result );
+  }
+  
   void DecimalPrivate::multiplyAssign( const DecimalPrivate &other )
   {
     auto result = createDecimal();
@@ -207,36 +226,17 @@ namespace detail
   
   void DecimalPrivate::expAndAssign()
   {
-    auto result = createDecimal();
-    mpd_status_t status{ 0 };
-    
-    mpd_qexp( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
-    
-    CHECK_DECIMAL_OPERATION_IGNORE_INEXACT_VALUE( "Exp failed (" + toString( RoundMode::Default ) + ")" )
-    
-    std::swap( mpdDecimal, result );
+    applyUnaryOperation( &mpd_qexp, "Exp failed ({})", ErrorCheckMode::IgnoreInexactRounding );
   }
   
   void DecimalPrivate::lnAndAssign()
   {
-    auto result = createDecimal();
-    mpd_status_t status{ 0 };
-    
-    mpd_qln( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
-    CHECK_DECIMAL_OPERATION_IGNORE_INEXACT_VALUE( "LN failed(" + toString( RoundMode::Default ) + ")" )
-    
-    std::swap( mpdDecimal, result );
+    applyUnaryOperation( &mpd_qln, "LN failed({})", ErrorCheckMode::IgnoreInexactRounding );
   }
   
   void DecimalPrivate::log10AndAssign()
   {
-    auto result = createDecimal();
-    mpd_status_t status{ 0 };
-    
-    mpd_qlog10( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
-    CHECK_DECIMAL_OPERATION_IGNORE_INEXACT_VALUE( "Log of base 10 failed (" + toString( RoundMode::Default ) + ")" )
-    
-    std::swap( mpdDecimal, result );
+    applyUnaryOperation( &mpd_qlog10, "Log of base 10 failed ({})", ErrorCheckMode::IgnoreInexactRounding );
   }
   
   void DecimalPrivate::powAndAssign( const DecimalPrivate &exp )
@@ -252,45 +252,22 @@ namespace detail
   
   void DecimalPrivate::sqrtAndAssign()
   {
-    auto result = createDecimal();
-    mpd_status_t status{ 0 };
-    
-    mpd_qsqrt( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
-    CHECK_DECIMAL_OPERATION_IGNORE_INEXACT_VALUE( "sqrt operation failed (" + toString( RoundMode::Default ) + ")" );
-    
-    std::swap( mpdDecimal, result );
+    applyUnaryOperation( &mpd_qsqrt, "sqrt operation failed ({})", ErrorCheckMode::IgnoreInexactRounding );
   }
   
   void DecimalPrivate::abs()
   {
-    auto result = createDecimal();
-    mpd_status_t status{ 0 };
-    mpd_qabs( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
-    CHECK_DECIMAL_OPERATION( "abs() operation on " + toString( RoundMode::Default ) + " failed." );
-    
-    std::swap( mpdDecimal, result );
+    applyUnaryOperation( &mpd_qabs, "abs() operation on {} failed." );
   }
   
   void DecimalPrivate::minusAssign()
   {
-    auto result = createDecimal();
-    mpd_status_t status{ 0 };
-    
-    mpd_qminus( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
-    CHECK_DECIMAL_OPERATION( "minus operation on " + toString( RoundMode::Default ) + " failed.")
-    
-    std::swap( mpdDecimal, result );
+    applyUnaryOperation( &mpd_qminus, "minus operation on {} failed." );
   }
   
   void DecimalPrivate::plusAssign()
   {
-    auto result = createDecimal();
-    mpd_status_t status{ 0 };
-    
-    mpd_qplus( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
-    CHECK_DECIMAL_OPERATION( "plus operation on " + toString( RoundMode::Default ) + " failed.")
-    
-    std::swap( mpdDecimal, result );
+    applyUnaryOperation( &mpd_qplus, "Plus operation on {} failed." );
   }
   
   std::string DecimalPrivate::toString( RoundMode roundMode ) const

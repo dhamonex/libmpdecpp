@@ -1,6 +1,8 @@
 #ifndef H_61C5A137BF3142709EE274715BE7EC2F
 #define H_61C5A137BF3142709EE274715BE7EC2F
 
+#include <functional>
+
 #include "mpdecimalnamespace.h"
 #include "decimaltypes.h"
 #include "libmpdecpp_export.h"
@@ -13,6 +15,13 @@ namespace detail
 {  
   struct LIBMPDECPP_NO_EXPORT DecimalPrivate
   {
+    using UnaryMpdecimalFunction = std::function<void ( mpd_t *, const mpd_t *, const mpd_context_t *, mpd_status_t * )>;
+    enum class ErrorCheckMode
+    {
+        Default,
+        IgnoreInexactRounding
+    };
+    
     DecimalPrivate();
     
     DecimalPrivate( const DecimalPrivate &other );
@@ -35,6 +44,10 @@ namespace detail
     uint64_t toUInt64() const;
     
     ComparisonResult compareToOtherValue( const DecimalPrivate &other );
+    
+    void applyUnaryOperation( const UnaryMpdecimalFunction &function, 
+                              const std::string &errorMessageFormat, 
+                              ErrorCheckMode checkMode = ErrorCheckMode::Default );
     
     void multiplyAssign( const DecimalPrivate &other );
     void divideAssign( const DecimalPrivate &other );
