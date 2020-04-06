@@ -9,6 +9,15 @@
 
 #include "decimalinitenvironment.h"
 
+namespace mpdecimal
+{
+  std::ostream &operator<<( std::ostream &s, const Decimal &value )
+  {
+    s << value.toString( RoundMode::Default );
+    return s;
+  }
+}
+
 using namespace ::testing;
 
 #include "initialization_tests.h"
