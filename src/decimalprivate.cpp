@@ -266,6 +266,18 @@ namespace detail
     auto result = createDecimal();
     mpd_status_t status{ 0 };
     mpd_qabs( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
+    CHECK_DECIMAL_OPERATION( "abs() operation on " + toString( RoundMode::Default ) + " failed." );
+    
+    std::swap( mpdDecimal, result );
+  }
+  
+  void DecimalPrivate::minusAssign()
+  {
+    auto result = createDecimal();
+    mpd_status_t status{ 0 };
+    
+    mpd_qminus( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
+    CHECK_DECIMAL_OPERATION( "minus operation on " + toString( RoundMode::Default ) + " failed.")
     
     std::swap( mpdDecimal, result );
   }

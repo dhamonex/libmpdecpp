@@ -96,6 +96,13 @@ namespace mpdecimal
    */
   LIBMPDECPP_EXPORT Decimal operator-( const Decimal &lhs, const Decimal &rhs );
   
+  /** Modify sign of a Decimal value.
+   * Apply negative sign on decimal value.
+   * @param value value where to apply sign.
+   * @return result of operation.
+   */
+  LIBMPDECPP_EXPORT Decimal operator-( const Decimal &value );
+  
   /** Divide two Decimal values.
    * Divide the given two Decimal values and return the result as a copy.
    * @param lhs left hand side Decimal value.

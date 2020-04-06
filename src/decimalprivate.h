@@ -48,6 +48,7 @@ namespace detail
     void powAndAssign( const DecimalPrivate &exp );
     void sqrtAndAssign();
     void abs();
+    void minusAssign();
     
     MPDDecimalPointer mpdDecimal;
     
