@@ -11,6 +11,7 @@ addons:
       - python-yaml
       - lcov
       - libmpdec-dev
+      - libfmt-dev
       - cmake
       - libboost-all-dev
       - git
