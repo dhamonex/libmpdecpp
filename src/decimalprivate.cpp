@@ -282,6 +282,17 @@ namespace detail
     std::swap( mpdDecimal, result );
   }
   
+  void DecimalPrivate::plusAssign()
+  {
+    auto result = createDecimal();
+    mpd_status_t status{ 0 };
+    
+    mpd_qplus( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
+    CHECK_DECIMAL_OPERATION( "plus operation on " + toString( RoundMode::Default ) + " failed.")
+    
+    std::swap( mpdDecimal, result );
+  }
+  
   std::string DecimalPrivate::toString( RoundMode roundMode ) const
   {
     return toString( "f", roundMode );

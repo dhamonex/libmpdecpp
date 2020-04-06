@@ -49,6 +49,7 @@ namespace detail
     void sqrtAndAssign();
     void abs();
     void minusAssign();
+    void plusAssign();
     
     MPDDecimalPointer mpdDecimal;
     

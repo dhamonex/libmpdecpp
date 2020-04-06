@@ -88,6 +88,13 @@ namespace mpdecimal
    */
   LIBMPDECPP_EXPORT Decimal operator+( const Decimal &lhs, const Decimal &rhs );
   
+  /** Apply plus sign on Decimal value.
+   * Applies the plus sign.
+   * @param value Decimal value
+   * @return result of operation.
+   */
+  LIBMPDECPP_EXPORT Decimal operator+( const Decimal &value );
+  
   /** Subtract two Decimal values.
    * Subtract the given two Decimal values and return the result as a copy.
    * @param lhs left hand side Decimal value.
