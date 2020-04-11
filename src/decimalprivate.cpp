@@ -158,70 +158,53 @@ namespace detail
     std::swap( mpdDecimal, result );
   }
   
-  void DecimalPrivate::multiplyAssign( const DecimalPrivate &other )
+  void DecimalPrivate::applyBinaryOperation( const BinaryMpdecimalFunction &function,
+                                             const DecimalPrivate &other,
+                                             const std::string &errorMessageFormat, 
+                                             ErrorCheckMode checkMode )
   {
     auto result = createDecimal();
     mpd_status_t status{ 0 };
     
-    mpd_qmul( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
-    CHECK_DECIMAL_OPERATION( "Multiply failed (" + toString( RoundMode::Default ) + " * " + other.toString( RoundMode::Default ) + ")" )
+    function( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
+    
+    if ( checkMode == ErrorCheckMode::IgnoreInexactRounding ) {
+      CHECK_DECIMAL_OPERATION_IGNORE_INEXACT_VALUE( fmt::format( errorMessageFormat, toString( RoundMode::Default ), other.toString( RoundMode::Default ) ) );
+    } else {
+      CHECK_DECIMAL_OPERATION( fmt::format( errorMessageFormat, toString( RoundMode::Default ), other.toString( RoundMode::Default ) ) );
+    }
     
     std::swap( mpdDecimal, result );
+  }
+  
+  void DecimalPrivate::multiplyAssign( const DecimalPrivate &other )
+  {
+    applyBinaryOperation( &mpd_qmul, other, "Multiply failed ({} * {})" );
   }
   
   void DecimalPrivate::divideAssign( const DecimalPrivate &other )
   {
-    auto result = createDecimal();
-    mpd_status_t status{ 0 };
-    
-    mpd_qdiv( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
-    CHECK_DECIMAL_OPERATION( "Divide failed (" + toString( RoundMode::Default ) + " / " + other.toString( RoundMode::Default ) + ")" )
-    
-    std::swap( mpdDecimal, result );
+    applyBinaryOperation( &mpd_qdiv, other, "Divide failed ({} / {})" );
   }
   
   void DecimalPrivate::addAssign( const DecimalPrivate &other )
   {
-    auto result = createDecimal();
-    mpd_status_t status{ 0 };
-    
-    mpd_qadd( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
-    CHECK_DECIMAL_OPERATION( "Addition failed (" + toString( RoundMode::Default ) + " + " + other.toString( RoundMode::Default ) )
-    
-    std::swap( mpdDecimal, result );
+    applyBinaryOperation( &mpd_qadd, other, "Addition failed ({} + {})" );
   }
   
   void DecimalPrivate::subtractAssing( const DecimalPrivate &other )
   {
-    auto result = createDecimal();
-    mpd_status_t status{ 0 };
-    
-    mpd_qsub( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
-    CHECK_DECIMAL_OPERATION( "Subtraction failed (" + toString( RoundMode::Default ) + " - " + other.toString( RoundMode::Default ) )
-    
-    std::swap( mpdDecimal, result );
+    applyBinaryOperation( &mpd_qsub, other, "Subtraction failed ({} - {})" );
   }
   
   void DecimalPrivate::divideModAssign( const DecimalPrivate &other )
   {
-    auto result = createDecimal();
-    mpd_status_t status{ 0 };
-    
-    mpd_qrem( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
-    CHECK_DECIMAL_OPERATION( "Remainder failed (" + toString( RoundMode::Default ) + " - " + other.toString( RoundMode::Default ) )
-    
-    std::swap( mpdDecimal, result );
+    applyBinaryOperation( &mpd_qrem, other, "Remainder failed ({} qrem {})" );
   }
   
   void DecimalPrivate::remainderNearAssign( const DecimalPrivate &other )
   {
-    auto result = createDecimal();
-    mpd_status_t status{ 0 };
-    
-    mpd_qrem_near( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
-    CHECK_DECIMAL_OPERATION( "Remainder-Near failed (" + toString( RoundMode::Default ) + " - " + other.toString( RoundMode::Default ) )
-    
-    std::swap( mpdDecimal, result );
+    applyBinaryOperation( &mpd_qrem_near, other, "Remainder-Near failed ({} remnear {})" );
   }
   
   void DecimalPrivate::expAndAssign()
@@ -241,13 +224,7 @@ namespace detail
   
   void DecimalPrivate::powAndAssign( const DecimalPrivate &exp )
   {
-    auto result = createDecimal();
-    mpd_status_t status{ 0 };
-    
-    mpd_qpow( result.get(), mpdDecimal.get(), exp.mpdDecimal.get(), threadLocalContext(), &status );
-    CHECK_DECIMAL_OPERATION( "pow operation failed (" + toString( RoundMode::Default ) + " ** " + exp.toString( RoundMode::Default ) + ")" );
-    
-    std::swap( mpdDecimal, result );
+    applyBinaryOperation( &mpd_qpow, exp, "pow operation failed ({} ** {})" );
   }
   
   void DecimalPrivate::sqrtAndAssign()

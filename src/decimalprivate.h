@@ -16,6 +16,8 @@ namespace detail
   struct LIBMPDECPP_NO_EXPORT DecimalPrivate
   {
     using UnaryMpdecimalFunction = std::function<void ( mpd_t *, const mpd_t *, const mpd_context_t *, mpd_status_t * )>;
+    using BinaryMpdecimalFunction = std::function<void ( mpd_t *, const mpd_t *, const mpd_t *, const mpd_context_t *, mpd_status_t * )>;
+    
     enum class ErrorCheckMode
     {
         Default,
@@ -48,6 +50,11 @@ namespace detail
     void applyUnaryOperation( const UnaryMpdecimalFunction &function, 
                               const std::string &errorMessageFormat, 
                               ErrorCheckMode checkMode = ErrorCheckMode::Default );
+    
+    void applyBinaryOperation( const BinaryMpdecimalFunction &function,
+                               const DecimalPrivate &other,
+                               const std::string &errorMessageFormat, 
+                               ErrorCheckMode checkMode = ErrorCheckMode::Default );
     
     void multiplyAssign( const DecimalPrivate &other );
     void divideAssign( const DecimalPrivate &other );
