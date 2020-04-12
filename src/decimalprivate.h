@@ -112,10 +112,18 @@ namespace detail
       function( result.get(), expandDecimalPointer( *this ), expandDecimalPointer( args )..., DecimalPrivate::threadLocalContext(), &status );
       
       if ( checkMode == DecimalPrivate::ErrorCheckMode::IgnoreInexactRounding ) {
+#if FMT_VERSION >= 60000
         CHECK_DECIMAL_OPERATION_IGNORE_INEXACT_VALUE( fmt::format( errorMessageFormat, getString( *this ),  getString( args )... ) );
+#else
+        CHECK_DECIMAL_OPERATION_IGNORE_INEXACT_VALUE( fmt::format( std::string( errorMessageFormat ), getString( *this ),  getString( args )... ) );
+#endif
         
       } else {
+#if FMT_VERSION >= 60000
         CHECK_DECIMAL_OPERATION( fmt::format( errorMessageFormat, getString( *this  ), getString( args )... ) );
+#else
+        CHECK_DECIMAL_OPERATION( fmt::format( std::string( errorMessageFormat ), getString( *this  ), getString( args )... ) );
+#endif
       }
       
       std::swap( mpdDecimal, result );
