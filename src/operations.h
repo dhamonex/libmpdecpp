@@ -186,9 +186,16 @@ namespace mpdecimal
   /** Next minus.
    * The closest representable number that is smaller than value.
    * @param value Decimal value.
-   * @return closes number.
+   * @return closest number.
    */
   LIBMPDECPP_EXPORT Decimal nextMinus( const Decimal &value );
+  
+  /** Next plus.
+   * The closest representable number that is larger than value.
+   * @param value Decimal value.
+   * @return closest number.
+   */
+  LIBMPDECPP_EXPORT Decimal nextPlus( const Decimal &value );
   
   /** Round Decimal value.
    * Rounds the decimal value and returns the result of the rounding operation.

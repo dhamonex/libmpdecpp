@@ -176,6 +176,14 @@ mpdecimal::Decimal nextMinus( const mpdecimal::Decimal &value )
   return result;
 }
 
+mpdecimal::Decimal nextPlus( const mpdecimal::Decimal &value )
+{
+  mpdecimal::Decimal result{ value };
+  result.m_private->nextPlusAssing();
+  
+  return result;
+}
+
 mpdecimal::Decimal round( const mpdecimal::Decimal &value, 
                           unsigned int precision, 
                           RoundMode roundMode )

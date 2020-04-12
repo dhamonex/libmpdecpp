@@ -239,6 +239,7 @@ namespace mpdecimal
       friend Decimal operator-( const Decimal &value );
       friend Decimal operator+( const Decimal &value );
       friend Decimal nextMinus( const Decimal &value );
+      friend Decimal nextPlus( const Decimal &value );
       
     private:
       std::unique_ptr<detail::DecimalPrivate> m_private;

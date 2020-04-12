@@ -66,6 +66,7 @@ namespace detail
     void minusAssign();
     void plusAssign();
     void nextMinusAssign();
+    void nextPlusAssing();
     
     template<typename F, class... Args>
     void applyMpdecimalOperation( F function, 
