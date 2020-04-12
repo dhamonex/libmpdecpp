@@ -197,6 +197,15 @@ namespace mpdecimal
    */
   LIBMPDECPP_EXPORT Decimal nextPlus( const Decimal &value );
   
+  /** Next toward.
+   * Representable number closest to a that is in the direction towards towards.
+   * @param value Decimal value.
+   * @param towards Decimal value.
+   * @return closest number.
+   */
+  LIBMPDECPP_EXPORT Decimal nextToward( const Decimal &value, 
+                                        const Decimal &towards );
+  
   /** Round Decimal value.
    * Rounds the decimal value and returns the result of the rounding operation.
    * @param value Decimal value.

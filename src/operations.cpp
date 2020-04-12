@@ -184,6 +184,15 @@ mpdecimal::Decimal nextPlus( const mpdecimal::Decimal &value )
   return result;
 }
 
+mpdecimal::Decimal nextToward( const Decimal &value, 
+                               const Decimal &towards )
+{
+  mpdecimal::Decimal result{ value };
+  result.m_private->nextTowardAssign( *towards.m_private );
+  
+  return result;
+}
+
 mpdecimal::Decimal round( const mpdecimal::Decimal &value, 
                           unsigned int precision, 
                           RoundMode roundMode )

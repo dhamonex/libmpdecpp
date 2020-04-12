@@ -67,6 +67,7 @@ namespace detail
     void plusAssign();
     void nextMinusAssign();
     void nextPlusAssing();
+    void nextTowardAssign( const DecimalPrivate &other );
     
     template<typename F, class... Args>
     void applyMpdecimalOperation( F function, 

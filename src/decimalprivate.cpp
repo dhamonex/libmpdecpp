@@ -217,6 +217,11 @@ namespace detail
     applyMpdecimalOperation( &mpd_qnext_plus, ErrorCheckMode::Default, "Next plus operation on {} failed." );
   }
   
+  void DecimalPrivate::nextTowardAssign( const DecimalPrivate &other )
+  {
+    applyMpdecimalOperation( &mpd_qnext_toward, ErrorCheckMode::Default, "Next toward from {} towards {} failed.", other );
+  }
+  
   std::string DecimalPrivate::toString( RoundMode roundMode ) const
   {
     return toString( "f", roundMode );
