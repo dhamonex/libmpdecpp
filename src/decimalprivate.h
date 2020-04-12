@@ -3,11 +3,15 @@
 
 #include <functional>
 
+#include <fmt/format.h>
+
 #include "mpdecimalnamespace.h"
 #include "decimaltypes.h"
 #include "libmpdecpp_export.h"
 #include "roundmode.h"
 #include "scienfstringconversionformatflag.h"
+#include "errorchecks.h"
+#include "decimalexceptions.h"
 
 MPDECIMAL_NAMESPACE_BEGIN
 
@@ -47,15 +51,6 @@ namespace detail
     
     ComparisonResult compareToOtherValue( const DecimalPrivate &other );
     
-    void applyUnaryOperation( const UnaryMpdecimalFunction &function, 
-                              const std::string &errorMessageFormat, 
-                              ErrorCheckMode checkMode = ErrorCheckMode::Default );
-    
-    void applyBinaryOperation( const BinaryMpdecimalFunction &function,
-                               const DecimalPrivate &other,
-                               const std::string &errorMessageFormat, 
-                               ErrorCheckMode checkMode = ErrorCheckMode::Default );
-    
     void multiplyAssign( const DecimalPrivate &other );
     void divideAssign( const DecimalPrivate &other );
     void addAssign( const DecimalPrivate &other );
@@ -70,6 +65,12 @@ namespace detail
     void abs();
     void minusAssign();
     void plusAssign();
+    
+    template<typename F, class... Args>
+    void applyMpdecimalOperation( F function, 
+                                  DecimalPrivate::ErrorCheckMode checkMode, 
+                                  std::string_view errorMessageFormat, 
+                                  Args &&... args );
     
     MPDDecimalPointer mpdDecimal;
     
@@ -88,6 +89,37 @@ namespace detail
     
     static constexpr unsigned int charBufferSize = 1000;
   };
+  
+  inline std::string getString( const DecimalPrivate &decimal )
+  {
+    return decimal.toString( RoundMode::Default );
+  }
+  
+  inline const mpd_t *expandDecimalPointer( const DecimalPrivate &decimal )
+  {
+    return decimal.mpdDecimal.get();
+  }
+  
+  template<typename F, class... Args>
+  void DecimalPrivate::applyMpdecimalOperation( F function, 
+                                DecimalPrivate::ErrorCheckMode checkMode, 
+                                std::string_view errorMessageFormat, 
+                                Args &&... args )
+  {
+      auto result = DecimalPrivate::createDecimal();
+      mpd_status_t status{ 0 };
+      
+      function( result.get(), expandDecimalPointer( *this ), expandDecimalPointer( args )..., DecimalPrivate::threadLocalContext(), &status );
+      
+      if ( checkMode == DecimalPrivate::ErrorCheckMode::IgnoreInexactRounding ) {
+        CHECK_DECIMAL_OPERATION_IGNORE_INEXACT_VALUE( fmt::format( errorMessageFormat, getString( *this ),  getString( args )... ) );
+        
+      } else {
+        CHECK_DECIMAL_OPERATION( fmt::format( errorMessageFormat, getString( *this  ), getString( args )... ) );
+      }
+      
+      std::swap( mpdDecimal, result );
+    }
 }
 
 MPDECIMAL_NAMESPACE_END

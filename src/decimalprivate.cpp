@@ -1,10 +1,7 @@
 #include "decimalprivate.h"
-#include "decimalexceptions.h"
-#include "errorchecks.h"
 
 #include <boost/throw_exception.hpp>
 #include <boost/lexical_cast.hpp>
-#include <fmt/format.h>
 
 #define CHECK_MPD_SET_STATUS \
     CHECK_DECIMAL_OPERATION( "Could not set decimal from value: " + boost::lexical_cast<std::string>( value ) )
@@ -140,111 +137,74 @@ namespace detail
     return ComparisonResult::Equal;
   }
   
-  void DecimalPrivate::applyUnaryOperation( const UnaryMpdecimalFunction &function, 
-                                            const std::string &errorMessageFormat, 
-                                            ErrorCheckMode checkMode )
-  {
-    auto result = createDecimal();
-    mpd_status_t status{ 0 };
-    
-    function( result.get(), mpdDecimal.get(), threadLocalContext(), &status );
-    
-    if ( checkMode == ErrorCheckMode::IgnoreInexactRounding ) {
-      CHECK_DECIMAL_OPERATION_IGNORE_INEXACT_VALUE( fmt::format( errorMessageFormat, toString( RoundMode::Default ) ) );
-    } else {
-      CHECK_DECIMAL_OPERATION( fmt::format( errorMessageFormat, toString( RoundMode::Default ) ) );
-    }
-    
-    std::swap( mpdDecimal, result );
-  }
-  
-  void DecimalPrivate::applyBinaryOperation( const BinaryMpdecimalFunction &function,
-                                             const DecimalPrivate &other,
-                                             const std::string &errorMessageFormat, 
-                                             ErrorCheckMode checkMode )
-  {
-    auto result = createDecimal();
-    mpd_status_t status{ 0 };
-    
-    function( result.get(), mpdDecimal.get(), other.mpdDecimal.get(), threadLocalContext(), &status );
-    
-    if ( checkMode == ErrorCheckMode::IgnoreInexactRounding ) {
-      CHECK_DECIMAL_OPERATION_IGNORE_INEXACT_VALUE( fmt::format( errorMessageFormat, toString( RoundMode::Default ), other.toString( RoundMode::Default ) ) );
-    } else {
-      CHECK_DECIMAL_OPERATION( fmt::format( errorMessageFormat, toString( RoundMode::Default ), other.toString( RoundMode::Default ) ) );
-    }
-    
-    std::swap( mpdDecimal, result );
-  }
-  
   void DecimalPrivate::multiplyAssign( const DecimalPrivate &other )
   {
-    applyBinaryOperation( &mpd_qmul, other, "Multiply failed ({} * {})" );
+    applyMpdecimalOperation( &mpd_qmul, ErrorCheckMode::Default, "Multiply failed ({} * {})", other );
   }
   
   void DecimalPrivate::divideAssign( const DecimalPrivate &other )
   {
-    applyBinaryOperation( &mpd_qdiv, other, "Divide failed ({} / {})" );
+    applyMpdecimalOperation( &mpd_qdiv, ErrorCheckMode::Default, "Divide failed ({} / {})", other );
   }
   
   void DecimalPrivate::addAssign( const DecimalPrivate &other )
   {
-    applyBinaryOperation( &mpd_qadd, other, "Addition failed ({} + {})" );
+    applyMpdecimalOperation( &mpd_qadd, ErrorCheckMode::Default, "Addition failed ({} + {})", other );
   }
   
   void DecimalPrivate::subtractAssing( const DecimalPrivate &other )
   {
-    applyBinaryOperation( &mpd_qsub, other, "Subtraction failed ({} - {})" );
+    applyMpdecimalOperation( &mpd_qsub, ErrorCheckMode::Default, "Subtraction failed ({} - {})", other );
   }
   
   void DecimalPrivate::divideModAssign( const DecimalPrivate &other )
   {
-    applyBinaryOperation( &mpd_qrem, other, "Remainder failed ({} qrem {})" );
+    applyMpdecimalOperation( &mpd_qrem, ErrorCheckMode::Default, "Remainder failed ({} qrem {})", other );
   }
   
   void DecimalPrivate::remainderNearAssign( const DecimalPrivate &other )
   {
-    applyBinaryOperation( &mpd_qrem_near, other, "Remainder-Near failed ({} remnear {})" );
+    applyMpdecimalOperation( &mpd_qrem_near, ErrorCheckMode::Default, "Remainder-Near failed ({} remnear {})", other );
   }
   
   void DecimalPrivate::expAndAssign()
   {
-    applyUnaryOperation( &mpd_qexp, "Exp failed ({})", ErrorCheckMode::IgnoreInexactRounding );
+    applyMpdecimalOperation( &mpd_qexp, ErrorCheckMode::IgnoreInexactRounding, "Exp failed ({})" );
   }
   
   void DecimalPrivate::lnAndAssign()
   {
-    applyUnaryOperation( &mpd_qln, "LN failed({})", ErrorCheckMode::IgnoreInexactRounding );
+    applyMpdecimalOperation( &mpd_qln, ErrorCheckMode::IgnoreInexactRounding, "LN failed({})" );
   }
   
   void DecimalPrivate::log10AndAssign()
   {
-    applyUnaryOperation( &mpd_qlog10, "Log of base 10 failed ({})", ErrorCheckMode::IgnoreInexactRounding );
+    applyMpdecimalOperation( &mpd_qlog10, ErrorCheckMode::IgnoreInexactRounding, "Log of base 10 failed ({})" );
   }
   
   void DecimalPrivate::powAndAssign( const DecimalPrivate &exp )
   {
-    applyBinaryOperation( &mpd_qpow, exp, "pow operation failed ({} ** {})" );
+    applyMpdecimalOperation( &mpd_qpow, ErrorCheckMode::Default, "pow operation failed ({} ** {})", exp );
   }
   
   void DecimalPrivate::sqrtAndAssign()
   {
-    applyUnaryOperation( &mpd_qsqrt, "sqrt operation failed ({})", ErrorCheckMode::IgnoreInexactRounding );
+    applyMpdecimalOperation( &mpd_qsqrt, ErrorCheckMode::IgnoreInexactRounding, "sqrt operation failed ({})" );
   }
   
   void DecimalPrivate::abs()
   {
-    applyUnaryOperation( &mpd_qabs, "abs() operation on {} failed." );
+    applyMpdecimalOperation( &mpd_qabs, ErrorCheckMode::Default, "abs() operation on {} failed." );
   }
   
   void DecimalPrivate::minusAssign()
   {
-    applyUnaryOperation( &mpd_qminus, "minus operation on {} failed." );
+    applyMpdecimalOperation( &mpd_qminus, ErrorCheckMode::Default, "minus operation on {} failed." );
   }
   
   void DecimalPrivate::plusAssign()
   {
-    applyUnaryOperation( &mpd_qplus, "Plus operation on {} failed." );
+    applyMpdecimalOperation( &mpd_qplus, ErrorCheckMode::Default, "Plus operation on {} failed." );
   }
   
   std::string DecimalPrivate::toString( RoundMode roundMode ) const

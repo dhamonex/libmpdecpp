@@ -5,7 +5,7 @@
   BOOST_THROW_EXCEPTION( DecimalException() \
         << ErrorString( message ) \
         << ErrorCode( status ) \
-        << StatusFlags( statusFlags( status ) ) )
+        << StatusFlags( DecimalPrivate::statusFlags( status ) ) )
   
   
 #define CHECK_DECIMAL_OPERATION( message ) \
