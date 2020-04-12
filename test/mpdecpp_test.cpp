@@ -29,6 +29,7 @@ using namespace ::testing;
 #include "divide_tests.h"
 #include "power_and_logarithms_test.h"
 #include "sign_tests.h"
+#include "round_operation_test.h"
 
 int main( int argc, char **argv )
 {

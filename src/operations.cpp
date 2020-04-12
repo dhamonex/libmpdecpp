@@ -168,5 +168,12 @@ mpdecimal::Decimal abs( const mpdecimal::Decimal& value )
   return result;
 }
 
+mpdecimal::Decimal round( const mpdecimal::Decimal &value, 
+                          unsigned int precision, 
+                          RoundMode roundMode )
+{
+  return value.toString( precision, roundMode );
+}
+
 MPDECIMAL_NAMESPACE_END
 

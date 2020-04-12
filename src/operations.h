@@ -2,6 +2,7 @@
 #define H_E3F615B483B54E9488FC4CE6F08D791E
 
 #include "libmpdecpp_export.h"
+#include "roundmode.h"
 
 namespace mpdecimal
 {
@@ -181,6 +182,16 @@ namespace mpdecimal
    * @return absolute value.
    */
   LIBMPDECPP_EXPORT Decimal abs( const Decimal &value );
+  
+  /** Round Decimal value.
+   * Rounds the decimal value and returns the result of the rounding operation.
+   * @param value Decimal value.
+   * @param precision rounding decimal places precision.
+   * @return rounded value.
+   */
+  LIBMPDECPP_EXPORT Decimal round( const Decimal &value, 
+                                   unsigned int precision = 0, 
+                                   RoundMode roundMode = RoundMode::Default );
 }
 
 #endif // H_E3F615B483B54E9488FC4CE6F08D791E
