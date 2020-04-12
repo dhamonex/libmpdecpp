@@ -33,7 +33,7 @@ bool operator>=( const Decimal &lhs, const Decimal &rhs )
   return lhs == rhs || lhs > rhs;
 }
 
-mpdecimal::Decimal max( const mpdecimal::Decimal &lhs, const mpdecimal::Decimal &rhs )
+Decimal max( const Decimal &lhs, const Decimal &rhs )
 {
   if ( lhs > rhs ) {
     return lhs;
@@ -42,7 +42,7 @@ mpdecimal::Decimal max( const mpdecimal::Decimal &lhs, const mpdecimal::Decimal 
   return rhs;
 }
 
-mpdecimal::Decimal min( const mpdecimal::Decimal &lhs, const mpdecimal::Decimal &rhs )
+Decimal min( const Decimal &lhs, const Decimal &rhs )
 {
   if ( lhs < rhs ) {
     return lhs;
@@ -51,12 +51,12 @@ mpdecimal::Decimal min( const mpdecimal::Decimal &lhs, const mpdecimal::Decimal 
   return rhs;
 }
 
-bool operator!=( const mpdecimal::Decimal& lhs, const mpdecimal::Decimal& rhs )
+bool operator!=( const Decimal& lhs, const Decimal& rhs )
 {
   return !( lhs == rhs );
 }
 
-Decimal operator* ( const mpdecimal::Decimal& lhs, const mpdecimal::Decimal& rhs )
+Decimal operator* ( const Decimal& lhs, const Decimal& rhs )
 {
   Decimal result{ lhs };
   result *= rhs;
@@ -64,7 +64,7 @@ Decimal operator* ( const mpdecimal::Decimal& lhs, const mpdecimal::Decimal& rhs
   return result;
 }
 
-mpdecimal::Decimal operator+ ( const mpdecimal::Decimal &lhs, const mpdecimal::Decimal &rhs )
+Decimal operator+ ( const Decimal &lhs, const Decimal &rhs )
 {
   Decimal result{ lhs };
   result += rhs;
@@ -72,7 +72,7 @@ mpdecimal::Decimal operator+ ( const mpdecimal::Decimal &lhs, const mpdecimal::D
   return result;
 }
 
-mpdecimal::Decimal operator+ ( const mpdecimal::Decimal& value )
+Decimal operator+ ( const Decimal& value )
 {
   Decimal result{ value };
   result.m_private->plusAssign();
@@ -80,7 +80,7 @@ mpdecimal::Decimal operator+ ( const mpdecimal::Decimal& value )
   return result;
 }
 
-mpdecimal::Decimal operator- ( const mpdecimal::Decimal &lhs, const mpdecimal::Decimal &rhs )
+Decimal operator- ( const Decimal &lhs, const Decimal &rhs )
 {
   Decimal result{ lhs };
   result -= rhs;
@@ -88,7 +88,7 @@ mpdecimal::Decimal operator- ( const mpdecimal::Decimal &lhs, const mpdecimal::D
   return result;
 }
 
-mpdecimal::Decimal operator- ( const mpdecimal::Decimal& value )
+Decimal operator- ( const Decimal& value )
 {
   Decimal result{ value };
   result.m_private->minusAssign();
@@ -96,7 +96,7 @@ mpdecimal::Decimal operator- ( const mpdecimal::Decimal& value )
   return result;
 }
 
-mpdecimal::Decimal operator/ ( const mpdecimal::Decimal &lhs, const mpdecimal::Decimal &rhs )
+Decimal operator/ ( const Decimal &lhs, const Decimal &rhs )
 {
   Decimal result{ lhs };
   result /= rhs;
@@ -104,7 +104,7 @@ mpdecimal::Decimal operator/ ( const mpdecimal::Decimal &lhs, const mpdecimal::D
   return result;
 }
 
-mpdecimal::Decimal operator% ( const mpdecimal::Decimal& lhs, const mpdecimal::Decimal& rhs )
+Decimal operator% ( const Decimal& lhs, const Decimal& rhs )
 {
   Decimal result{ lhs };
   result %= rhs;
@@ -112,7 +112,7 @@ mpdecimal::Decimal operator% ( const mpdecimal::Decimal& lhs, const mpdecimal::D
   return result;
 }
 
-mpdecimal::Decimal remainderNear( const mpdecimal::Decimal& lhs, const mpdecimal::Decimal& rhs )
+Decimal remainderNear( const Decimal& lhs, const Decimal& rhs )
 {
   Decimal result{ lhs };
   result.m_private->remainderNearAssign( *rhs.m_private );
@@ -120,7 +120,7 @@ mpdecimal::Decimal remainderNear( const mpdecimal::Decimal& lhs, const mpdecimal
   return result;
 }
 
-mpdecimal::Decimal exp( const mpdecimal::Decimal &value )
+Decimal exp( const Decimal &value )
 {
   Decimal result{ value };
   result.m_private->expAndAssign();
@@ -128,7 +128,7 @@ mpdecimal::Decimal exp( const mpdecimal::Decimal &value )
   return result;
 }
 
-mpdecimal::Decimal ln( const mpdecimal::Decimal& value )
+Decimal ln( const Decimal& value )
 {
   Decimal result{ value };
   result.m_private->lnAndAssign();
@@ -136,7 +136,7 @@ mpdecimal::Decimal ln( const mpdecimal::Decimal& value )
   return result;
 }
 
-mpdecimal::Decimal log( const mpdecimal::Decimal& value )
+Decimal log( const Decimal& value )
 {
   Decimal result{ value };
   result.m_private->log10AndAssign();
@@ -144,7 +144,7 @@ mpdecimal::Decimal log( const mpdecimal::Decimal& value )
   return result;
 }
 
-mpdecimal::Decimal pow( const mpdecimal::Decimal& base, const mpdecimal::Decimal& exp )
+Decimal pow( const Decimal& base, const Decimal& exp )
 {
   Decimal result{ base };
   result.m_private->powAndAssign( *exp.m_private );
@@ -152,7 +152,7 @@ mpdecimal::Decimal pow( const mpdecimal::Decimal& base, const mpdecimal::Decimal
   return result;
 }
 
-mpdecimal::Decimal sqrt( const mpdecimal::Decimal& value )
+Decimal sqrt( const Decimal& value )
 {
   Decimal result{ value };
   result.m_private->sqrtAndAssign();
@@ -160,7 +160,7 @@ mpdecimal::Decimal sqrt( const mpdecimal::Decimal& value )
   return result;
 }
 
-mpdecimal::Decimal abs( const mpdecimal::Decimal& value )
+Decimal abs( const Decimal& value )
 {
   Decimal result{ value };
   result.m_private->abs();
@@ -168,34 +168,34 @@ mpdecimal::Decimal abs( const mpdecimal::Decimal& value )
   return result;
 }
 
-mpdecimal::Decimal nextMinus( const mpdecimal::Decimal &value )
+Decimal nextMinus( const Decimal &value )
 {
-  mpdecimal::Decimal result{ value };
+  Decimal result{ value };
   result.m_private->nextMinusAssign();
   
   return result;
 }
 
-mpdecimal::Decimal nextPlus( const mpdecimal::Decimal &value )
+Decimal nextPlus( const Decimal &value )
 {
-  mpdecimal::Decimal result{ value };
+  Decimal result{ value };
   result.m_private->nextPlusAssing();
   
   return result;
 }
 
-mpdecimal::Decimal nextToward( const Decimal &value, 
-                               const Decimal &towards )
+Decimal nextToward( const Decimal &value, 
+                    const Decimal &towards )
 {
-  mpdecimal::Decimal result{ value };
+  Decimal result{ value };
   result.m_private->nextTowardAssign( *towards.m_private );
   
   return result;
 }
 
-mpdecimal::Decimal round( const mpdecimal::Decimal &value, 
-                          unsigned int precision, 
-                          RoundMode roundMode )
+Decimal round( const Decimal &value, 
+               unsigned int precision, 
+               RoundMode roundMode )
 {
   return value.toString( precision, roundMode );
 }
