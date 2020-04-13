@@ -242,6 +242,7 @@ namespace mpdecimal
       friend Decimal nextPlus( const Decimal &value );
       friend Decimal nextToward( const Decimal &value, const Decimal &towards );
       friend Decimal quantize( const Decimal &value, const Decimal &exp );
+      friend Decimal floor( const Decimal &value );
       
     private:
       std::unique_ptr<detail::DecimalPrivate> m_private;

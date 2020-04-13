@@ -227,6 +227,11 @@ namespace detail
     applyMpdecimalOperation( &mpd_qquantize, ErrorCheckMode::IgnoreInexactRounding, "Quantize operation of value {} with exp {} failed.", other );
   }
   
+  void DecimalPrivate::floorAssign()
+  {
+    applyMpdecimalOperation( &mpd_qfloor, ErrorCheckMode::Default, "Floor operation on {} failed." );
+  }
+  
   std::string DecimalPrivate::toString( RoundMode roundMode ) const
   {
     return toString( "f", roundMode );

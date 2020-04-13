@@ -208,5 +208,14 @@ Decimal quantize( const Decimal &value,
   
   return value;
 }
+
+Decimal floor( const Decimal &value )
+{
+  Decimal result{ value };
+  result.m_private->floorAssign();
+  
+  return result;
+}
+
 MPDECIMAL_NAMESPACE_END
 

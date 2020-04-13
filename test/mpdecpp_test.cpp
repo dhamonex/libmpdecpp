@@ -32,6 +32,7 @@ using namespace ::testing;
 #include "round_operation_tests.h"
 #include "closest_numbers_tests.h"
 #include "quantizing_and_normalizing_tests.h"
+#include "integral_operation_tests.h"
 
 int main( int argc, char **argv )
 {

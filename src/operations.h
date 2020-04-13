@@ -225,6 +225,13 @@ namespace mpdecimal
    */
   LIBMPDECPP_EXPORT Decimal quantize( const Decimal &value, 
                                       const Decimal &exp );
+  
+  /** Floor of decimal value.
+   * Returns the result to the floor of value.
+   * @param value Decimal value.
+   * @return result of floor as Decimal type.
+   */
+  LIBMPDECPP_EXPORT Decimal floor( const Decimal &value );
 }
 
 #endif // H_E3F615B483B54E9488FC4CE6F08D791E
