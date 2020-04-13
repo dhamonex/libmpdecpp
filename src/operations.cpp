@@ -200,5 +200,13 @@ Decimal round( const Decimal &value,
   return value.toString( precision, roundMode );
 }
 
+Decimal quantize( const Decimal &value, 
+                  const Decimal &exp )
+{
+  Decimal result{ value };
+  result.m_private->quantizeAssign( *exp.m_private );
+  
+  return value;
+}
 MPDECIMAL_NAMESPACE_END
 

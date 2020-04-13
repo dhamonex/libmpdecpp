@@ -31,6 +31,7 @@ using namespace ::testing;
 #include "sign_tests.h"
 #include "round_operation_test.h"
 #include "closest_numbers_test.h"
+#include "quantizing_and_normalizing_test.h"
 
 int main( int argc, char **argv )
 {

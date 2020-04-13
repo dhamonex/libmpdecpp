@@ -222,6 +222,11 @@ namespace detail
     applyMpdecimalOperation( &mpd_qnext_toward, ErrorCheckMode::Default, "Next toward from {} towards {} failed.", other );
   }
   
+  void DecimalPrivate::quantizeAssign( const DecimalPrivate &other )
+  {
+    applyMpdecimalOperation( &mpd_qquantize, ErrorCheckMode::IgnoreInexactRounding, "Quantize operation of value {} with exp {} failed.", other );
+  }
+  
   std::string DecimalPrivate::toString( RoundMode roundMode ) const
   {
     return toString( "f", roundMode );

@@ -215,6 +215,16 @@ namespace mpdecimal
   LIBMPDECPP_EXPORT Decimal round( const Decimal &value, 
                                    unsigned int precision = 0, 
                                    RoundMode roundMode = RoundMode::Default );
+  
+  
+  /** Quantize decimal value.
+   * Returns the number that is equal in value to value, but has the exponent of exp.
+   * @param value Decimal value.
+   * @param exp Decimal exponent value.
+   * @return result of quantize operation.
+   */
+  LIBMPDECPP_EXPORT Decimal quantize( const Decimal &value, 
+                                      const Decimal &exp );
 }
 
 #endif // H_E3F615B483B54E9488FC4CE6F08D791E
