@@ -1,5 +1,10 @@
 language: cpp
 dist: bionic
+
+compiler:
+  - clang
+  - gcc
+
 addons:
   apt:
     update: true
