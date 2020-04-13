@@ -77,7 +77,7 @@ namespace mpdecimal
    * Multiply the given two Decimal values and return the result as a copy.
    * @param lhs left hand side Decimal value.
    * @param rhs right hand side Decimal value.
-   * @return result of multiplication of the two decimal values.
+   * @return result of multiplication of the two Decimal values as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal operator*( const Decimal &lhs, const Decimal &rhs );
   
@@ -85,14 +85,14 @@ namespace mpdecimal
    * Add the given two Decimal values and return the result as a copy.
    * @param lhs left hand side Decimal value.
    * @param rhs right hand side Decimal value.
-   * @return sum of the two decimal values.
+   * @return sum of the two decimal values as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal operator+( const Decimal &lhs, const Decimal &rhs );
   
   /** Apply plus sign on Decimal value.
    * Applies the plus sign.
    * @param value Decimal value
-   * @return result of operation.
+   * @return result of operation as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal operator+( const Decimal &value );
   
@@ -100,14 +100,14 @@ namespace mpdecimal
    * Subtract the given two Decimal values and return the result as a copy.
    * @param lhs left hand side Decimal value.
    * @param rhs right hand side Decimal value.
-   * @return subtraction of the two decimal values.
+   * @return subtraction of the two decimal values as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal operator-( const Decimal &lhs, const Decimal &rhs );
   
   /** Modify sign of a Decimal value.
    * Apply negative sign on decimal value.
    * @param value value where to apply sign.
-   * @return result of operation.
+   * @return result of operation as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal operator-( const Decimal &value );
   
@@ -115,7 +115,7 @@ namespace mpdecimal
    * Divide the given two Decimal values and return the result as a copy.
    * @param lhs left hand side Decimal value.
    * @param rhs right hand side Decimal value.
-   * @return result of division.
+   * @return result of division as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal operator/( const Decimal &lhs, const Decimal &rhs );
   
@@ -123,7 +123,7 @@ namespace mpdecimal
    * Divide two Decimal values and return the modulo value as copy.
    * @param lhs left hand side Decimal value.
    * @param rhs right hand side Decimal value.
-   * @return modulo value.
+   * @return modulo value as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal operator%( const Decimal &lhs, const Decimal &rhs );
   
@@ -132,7 +132,7 @@ namespace mpdecimal
    * If two integers are equally near then the even one is chosen.
    * @param lhs left hand side Decimal value.
    * @param rhs right hand side Decimal value.
-   * @return remainder near of division.
+   * @return remainder near of division as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal remainderNear( const Decimal &lhs, const Decimal &rhs );
   
@@ -140,7 +140,7 @@ namespace mpdecimal
    * Returns e ** v where v is a Decimal value. "Inexact Rounded" Errors are ignored by this function
    * and not throwing an exception.
    * @param value Decimal value for exp function.
-   * @return e ** v.
+   * @return e ** v as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal exp( const Decimal &value );
   
@@ -148,7 +148,7 @@ namespace mpdecimal
    * Returns ln from value value. "Inexact Rounded" Errors are ignored by this function
    * and not throwing an exception.
    * @param value Decimal value for ln calculation.
-   * @return ln of value.
+   * @return ln of value as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal ln( const Decimal &value );
   
@@ -156,7 +156,7 @@ namespace mpdecimal
    * Returns base-10 logarithm from value. "Inexact Rounded" Errors are ignored by this function
    * and not throwing an exception.
    * @param value Decimal value for log 10 calculation.
-   * @return log 10 of value.
+   * @return log 10 of value as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal log( const Decimal &value );
   
@@ -164,7 +164,7 @@ namespace mpdecimal
    * Returns power of base ** exp.
    * @param base the base Decimal value.
    * @param exp the Decimal value exponent.
-   * @return base ** exp
+   * @return base ** exp as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal pow( const Decimal &base, const Decimal &exp );
   
@@ -172,28 +172,28 @@ namespace mpdecimal
    * Calculates the square root of the given Decimal value. 
    * This function ignores "Inexact Rounded" Error and always uses the ROUND_HALF_EVEN mode.
    * @param value Decimal value.
-   * @return square root of value.
+   * @return square root of value as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal sqrt( const Decimal &value );
   
   /** Absolute operation.
    * Determine absolute value of given Decimal value.
    * @param value Decimal value.
-   * @return absolute value.
+   * @return absolute value as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal abs( const Decimal &value );
   
   /** Next minus.
    * The closest representable number that is smaller than value.
    * @param value Decimal value.
-   * @return closest number.
+   * @return closest number as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal nextMinus( const Decimal &value );
   
   /** Next plus.
    * The closest representable number that is larger than value.
    * @param value Decimal value.
-   * @return closest number.
+   * @return closest number as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal nextPlus( const Decimal &value );
   
@@ -201,7 +201,7 @@ namespace mpdecimal
    * Representable number closest to a that is in the direction towards towards.
    * @param value Decimal value.
    * @param towards Decimal value.
-   * @return closest number.
+   * @return closest number as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal nextToward( const Decimal &value, 
                                         const Decimal &towards );
@@ -210,7 +210,7 @@ namespace mpdecimal
    * Rounds the decimal value and returns the result of the rounding operation.
    * @param value Decimal value.
    * @param precision rounding decimal places precision.
-   * @return rounded value.
+   * @return rounded value as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal round( const Decimal &value, 
                                    unsigned int precision = 0, 
@@ -221,7 +221,7 @@ namespace mpdecimal
    * Returns the number that is equal in value to value, but has the exponent of exp.
    * @param value Decimal value.
    * @param exp Decimal exponent value.
-   * @return result of quantize operation.
+   * @return result of quantize operation as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal quantize( const Decimal &value, 
                                       const Decimal &exp );
