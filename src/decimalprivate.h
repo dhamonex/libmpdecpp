@@ -1,8 +1,6 @@
 #ifndef H_61C5A137BF3142709EE274715BE7EC2F
 #define H_61C5A137BF3142709EE274715BE7EC2F
 
-#include <functional>
-
 #include <fmt/format.h>
 
 #include "mpdecimalnamespace.h"
@@ -19,9 +17,6 @@ namespace detail
 {  
   struct LIBMPDECPP_NO_EXPORT DecimalPrivate
   {
-    using UnaryMpdecimalFunction = std::function<void ( mpd_t *, const mpd_t *, const mpd_context_t *, mpd_status_t * )>;
-    using BinaryMpdecimalFunction = std::function<void ( mpd_t *, const mpd_t *, const mpd_t *, const mpd_context_t *, mpd_status_t * )>;
-    
     enum class ErrorCheckMode
     {
         Default,
