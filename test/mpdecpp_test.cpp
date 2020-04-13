@@ -29,9 +29,9 @@ using namespace ::testing;
 #include "divide_tests.h"
 #include "power_and_logarithms_test.h"
 #include "sign_tests.h"
-#include "round_operation_test.h"
-#include "closest_numbers_test.h"
-#include "quantizing_and_normalizing_test.h"
+#include "round_operation_tests.h"
+#include "closest_numbers_tests.h"
+#include "quantizing_and_normalizing_tests.h"
 
 int main( int argc, char **argv )
 {
