@@ -232,6 +232,13 @@ namespace mpdecimal
    * @return result of floor as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal floor( const Decimal &value );
+  
+  /** Ceil of decimal value.
+   * Returns the result to the ceiling of value.
+   * @param value Decimal value.
+   * @return result of ceil as Decimal type.
+   */
+  LIBMPDECPP_EXPORT Decimal ceil( const Decimal &value );
 }
 
 #endif // H_E3F615B483B54E9488FC4CE6F08D791E

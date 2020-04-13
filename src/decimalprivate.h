@@ -65,6 +65,7 @@ namespace detail
     void nextTowardAssign( const DecimalPrivate &other );
     void quantizeAssign( const DecimalPrivate &other );
     void floorAssign();
+    void ceilAssign();
     
     template<typename F, class... Args>
     void applyMpdecimalOperation( F function, 

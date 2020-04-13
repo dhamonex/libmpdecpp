@@ -217,5 +217,13 @@ Decimal floor( const Decimal &value )
   return result;
 }
 
+Decimal ceil( const Decimal &value )
+{
+  Decimal result{ value };
+  result.m_private->ceilAssign();
+  
+  return result;
+}
+
 MPDECIMAL_NAMESPACE_END
 

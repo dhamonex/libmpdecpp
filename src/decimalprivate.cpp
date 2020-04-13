@@ -232,6 +232,11 @@ namespace detail
     applyMpdecimalOperation( &mpd_qfloor, ErrorCheckMode::Default, "Floor operation on {} failed." );
   }
   
+  void DecimalPrivate::ceilAssign()
+  {
+    applyMpdecimalOperation( &mpd_qceil, ErrorCheckMode::Default, "Ceil operation on {} failed." );
+  }
+  
   std::string DecimalPrivate::toString( RoundMode roundMode ) const
   {
     return toString( "f", roundMode );
