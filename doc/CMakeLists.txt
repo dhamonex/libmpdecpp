@@ -5,6 +5,7 @@ if (DOXYGEN_FOUND)
       test
       CMakeLists.txt
       */.git/*
+      gtest
     )
   set(DOXYGEN_EXTRACT_ALL YES)
   doxygen_add_docs(doc
