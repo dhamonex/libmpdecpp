@@ -20,6 +20,11 @@ addons:
       - cmake
       - libboost-all-dev
       - git
+      - doxygen
+      - doxygen-doc
+      - doxygen-latex
+      - doxygen-gui
+      - graphviz
            
     sourceline: 'ppa:ubuntu-toolchain-r/test'
     
@@ -35,4 +40,11 @@ script:
      - cmake -DBUILD_TESTS=ON ../
      - make
      - ctest
+     - make doc
+     
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_API_TOKEN
+  local_dir: build/doc/html
      
