@@ -47,6 +47,5 @@ deploy:
   skip_cleanup: true
   github_token: $GITHUB_API_TOKEN
   local_dir: build/doc/html
-  on:
-    compiler: gcc
+  compiler: gcc
      
