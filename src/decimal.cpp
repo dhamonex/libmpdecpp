@@ -10,18 +10,18 @@
 MPDECIMAL_NAMESPACE_BEGIN
 
 Decimal::Decimal()
-  : m_private( new detail::DecimalPrivate )
+  : m_private( std::make_unique<detail::DecimalPrivate>() )
 {
 }
 
-Decimal::Decimal ( const Decimal& other )
-  : m_private( std::make_unique<detail::DecimalPrivate>( *other.m_private ) )
+Decimal::Decimal( const Decimal& other )
+  : m_private{ std::make_unique<detail::DecimalPrivate>( *other.m_private ) }
 {
   
 }
 
 Decimal::Decimal( Decimal &&other )
-  : m_private( std::move( other.m_private ) )
+  : m_private{ std::move( other.m_private ) }
 {
   other = Decimal();
 }
@@ -31,37 +31,37 @@ Decimal::~Decimal()
 }
 
 Decimal::Decimal( const std::string &value )
-  : m_private( new detail::DecimalPrivate )
+  : m_private{ std::make_unique<detail::DecimalPrivate>() }
 {
   m_private->setDecNumberValue( value );
 }
 
 Decimal::Decimal( const char *value )
-  : m_private( new detail::DecimalPrivate )
+  : m_private{ std::make_unique<detail::DecimalPrivate>() }
 {
   m_private->setDecNumberValue( value );
 }
 
 Decimal::Decimal( int32_t value )
-  : m_private( new detail::DecimalPrivate )
+  : m_private{ std::make_unique<detail::DecimalPrivate>() }
 {
   m_private->setDecNumberValue( value );
 }
 
 Decimal::Decimal( int64_t value )
-  : m_private( new detail::DecimalPrivate )
+  : m_private{ std::make_unique<detail::DecimalPrivate>() }
 {
   m_private->setDecNumberValue( value );
 }
 
 Decimal::Decimal( uint32_t value )
-  : m_private( new detail::DecimalPrivate )
+  : m_private{ std::make_unique<detail::DecimalPrivate>() }
 {
   m_private->setDecNumberValue( value );
 }
 
 Decimal::Decimal( uint64_t value )
-  : m_private( new detail::DecimalPrivate )
+  : m_private{ std::make_unique<detail::DecimalPrivate>() }
 {
   m_private->setDecNumberValue( value );
 }

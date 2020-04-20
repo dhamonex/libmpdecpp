@@ -15,7 +15,8 @@ namespace detail
 {
   struct RoundModeGuard
   {
-    RoundModeGuard( mpd_context_t *context, RoundMode roundMode )
+    RoundModeGuard( mpd_context_t *context, 
+                    RoundMode roundMode )
       : guardContext{ context },
         resetRoundMode{ false }
     {
