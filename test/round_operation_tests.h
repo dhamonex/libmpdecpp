@@ -3,19 +3,19 @@
 
 class RoundOperationTest : public Test
 {
-  public:
-    RoundOperationTest() = default;
-    ~RoundOperationTest() override = default;
-    
-  protected:
-    void SetUp() override
-    {
-      a = "5.5";
-      b = "5.4";
-    }
-    
-    mpdecimal::Decimal a;
-    mpdecimal::Decimal b;
+public:
+  RoundOperationTest() = default;
+  ~RoundOperationTest() override = default;
+
+protected:
+  void SetUp() override
+  {
+    a = "5.5";
+    b = "5.4";
+  }
+
+  mpdecimal::Decimal a;
+  mpdecimal::Decimal b;
 };
 
 TEST_F( RoundOperationTest, round_up_test )

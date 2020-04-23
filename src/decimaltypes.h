@@ -15,7 +15,7 @@ namespace mpdecimal
         mpd_del( decimal );
       }
     };
-    
+
     struct MPDecimalCharDeleter
     {
       void operator()( char *decimalString )
@@ -23,20 +23,19 @@ namespace mpdecimal
         mpd_free( decimalString );
       }
     };
-    
+
     using MPDDecimalPointer = std::unique_ptr<mpd_t, MPDecimalDeleter>;
     using MPDecimalCharPointer = std::unique_ptr<char[], MPDecimalCharDeleter>;
-    
+
     enum class ComparisonResult
     {
       Less,
       Equal,
       Greater
     };
-      
-    using mpd_status_t = uint32_t;
-  }
-}
 
+    using mpd_status_t = uint32_t;
+  } // namespace detail
+} // namespace mpdecimal
 
 #endif // UE214BACCE6F9EFBD7683F7AE82B12670

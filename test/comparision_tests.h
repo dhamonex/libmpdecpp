@@ -3,26 +3,26 @@
 
 class DecimalComparionTest : public Test
 {
-  public:
-    DecimalComparionTest() = default;
-    ~DecimalComparionTest() override = default;
-    
-  protected:
-    mpdecimal::Decimal a;
-    mpdecimal::Decimal b;
-    mpdecimal::Decimal c;
+public:
+  DecimalComparionTest() = default;
+  ~DecimalComparionTest() override = default;
+
+protected:
+  mpdecimal::Decimal a;
+  mpdecimal::Decimal b;
+  mpdecimal::Decimal c;
 };
 
 // ============ Equality Tests ==================
 
 class DecimalEqualComparionTest : public DecimalComparionTest
 {
-  protected:
-    void SetUp() override
-    {
-      a = 5;
-      b = 5;
-    }
+protected:
+  void SetUp() override
+  {
+    a = 5;
+    b = 5;
+  }
 };
 
 TEST_F( DecimalEqualComparionTest, test_on_equality )
@@ -64,12 +64,12 @@ TEST_F( DecimalEqualComparionTest, test_unsigned_int_on_equality_symmetry )
 
 class DecimalLessThanComparisonTest : public DecimalComparionTest
 {
-  protected:
-    void SetUp() override
-    {
-      a = 5;
-      b = 4;
-    }
+protected:
+  void SetUp() override
+  {
+    a = 5;
+    b = 4;
+  }
 };
 
 TEST_F( DecimalLessThanComparisonTest, test_less_than_other_decimal )
@@ -101,13 +101,13 @@ TEST_F( DecimalLessThanComparisonTest, test_less_than_other_int_symmetric )
 
 class DecimalLessThanOrEqualComparisonTest : public DecimalComparionTest
 {
-  protected:
-    void SetUp() override
-    {
-      a = 5;
-      b = 4;
-      c = 5;
-    }
+protected:
+  void SetUp() override
+  {
+    a = 5;
+    b = 4;
+    c = 5;
+  }
 };
 
 TEST_F( DecimalLessThanOrEqualComparisonTest, test_less_or_equal_than_other_value )
@@ -144,12 +144,12 @@ TEST_F( DecimalLessThanOrEqualComparisonTest, test_less_or_equal_than_other_int_
 
 class DecimalGreaterThanComparisonTest : public DecimalComparionTest
 {
-  protected:
-    void SetUp() override
-    {
-      a = 4;
-      b = 5;
-    }
+protected:
+  void SetUp() override
+  {
+    a = 4;
+    b = 5;
+  }
 };
 
 TEST_F( DecimalGreaterThanComparisonTest, test_greater_than_other_value )
@@ -181,13 +181,13 @@ TEST_F( DecimalGreaterThanComparisonTest, test_greater_than_other_int_value_symm
 
 class DecimalGreaterThanOrEqualComparisonTest : public DecimalComparionTest
 {
-  protected:
-    void SetUp() override
-    {
-      a = 4;
-      b = 5;
-      c = 4;
-    }
+protected:
+  void SetUp() override
+  {
+    a = 4;
+    b = 5;
+    c = 4;
+  }
 };
 
 TEST_F( DecimalGreaterThanOrEqualComparisonTest, test_greater_than_or_equal_value )
@@ -224,13 +224,13 @@ TEST_F( DecimalGreaterThanOrEqualComparisonTest, test_greater_than_or_equal_int_
 
 class DecimalUnEqualComparionTest : public DecimalComparionTest
 {
-  protected:
-    void SetUp() override
-    {
-      a = 5;
-      b = 4;
-      c = 5;
-    }
+protected:
+  void SetUp() override
+  {
+    a = 5;
+    b = 4;
+    c = 5;
+  }
 };
 
 TEST_F( DecimalUnEqualComparionTest, test_unequal_value )
@@ -251,12 +251,12 @@ TEST_F( DecimalUnEqualComparionTest, test_unequal_string_value )
 // ============DecimalMinMaxTest ==============
 class DecimalMinMaxTest : public DecimalComparionTest
 {
-  protected:
-    void SetUp() override
-    {
-      a = 5;
-      b = 4;
-    }
+protected:
+  void SetUp() override
+  {
+    a = 5;
+    b = 4;
+  }
 };
 
 TEST_F( DecimalMinMaxTest, max_operator_test )

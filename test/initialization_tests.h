@@ -45,7 +45,7 @@ TEST( DecimalInitialization, copy_initialize )
 {
   mpdecimal::Decimal dec{ 10 };
   mpdecimal::Decimal other{ dec };
-  
+
   ASSERT_THAT( other.toString(), Eq( "10" ) );
   ASSERT_THAT( dec.toString(), Eq( "10" ) );
 }
@@ -54,7 +54,7 @@ TEST( DecimalInitialization, move_initialize )
 {
   mpdecimal::Decimal dec{ 10 };
   mpdecimal::Decimal other{ std::move( dec ) };
-  
+
   ASSERT_THAT( other.toString(), Eq( "10" ) );
   ASSERT_THAT( dec.toString(), Eq( "0" ) );
 }
@@ -63,7 +63,7 @@ TEST( DecimalInitialization, copy_assign_initialize )
 {
   mpdecimal::Decimal dec{ 10 };
   mpdecimal::Decimal other = dec;
-  
+
   ASSERT_THAT( other.toString(), Eq( "10" ) );
   ASSERT_THAT( dec.toString(), Eq( "10" ) );
 }
@@ -72,7 +72,7 @@ TEST( DecimalInitialization, move_assign_initialize )
 {
   mpdecimal::Decimal dec{ 10 };
   mpdecimal::Decimal other = std::move( dec );
-  
+
   ASSERT_THAT( other.toString(), Eq( "10" ) );
   ASSERT_THAT( dec.toString(), Eq( "0" ) );
 }

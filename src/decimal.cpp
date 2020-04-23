@@ -1,11 +1,11 @@
 #include "decimal.h"
-#include "mpdecimalnamespace.h"
-#include "decimaltypes.h"
 #include "decimalexceptions.h"
 #include "decimalprivate.h"
+#include "decimaltypes.h"
+#include "mpdecimalnamespace.h"
 
-#include <boost/throw_exception.hpp>
 #include <boost/lexical_cast.hpp>
+#include <boost/throw_exception.hpp>
 
 MPDECIMAL_NAMESPACE_BEGIN
 
@@ -14,10 +14,9 @@ Decimal::Decimal()
 {
 }
 
-Decimal::Decimal( const Decimal& other )
+Decimal::Decimal( const Decimal &other )
   : m_private{ std::make_unique<detail::DecimalPrivate>( *other.m_private ) }
 {
-  
 }
 
 Decimal::Decimal( Decimal &&other )
@@ -66,7 +65,7 @@ Decimal::Decimal( uint64_t value )
   m_private->setDecNumberValue( value );
 }
 
-Decimal &Decimal::operator=( const Decimal& other )
+Decimal &Decimal::operator=( const Decimal &other )
 {
   m_private = std::make_unique<detail::DecimalPrivate>( *other.m_private );
   return *this;
@@ -79,7 +78,7 @@ Decimal &Decimal::operator=( Decimal &&other )
   return *this;
 }
 
-std::string Decimal::toString ( unsigned int precision, RoundMode roundMode ) const
+std::string Decimal::toString( unsigned int precision, RoundMode roundMode ) const
 {
   return m_private->toString( precision, roundMode );
 }
@@ -140,7 +139,7 @@ Decimal Decimal::operator++( int )
 {
   Decimal copy{ *this };
   operator+=( 1 );
-  
+
   return copy;
 }
 
@@ -155,11 +154,11 @@ Decimal &Decimal::operator--()
   return operator-=( 1 );
 }
 
-Decimal Decimal::operator--( int ) 
+Decimal Decimal::operator--( int )
 {
   Decimal copy{ *this };
   operator-=( 1 );
-  
+
   return copy;
 }
 
@@ -175,13 +174,13 @@ Decimal &Decimal::operator%=( const mpdecimal::Decimal &other )
   return *this;
 }
 
-void Decimal::decimalInit( std::size_t precision, 
-                           RoundMode defaultRoundMode )
+void Decimal::decimalInit( std::size_t precision, RoundMode defaultRoundMode )
 {
   assert( detail::DecimalPrivate::precision == 0 );
-  
+
   mpd_init( &detail::DecimalPrivate::defaultContext, precision );
-  detail::DecimalPrivate::setContextRoundMode( &detail::DecimalPrivate::defaultContext, defaultRoundMode );
+  detail::DecimalPrivate::setContextRoundMode( &detail::DecimalPrivate::defaultContext,
+                                               defaultRoundMode );
   detail::DecimalPrivate::precision = precision;
   detail::DecimalPrivate::defaultRoundMode = defaultRoundMode;
   detail::DecimalPrivate::defaultContext.allcr = 1;

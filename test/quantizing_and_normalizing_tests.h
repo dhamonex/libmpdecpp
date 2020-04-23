@@ -3,17 +3,17 @@
 
 class QuanizeTestAndNormalizeTest : public Test
 {
-  public:
-    QuanizeTestAndNormalizeTest() = default;
-    ~QuanizeTestAndNormalizeTest() override = default;
-    
-  protected:
-    void SetUp() override
-    {
-      value = "5.5555";
-    }
-    
-    mpdecimal::Decimal value;
+public:
+  QuanizeTestAndNormalizeTest() = default;
+  ~QuanizeTestAndNormalizeTest() override = default;
+
+protected:
+  void SetUp() override
+  {
+    value = "5.5555";
+  }
+
+  mpdecimal::Decimal value;
 };
 
 TEST_F( QuanizeTestAndNormalizeTest, quanize_value_test )

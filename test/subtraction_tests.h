@@ -3,21 +3,21 @@
 
 class SubtractionTest : public Test
 {
-  public:
-    SubtractionTest() = default;
-    ~SubtractionTest() override = default;
-    
-  protected:
-    void SetUp() override
-    {
-      a = 10;
-      b = 3;
-      c = -2;
-    }
-    
-    mpdecimal::Decimal a;
-    mpdecimal::Decimal b;
-    mpdecimal::Decimal c;
+public:
+  SubtractionTest() = default;
+  ~SubtractionTest() override = default;
+
+protected:
+  void SetUp() override
+  {
+    a = 10;
+    b = 3;
+    c = -2;
+  }
+
+  mpdecimal::Decimal a;
+  mpdecimal::Decimal b;
+  mpdecimal::Decimal c;
 };
 
 TEST_F( SubtractionTest, subtract_and_assign_test )

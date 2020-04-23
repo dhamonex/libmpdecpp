@@ -1,22 +1,22 @@
 #ifndef H_0C13CC5443174DC3A851D9738E7F2E87
 #define H_0C13CC5443174DC3A851D9738E7F2E87
 
-class PowerAndLogarithmTest : public Test 
+class PowerAndLogarithmTest : public Test
 {
-  public:
-    PowerAndLogarithmTest() = default;
-    ~PowerAndLogarithmTest() override = default;
-    
-  protected:
-    void SetUp() override
-    {
-      a = 2;
-      b = 5;
-    }
-    
-    mpdecimal::Decimal a;
-    mpdecimal::Decimal b;
-    mpdecimal::Decimal c;
+public:
+  PowerAndLogarithmTest() = default;
+  ~PowerAndLogarithmTest() override = default;
+
+protected:
+  void SetUp() override
+  {
+    a = 2;
+    b = 5;
+  }
+
+  mpdecimal::Decimal a;
+  mpdecimal::Decimal b;
+  mpdecimal::Decimal c;
 };
 
 TEST_F( PowerAndLogarithmTest, exp_operation_test )

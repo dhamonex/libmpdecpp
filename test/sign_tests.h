@@ -3,19 +3,19 @@
 
 class SignTest : public Test
 {
-  public:
-    SignTest() = default;
-    ~SignTest() override = default;
-    
-  protected:
-    void SetUp() override
-    {
-      negativeValue = -5;
-      positiveValue = 5;
-    }
-    
-    mpdecimal::Decimal negativeValue;
-    mpdecimal::Decimal positiveValue;
+public:
+  SignTest() = default;
+  ~SignTest() override = default;
+
+protected:
+  void SetUp() override
+  {
+    negativeValue = -5;
+    positiveValue = 5;
+  }
+
+  mpdecimal::Decimal negativeValue;
+  mpdecimal::Decimal positiveValue;
 };
 
 TEST_F( SignTest, abs_test_with_negative_value )
@@ -53,4 +53,3 @@ TEST_F( SignTest, plus_on_positive_value_test )
 }
 
 #endif // H_BB62A1910CDB4DD3BB886D3DB0227C3F
-

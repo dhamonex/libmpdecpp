@@ -11,6 +11,6 @@ namespace mpdecimal
     UpperCaseExponentCharacter, ///< The exponent character is upper case.
     LowerCaseExponentCharacter  ///< The exponent character is lower case.
   };
-}
+} // namespace mpdecimal
 
 #endif // H_32C31210F2E14865B3531E494EF8273B

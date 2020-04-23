@@ -3,21 +3,21 @@
 
 class MultiplicationTest : public Test
 {
-  public:
-    MultiplicationTest() = default;
-    ~MultiplicationTest() = default;
-    
-  protected:
-    void SetUp() override
-    {
-      a = 5;
-      b = 6;
-      c = -1;
-    }
-    
-    mpdecimal::Decimal a;
-    mpdecimal::Decimal b;
-    mpdecimal::Decimal c;
+public:
+  MultiplicationTest() = default;
+  ~MultiplicationTest() = default;
+
+protected:
+  void SetUp() override
+  {
+    a = 5;
+    b = 6;
+    c = -1;
+  }
+
+  mpdecimal::Decimal a;
+  mpdecimal::Decimal b;
+  mpdecimal::Decimal c;
 };
 
 TEST_F( MultiplicationTest, multiplication_assignment_test )
@@ -36,9 +36,9 @@ TEST_F( MultiplicationTest, multiply_and_copy_test )
 
 TEST_F( MultiplicationTest, multiply_assoziativ )
 {
-  auto resultA = a * (b * c);
+  auto resultA = a * ( b * c );
   auto resultB = ( a * b ) * c;
-  
+
   ASSERT_THAT( resultA, Eq( resultB ) );
   ASSERT_THAT( resultA.toInt64(), Eq( -30 ) );
 }

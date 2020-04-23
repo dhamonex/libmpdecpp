@@ -3,17 +3,17 @@
 
 class IntegralOperationTest : public Test
 {
-  public:
-    IntegralOperationTest() = default;
-    ~IntegralOperationTest() override = default;
-    
-  protected:
-    void SetUp() override
-    {
-      value = "5.5";
-    }
-    
-    mpdecimal::Decimal value;
+public:
+  IntegralOperationTest() = default;
+  ~IntegralOperationTest() override = default;
+
+protected:
+  void SetUp() override
+  {
+    value = "5.5";
+  }
+
+  mpdecimal::Decimal value;
 };
 
 TEST_F( IntegralOperationTest, floor_operation_test )

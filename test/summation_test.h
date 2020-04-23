@@ -3,21 +3,21 @@
 
 class SummationTest : public Test
 {
-  public:
-    SummationTest() = default;
-    ~SummationTest() override = default;
-    
-  protected:
-    void SetUp() override
-    {
-      a = 5;
-      b = 8;
-      c = 1;
-    }
-    
-    mpdecimal::Decimal a;
-    mpdecimal::Decimal b;
-    mpdecimal::Decimal c;
+public:
+  SummationTest() = default;
+  ~SummationTest() override = default;
+
+protected:
+  void SetUp() override
+  {
+    a = 5;
+    b = 8;
+    c = 1;
+  }
+
+  mpdecimal::Decimal a;
+  mpdecimal::Decimal b;
+  mpdecimal::Decimal c;
 };
 
 TEST_F( SummationTest, addition_assignment_test )
