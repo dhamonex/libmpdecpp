@@ -33,17 +33,17 @@ before_script:
   - cd gtest && mkdir build && cd build && cmake ../ && make && sudo make install
   - cd ../../
   
+script:
+  - mkdir -p build
+  - cd build
+  - cmake -DBUILD_TESTS=ON ../
+  - make
+  - ctest
+  - make doc
+  
 
 jobs:
   include:
-    - stage: build
-      script:
-          - mkdir -p build
-          - cd build
-          - cmake -DBUILD_TESTS=ON ../
-          - make
-          - ctest
-          - make doc
     - stage: deploy
       deploy:
         provider: pages
