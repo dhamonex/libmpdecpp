@@ -35,19 +35,20 @@ before_script:
   
 
 jobs:
-  - stage: build
-    script:
-        - mkdir -p build
-        - cd build
-        - cmake -DBUILD_TESTS=ON ../
-        - make
-        - ctest
-        - make doc
-  - stage: deploy
-    deploy:
-      provider: pages
-      skip_cleanup: true
-      github_token: $GITHUB_API_TOKEN
-      local_dir: build/doc/html
-      compiler: gcc
+  include:
+    - stage: build
+      script:
+          - mkdir -p build
+          - cd build
+          - cmake -DBUILD_TESTS=ON ../
+          - make
+          - ctest
+          - make doc
+    - stage: deploy
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: $GITHUB_API_TOKEN
+        local_dir: build/doc/html
+        compiler: gcc
      
