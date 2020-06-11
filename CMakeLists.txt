@@ -2,7 +2,7 @@ if (POLICY CMP0048)
   cmake_policy(SET CMP0048 NEW)
 endif (POLICY CMP0048)
 
-project(libmpdecpp VERSION 0.0.1 LANGUAGES CXX)
+project(libmpdecpp VERSION 0.9.0 LANGUAGES CXX)
 
 cmake_minimum_required(VERSION 3.10)
 set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${CMAKE_SOURCE_DIR}/cmake/Modules/")
@@ -26,6 +26,52 @@ include_directories(${LIBMPDEC_INCLUDE_DIRS})
 include_directories(${Boost_INCLUDE_DIRS})
 
 add_subdirectory(src)
+
+include(CMakePackageConfigHelpers)
+
+set(LIBMPDECPP_CMAKE_DIR ${CMAKE_INSTALL_LIBDIR}/cmake/libmpdecpp CACHE STRING
+      "Installation directory for cmake files, relative to ${CMAKE_INSTALL_PREFIX}.")
+
+set(project_config ${PROJECT_BINARY_DIR}/cmake/LibmpdecppConfig.cmake)
+set(version_config ${PROJECT_BINARY_DIR}/cmake/LibmpdecppConfigVersion.cmake)
+set(targets_export_name LibmpdecppTargets)
+
+write_basic_package_version_file(
+  ${version_config}
+  VERSION ${libmpdecpp_VERSION}
+  COMPATIBILITY AnyNewerVersion
+)
+
+
+export(EXPORT LibmpdecppTargets
+  FILE "${CMAKE_CURRENT_BINARY_DIR}/libmpdecpp/LibmpdecppTargets.cmake"
+  NAMESPACE Libmpdecpp::
+)
+
+configure_package_config_file(cmake/LibmpdecppConfig.cmake.in
+  ${project_config}
+  INSTALL_DESTINATION ${LIBMPDECPP_CMAKE_DIR}
+)
+
+
+install(EXPORT LibmpdecppTargets
+  FILE
+    LibmpdecppTargets.cmake
+  NAMESPACE
+    Libmpdecpp::
+  DESTINATION
+    ${LIBMPDECPP_CMAKE_DIR}
+)
+
+install(
+  FILES
+    ${project_config}
+    ${version_config}
+  DESTINATION
+    ${LIBMPDECPP_CMAKE_DIR}
+  COMPONENT
+    Devel
+)
 
 if(BUILD_TESTS)
   find_package(GTest REQUIRED)
