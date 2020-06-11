@@ -9,7 +9,7 @@
 
 #define CHECK_INTEGER_CONVERT CHECK_DECIMAL_OPERATION( "Could not convert to integer value" )
 
-MPDECIMAL_NAMESPACE_BEGIN
+MPDECPP_NAMESPACE_BEGIN
 
 namespace detail
 {
@@ -378,4 +378,4 @@ namespace detail
   }
 } // namespace detail
 
-MPDECIMAL_NAMESPACE_END
+MPDECPP_NAMESPACE_END

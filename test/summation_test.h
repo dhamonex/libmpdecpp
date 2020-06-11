@@ -15,9 +15,9 @@ protected:
     c = 1;
   }
 
-  mpdecimal::Decimal a;
-  mpdecimal::Decimal b;
-  mpdecimal::Decimal c;
+  mpdecpp::Decimal a;
+  mpdecpp::Decimal b;
+  mpdecpp::Decimal c;
 };
 
 TEST_F( SummationTest, addition_assignment_test )

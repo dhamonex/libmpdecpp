@@ -2,11 +2,11 @@
 #include "decimal.h"
 #include "decimalprivate.h"
 
-#include "mpdecimalnamespace.h"
+#include "mpdecppnamespace.h"
 
 #include <iostream>
 
-MPDECIMAL_NAMESPACE_BEGIN
+MPDECPP_NAMESPACE_BEGIN
 
 bool operator==( const Decimal &lhs, const Decimal &rhs )
 {
@@ -221,4 +221,4 @@ Decimal ceil( const Decimal &value )
   return result;
 }
 
-MPDECIMAL_NAMESPACE_END
+MPDECPP_NAMESPACE_END

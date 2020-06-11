@@ -13,18 +13,18 @@ protected:
     testValue = 5;
   }
 
-  mpdecimal::Decimal testValue;
+  mpdecpp::Decimal testValue;
 };
 
 TEST_F( ClosesNumberTest, next_minus_test )
 {
-  ASSERT_THAT( mpdecimal::nextMinus( testValue ).toString( 27, mpdecimal::RoundMode::RoundTrunc ),
+  ASSERT_THAT( mpdecpp::nextMinus( testValue ).toString( 27, mpdecpp::RoundMode::RoundTrunc ),
                Eq( "4.999999999999999999999999999" ) );
 }
 
 TEST_F( ClosesNumberTest, next_plus_test )
 {
-  ASSERT_THAT( mpdecimal::nextPlus( testValue ).toString( 27, mpdecimal::RoundMode::RoundUp ),
+  ASSERT_THAT( mpdecpp::nextPlus( testValue ).toString( 27, mpdecpp::RoundMode::RoundUp ),
                Eq( "5.000000000000000000000000001" ) );
 }
 
@@ -37,13 +37,13 @@ protected:
     towards = 4;
   }
 
-  mpdecimal::Decimal towards;
+  mpdecpp::Decimal towards;
 };
 
 TEST_F( ClosesNumberNextTowardTest, next_toward_test )
 {
   ASSERT_THAT(
-    mpdecimal::nextToward( testValue, towards ).toString( 27, mpdecimal::RoundMode::RoundTrunc ),
+    mpdecpp::nextToward( testValue, towards ).toString( 27, mpdecpp::RoundMode::RoundTrunc ),
     Eq( "4.999999999999999999999999999" ) );
 }
 

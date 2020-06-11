@@ -1,7 +1,7 @@
 #ifndef H_C7620FF9BCE14CD98F7E9AF0FF652DAE
 #define H_C7620FF9BCE14CD98F7E9AF0FF652DAE
 
-namespace mpdecimal
+namespace mpdecpp
 {
   /** The rounding modes taken from mpdecimal.
    * Details look at https://www.bytereef.org/mpdecimal/doc/libmpdec/context.html#rounding
@@ -19,6 +19,6 @@ namespace mpdecimal
     RoundTrunc,    ///< truncate, but set infinities.
     Default        ///< Default rounding mode (on initialization this is RoundHalfEven).
   };
-} // namespace mpdecimal
+} // namespace mpdecpp
 
 #endif // H_C7620FF9BCE14CD98F7E9AF0FF652DAE

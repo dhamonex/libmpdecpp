@@ -6,7 +6,7 @@
 #include <exception>
 #include <string>
 
-namespace mpdecimal
+namespace mpdecpp
 {
   struct DecimalException : public virtual std::exception, virtual boost::exception
   {
@@ -18,6 +18,6 @@ namespace mpdecimal
   typedef boost::error_info<struct tag_error_message, std::string> ErrorString;
   typedef boost::error_info<struct tag_error_code, int> ErrorCode;
   typedef boost::error_info<struct tag_status_flags, std::string> StatusFlags;
-} // namespace mpdecimal
+} // namespace mpdecpp
 
 #endif // U167A1973DEC053EE9709BC5063087D0A

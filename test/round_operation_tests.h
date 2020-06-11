@@ -14,23 +14,23 @@ protected:
     b = "5.4";
   }
 
-  mpdecimal::Decimal a;
-  mpdecimal::Decimal b;
+  mpdecpp::Decimal a;
+  mpdecpp::Decimal b;
 };
 
 TEST_F( RoundOperationTest, round_up_test )
 {
-  ASSERT_THAT( mpdecimal::round( a ), Eq( 6 ) );
+  ASSERT_THAT( mpdecpp::round( a ), Eq( 6 ) );
 }
 
 TEST_F( RoundOperationTest, round_down_test )
 {
-  ASSERT_THAT( mpdecimal::round( b ), Eq( 5 ) );
+  ASSERT_THAT( mpdecpp::round( b ), Eq( 5 ) );
 }
 
 TEST_F( RoundOperationTest, round_truncate_test )
 {
-  ASSERT_THAT( mpdecimal::round( a, 0, mpdecimal::RoundMode::RoundTrunc ), Eq( 5 ) );
+  ASSERT_THAT( mpdecpp::round( a, 0, mpdecpp::RoundMode::RoundTrunc ), Eq( 5 ) );
 }
 
 #endif // H_CBD564007E454E7995A0EAB679584C6E

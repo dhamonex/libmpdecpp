@@ -13,12 +13,12 @@ protected:
     value = "5.5555";
   }
 
-  mpdecimal::Decimal value;
+  mpdecpp::Decimal value;
 };
 
 TEST_F( QuanizeTestAndNormalizeTest, quanize_value_test )
 {
-  ASSERT_THAT( mpdecimal::quantize( value, 6 ).toString( 4 ), Eq( "5.5555" ) );
+  ASSERT_THAT( mpdecpp::quantize( value, 6 ).toString( 4 ), Eq( "5.5555" ) );
 }
 
 #endif // H_73C6C14112AE43599A286423E77CEE49

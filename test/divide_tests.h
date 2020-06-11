@@ -15,9 +15,9 @@ protected:
     c = 2;
   }
 
-  mpdecimal::Decimal a;
-  mpdecimal::Decimal b;
-  mpdecimal::Decimal c;
+  mpdecpp::Decimal a;
+  mpdecpp::Decimal b;
+  mpdecpp::Decimal c;
 };
 
 TEST_F( DivideTest, divide_assign_test )

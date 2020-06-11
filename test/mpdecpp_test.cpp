@@ -9,14 +9,14 @@
 
 #include "decimalinitenvironment.h"
 
-namespace mpdecimal
+namespace mpdecpp
 {
   std::ostream &operator<<( std::ostream &s, const Decimal &value )
   {
     s << value.toString( RoundMode::Default );
     return s;
   }
-} // namespace mpdecimal
+} // namespace mpdecpp
 
 using namespace ::testing;
 

@@ -2,12 +2,12 @@
 #include "decimalexceptions.h"
 #include "decimalprivate.h"
 #include "decimaltypes.h"
-#include "mpdecimalnamespace.h"
+#include "mpdecppnamespace.h"
 
 #include <boost/lexical_cast.hpp>
 #include <boost/throw_exception.hpp>
 
-MPDECIMAL_NAMESPACE_BEGIN
+MPDECPP_NAMESPACE_BEGIN
 
 Decimal::Decimal()
   : m_private( std::make_unique<detail::DecimalPrivate>() )
@@ -168,7 +168,7 @@ Decimal &Decimal::operator/=( const Decimal &other )
   return *this;
 }
 
-Decimal &Decimal::operator%=( const mpdecimal::Decimal &other )
+Decimal &Decimal::operator%=( const Decimal &other )
 {
   m_private->divideModAssign( *other.m_private );
   return *this;
@@ -186,4 +186,4 @@ void Decimal::decimalInit( std::size_t precision, RoundMode defaultRoundMode )
   detail::DecimalPrivate::defaultContext.allcr = 1;
 }
 
-MPDECIMAL_NAMESPACE_END
+MPDECPP_NAMESPACE_END

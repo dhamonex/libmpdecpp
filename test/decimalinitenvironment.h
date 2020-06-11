@@ -12,7 +12,7 @@ public:
 
   void SetUp() override
   {
-    mpdecimal::Decimal::decimalInit( 128 );
+    mpdecpp::Decimal::decimalInit( 128 );
   }
 };
 

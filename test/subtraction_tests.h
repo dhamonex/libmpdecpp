@@ -15,9 +15,9 @@ protected:
     c = -2;
   }
 
-  mpdecimal::Decimal a;
-  mpdecimal::Decimal b;
-  mpdecimal::Decimal c;
+  mpdecpp::Decimal a;
+  mpdecpp::Decimal b;
+  mpdecpp::Decimal c;
 };
 
 TEST_F( SubtractionTest, subtract_and_assign_test )

@@ -14,18 +14,18 @@ protected:
     positiveValue = 5;
   }
 
-  mpdecimal::Decimal negativeValue;
-  mpdecimal::Decimal positiveValue;
+  mpdecpp::Decimal negativeValue;
+  mpdecpp::Decimal positiveValue;
 };
 
 TEST_F( SignTest, abs_test_with_negative_value )
 {
-  ASSERT_THAT( mpdecimal::abs( negativeValue ), Eq( 5 ) );
+  ASSERT_THAT( mpdecpp::abs( negativeValue ), Eq( 5 ) );
 }
 
 TEST_F( SignTest, abs_test_with_positive_value )
 {
-  ASSERT_THAT( mpdecimal::abs( positiveValue ), Eq( 5 ) );
+  ASSERT_THAT( mpdecpp::abs( positiveValue ), Eq( 5 ) );
 }
 
 TEST_F( SignTest, flip_sign_positive_value_test )

@@ -8,9 +8,9 @@ public:
   ~DecimalComparionTest() override = default;
 
 protected:
-  mpdecimal::Decimal a;
-  mpdecimal::Decimal b;
-  mpdecimal::Decimal c;
+  mpdecpp::Decimal a;
+  mpdecpp::Decimal b;
+  mpdecpp::Decimal c;
 };
 
 // ============ Equality Tests ==================
@@ -261,12 +261,12 @@ protected:
 
 TEST_F( DecimalMinMaxTest, max_operator_test )
 {
-  ASSERT_THAT( mpdecimal::max( a, b ), Eq( 5 ) );
+  ASSERT_THAT( mpdecpp::max( a, b ), Eq( 5 ) );
 }
 
 TEST_F( DecimalMinMaxTest, min_operator_test )
 {
-  ASSERT_THAT( mpdecimal::min( a, b ), Eq( 4 ) );
+  ASSERT_THAT( mpdecpp::min( a, b ), Eq( 4 ) );
 }
 
 #endif // H_E999A6B99C1048C9A29168D7795B395A

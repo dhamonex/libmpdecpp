@@ -7,7 +7,7 @@ using namespace ::testing;
 
 TEST( DecimalPreConditions, check_throw_when_not_initialized )
 {
-  ASSERT_THROW( mpdecimal::Decimal(), mpdecimal::NotInitialized );
+  ASSERT_THROW( mpdecpp::Decimal(), mpdecpp::NotInitialized );
 }
 
 int main( int argc, char **argv )

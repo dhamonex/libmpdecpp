@@ -17,15 +17,15 @@ protected:
     exponentRepresentationValue = "123E+1";
   }
 
-  mpdecimal::Decimal twoDigitDecimalValue;
-  mpdecimal::Decimal threeDigitDecimalValue;
-  mpdecimal::Decimal fourDigitDecimalValue;
-  mpdecimal::Decimal exponentRepresentationValue;
+  mpdecpp::Decimal twoDigitDecimalValue;
+  mpdecpp::Decimal threeDigitDecimalValue;
+  mpdecpp::Decimal fourDigitDecimalValue;
+  mpdecpp::Decimal exponentRepresentationValue;
 };
 
 TEST_F( StringConversionTest, test_conversion_with_round_down_with_reset )
 {
-  ASSERT_THAT( twoDigitDecimalValue.toString( 0, mpdecimal::RoundMode::RoundDown ), Eq( "5" ) );
+  ASSERT_THAT( twoDigitDecimalValue.toString( 0, mpdecpp::RoundMode::RoundDown ), Eq( "5" ) );
   ASSERT_THAT( twoDigitDecimalValue.toString( 0 ), Eq( "6" ) );
 }
 
@@ -38,47 +38,44 @@ TEST_F( StringConversionTest, test_string_conversion_round_half_even )
 
 TEST_F( StringConversionTest, test_string_conversion_round_half_down )
 {
-  ASSERT_THAT( twoDigitDecimalValue.toString( 1, mpdecimal::RoundMode::RoundDown ), Eq( "5.5" ) );
-  ASSERT_THAT( threeDigitDecimalValue.toString( 2, mpdecimal::RoundMode::RoundDown ),
-               Eq( "-5.00" ) );
-  ASSERT_THAT( fourDigitDecimalValue.toString( 2, mpdecimal::RoundMode::RoundDown ),
-               Eq( "10.00" ) );
+  ASSERT_THAT( twoDigitDecimalValue.toString( 1, mpdecpp::RoundMode::RoundDown ), Eq( "5.5" ) );
+  ASSERT_THAT( threeDigitDecimalValue.toString( 2, mpdecpp::RoundMode::RoundDown ), Eq( "-5.00" ) );
+  ASSERT_THAT( fourDigitDecimalValue.toString( 2, mpdecpp::RoundMode::RoundDown ), Eq( "10.00" ) );
 }
 
 TEST_F( StringConversionTest, test_string_conversion_round_trunc )
 {
-  ASSERT_THAT( twoDigitDecimalValue.toString( 1, mpdecimal::RoundMode::RoundTrunc ), Eq( "5.5" ) );
-  ASSERT_THAT( threeDigitDecimalValue.toString( 2, mpdecimal::RoundMode::RoundTrunc ),
+  ASSERT_THAT( twoDigitDecimalValue.toString( 1, mpdecpp::RoundMode::RoundTrunc ), Eq( "5.5" ) );
+  ASSERT_THAT( threeDigitDecimalValue.toString( 2, mpdecpp::RoundMode::RoundTrunc ),
                Eq( "-5.00" ) );
-  ASSERT_THAT( fourDigitDecimalValue.toString( 2, mpdecimal::RoundMode::RoundTrunc ),
-               Eq( "10.00" ) );
+  ASSERT_THAT( fourDigitDecimalValue.toString( 2, mpdecpp::RoundMode::RoundTrunc ), Eq( "10.00" ) );
 }
 
 TEST_F( StringConversionTest, test_eng_string_conversion_lower_case_exponent )
 {
   ASSERT_THAT( exponentRepresentationValue.toEngString(
-                 mpdecimal::SciEngStringConversionFormatFlag::LowerCaseExponentCharacter ),
+                 mpdecpp::SciEngStringConversionFormatFlag::LowerCaseExponentCharacter ),
                Eq( "1.23e+3" ) );
 }
 
 TEST_F( StringConversionTest, test_eng_string_conversion_upper_case_exponent )
 {
   ASSERT_THAT( exponentRepresentationValue.toEngString(
-                 mpdecimal::SciEngStringConversionFormatFlag::UpperCaseExponentCharacter ),
+                 mpdecpp::SciEngStringConversionFormatFlag::UpperCaseExponentCharacter ),
                Eq( "1.23E+3" ) );
 }
 
 TEST_F( StringConversionTest, test_sci_string_conversion_lower_case_exponent )
 {
   ASSERT_THAT( exponentRepresentationValue.toSciString(
-                 mpdecimal::SciEngStringConversionFormatFlag::LowerCaseExponentCharacter ),
+                 mpdecpp::SciEngStringConversionFormatFlag::LowerCaseExponentCharacter ),
                Eq( "1.23e+3" ) );
 }
 
 TEST_F( StringConversionTest, test_sci_string_conversion_upper_case_exponent )
 {
   ASSERT_THAT( exponentRepresentationValue.toSciString(
-                 mpdecimal::SciEngStringConversionFormatFlag::UpperCaseExponentCharacter ),
+                 mpdecpp::SciEngStringConversionFormatFlag::UpperCaseExponentCharacter ),
                Eq( "1.23E+3" ) );
 }
 
@@ -97,30 +94,28 @@ protected:
     negativeValue = "-5";
   }
 
-  mpdecimal::Decimal decimalValue;
-  mpdecimal::Decimal notConvertable;
-  mpdecimal::Decimal negativeValue;
+  mpdecpp::Decimal decimalValue;
+  mpdecpp::Decimal notConvertable;
+  mpdecpp::Decimal negativeValue;
 };
 
 TEST_F( IntegerConversionTest, test_int32_conversion )
 {
   ASSERT_THAT( decimalValue.toInt32(), Eq( 5 ) );
   ASSERT_THAT( negativeValue.toInt32(), Eq( -5 ) );
-  static_assert(
-    std::is_same_v<decltype( std::declval<mpdecimal::Decimal>().toInt32() ), int32_t> );
+  static_assert( std::is_same_v<decltype( std::declval<mpdecpp::Decimal>().toInt32() ), int32_t> );
 }
 
 TEST_F( IntegerConversionTest, test_int64_conversion )
 {
   ASSERT_THAT( decimalValue.toInt64(), Eq( 5 ) );
   ASSERT_THAT( negativeValue.toInt64(), Eq( -5 ) );
-  static_assert(
-    std::is_same_v<decltype( std::declval<mpdecimal::Decimal>().toInt64() ), int64_t> );
+  static_assert( std::is_same_v<decltype( std::declval<mpdecpp::Decimal>().toInt64() ), int64_t> );
 }
 
 TEST_F( IntegerConversionTest, test_exception_when_not_convertable )
 {
-  ASSERT_THROW( notConvertable.toInt32(), mpdecimal::DecimalException );
+  ASSERT_THROW( notConvertable.toInt32(), mpdecpp::DecimalException );
 }
 
 TEST_F( IntegerConversionTest, test_uint32_conversion )
@@ -139,7 +134,7 @@ TEST_F( IntegerConversionTest, test_uint64_conversion )
 
 TEST_F( IntegerConversionTest, test_uint_converion_of_negative_value_throws_exception )
 {
-  ASSERT_THROW( negativeValue.toUInt64(), mpdecimal::DecimalException );
+  ASSERT_THROW( negativeValue.toUInt64(), mpdecpp::DecimalException );
 }
 
 #endif // H_A7044423D0E2461989AA77A609704686

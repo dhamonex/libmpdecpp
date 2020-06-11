@@ -8,7 +8,7 @@
 #include <memory>
 #include <string>
 
-namespace mpdecimal
+namespace mpdecpp
 {
   namespace detail
   {
@@ -163,14 +163,14 @@ namespace mpdecimal
      * @param other other Decimal value.
      * @return Reference to this.
      */
-    Decimal &operator*=( const mpdecimal::Decimal &other );
+    Decimal &operator*=( const Decimal &other );
 
     /** Addition assignment operator.
      * Add other Decimal value from this one and assign result to this.
      * @param other other Decimal value.
      * @return Reference to this.
      */
-    Decimal &operator+=( const mpdecimal::Decimal &other );
+    Decimal &operator+=( const Decimal &other );
 
     /** Pre increment operation.
      * Increment Decimal value and return result.
@@ -189,7 +189,7 @@ namespace mpdecimal
      * @param other other Decimal value.
      * @return Reference to this.
      */
-    Decimal &operator-=( const mpdecimal::Decimal &other );
+    Decimal &operator-=( const Decimal &other );
 
     /** Pre decrement operation.
      * Decrement Decimal value and return result.
@@ -208,14 +208,14 @@ namespace mpdecimal
      * @param other other Decimal value.
      * @return Reference to this.
      */
-    Decimal &operator/=( const mpdecimal::Decimal &other );
+    Decimal &operator/=( const Decimal &other );
 
     /** Divide mod assignment operator.
      * Use modulo operation of this and other Decimal and assign the result to this
      * @param other other Decimal value.
      * @return Reference to this.
      */
-    Decimal &operator%=( const mpdecimal::Decimal &other );
+    Decimal &operator%=( const Decimal &other );
 
     /** Intialize library default settings.
      * Call this functions one time at program start to initialize Decimal
@@ -248,6 +248,6 @@ namespace mpdecimal
   private:
     std::unique_ptr<detail::DecimalPrivate> m_private;
   };
-} // namespace mpdecimal
+} // namespace mpdecpp
 
 #endif // H_D0E32AA72D1A43D0941D5D5A56FED376

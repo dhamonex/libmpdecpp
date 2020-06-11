@@ -4,7 +4,7 @@
 #include "libmpdecpp_export.h"
 #include "roundmode.h"
 
-namespace mpdecimal
+namespace mpdecpp
 {
 
   class Decimal;
@@ -235,6 +235,6 @@ namespace mpdecimal
    * @return result of ceil as Decimal type.
    */
   LIBMPDECPP_EXPORT Decimal ceil( const Decimal &value );
-} // namespace mpdecimal
+} // namespace mpdecpp
 
 #endif // H_E3F615B483B54E9488FC4CE6F08D791E

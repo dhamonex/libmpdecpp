@@ -4,7 +4,7 @@
 #include <memory>
 #include <mpdecimal.h>
 
-namespace mpdecimal
+namespace mpdecpp
 {
   namespace detail
   {
@@ -36,6 +36,6 @@ namespace mpdecimal
 
     using mpd_status_t = uint32_t;
   } // namespace detail
-} // namespace mpdecimal
+} // namespace mpdecpp
 
 #endif // UE214BACCE6F9EFBD7683F7AE82B12670

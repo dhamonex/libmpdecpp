@@ -7,11 +7,11 @@
 #include "decimaltypes.h"
 #include "errorchecks.h"
 #include "libmpdecpp_export.h"
-#include "mpdecimalnamespace.h"
+#include "mpdecppnamespace.h"
 #include "roundmode.h"
 #include "scienfstringconversionformatflag.h"
 
-MPDECIMAL_NAMESPACE_BEGIN
+MPDECPP_NAMESPACE_BEGIN
 
 namespace detail
 {
@@ -133,6 +133,6 @@ namespace detail
   }
 } // namespace detail
 
-MPDECIMAL_NAMESPACE_END
+MPDECPP_NAMESPACE_END
 
 #endif // H_61C5A137BF3142709EE274715BE7EC2F
