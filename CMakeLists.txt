@@ -25,8 +25,6 @@ enable_testing()
 include_directories(${LIBMPDEC_INCLUDE_DIRS})
 include_directories(${Boost_INCLUDE_DIRS})
 
-add_subdirectory(src)
-
 include(CMakePackageConfigHelpers)
 
 set(LIBMPDECPP_CMAKE_DIR ${CMAKE_INSTALL_LIBDIR}/cmake/libmpdecpp CACHE STRING
@@ -44,6 +42,7 @@ set(version_config ${PROJECT_BINARY_DIR}/cmake/LibmpdecppConfigVersion.cmake)
 set(targets_export_name LibmpdecppTargets)
 set (INSTALL_TARGETS mpdecpp)
 
+add_subdirectory(src)
 
 target_include_directories(mpdecpp PUBLIC
   $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
