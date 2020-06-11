@@ -4,7 +4,7 @@
 #include "operations.h"
 #include "roundmode.h"
 #include "scienfstringconversionformatflag.h"
-#include <libmpdecpp_export.h>
+#include "libmpdecpp_export.h"
 #include <memory>
 #include <string>
 

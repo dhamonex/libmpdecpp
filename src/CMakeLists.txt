@@ -43,7 +43,7 @@ install(
   EXPORT
     LibmpdecppTargets
   DESTINATION 
-    ${CMAKE_INSTALL_LIBDIR}
+    ${LIBMPDECPP_LIB_DIR}
 )
 # install(TARGETS mpdecpp_static DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
@@ -51,7 +51,7 @@ install(
   FILES
     ${mpdecpp_HEADER}
   DESTINATION
-    ${CMAKE_INSTALL_INCLUDEDIR}/mpdecpp/
+    ${LIBMPDECPP_INC_DIR}
   COMPONENT
     Devel
 )

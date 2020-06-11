@@ -30,11 +30,25 @@ add_subdirectory(src)
 include(CMakePackageConfigHelpers)
 
 set(LIBMPDECPP_CMAKE_DIR ${CMAKE_INSTALL_LIBDIR}/cmake/libmpdecpp CACHE STRING
-      "Installation directory for cmake files, relative to ${CMAKE_INSTALL_PREFIX}.")
+    "Installation directory for cmake files, relative to ${CMAKE_INSTALL_PREFIX}.")
+      
+set(LIBMPDECPP_LIB_DIR ${CMAKE_INSTALL_LIBDIR} CACHE STRING
+    "Installation directory for libraries, relative to ${CMAKE_INSTALL_PREFIX}.")
+
+set(LIBMPDECPP_INC_DIR ${CMAKE_INSTALL_INCLUDEDIR}/mpdecpp/ CACHE STRING
+    "Installation directory for include files, relative to ${CMAKE_INSTALL_PREFIX}.")
+
 
 set(project_config ${PROJECT_BINARY_DIR}/cmake/LibmpdecppConfig.cmake)
 set(version_config ${PROJECT_BINARY_DIR}/cmake/LibmpdecppConfigVersion.cmake)
 set(targets_export_name LibmpdecppTargets)
+set (INSTALL_TARGETS mpdecpp)
+
+
+target_include_directories(mpdecpp PUBLIC
+  $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+
 
 write_basic_package_version_file(
   ${version_config}
@@ -42,11 +56,8 @@ write_basic_package_version_file(
   COMPATIBILITY AnyNewerVersion
 )
 
-
-export(EXPORT LibmpdecppTargets
-  FILE "${CMAKE_CURRENT_BINARY_DIR}/libmpdecpp/LibmpdecppTargets.cmake"
-  NAMESPACE Libmpdecpp::
-)
+export(TARGETS ${INSTALL_TARGETS} NAMESPACE Libmpdecpp::
+  FILE ${PROJECT_BINARY_DIR}/${targets_export_name}.cmake)
 
 configure_package_config_file(cmake/LibmpdecppConfig.cmake.in
   ${project_config}
@@ -54,7 +65,7 @@ configure_package_config_file(cmake/LibmpdecppConfig.cmake.in
 )
 
 
-install(EXPORT LibmpdecppTargets
+install(EXPORT ${targets_export_name}
   FILE
     LibmpdecppTargets.cmake
   NAMESPACE
