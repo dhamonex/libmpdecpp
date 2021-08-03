@@ -30,6 +30,6 @@ jobs:
             make
             
         - name: Run tests
-          run: ctest
+          run: cd build && ctest
       
       
