@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: Setup build environment
-          run: sudo g++ libmpdec-dev libfmt-dev cmake libboost-all-dev
+          run: sudo apt-get install -y g++ libmpdec-dev libfmt-dev cmake libboost-all-dev
           
         - name: Checkout googletest
           uses: actions/checkout@v2
