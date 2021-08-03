@@ -22,8 +22,14 @@ jobs:
         - name: Checkout source code
           uses: actions/checkout@v2
           
-        - name: List of files
+        - name: Build libmpdec
           run: |
-            ls ${{ github.workspace }}
+            mkdir -p build
+            cd build
+            cmake -DBUILD_TESTS=ON ../
+            make
+            
+        - name: Run tests
+          run: ctest
       
       
