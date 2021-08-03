@@ -5,10 +5,6 @@ jobs:
   build-gcc:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout google test
-        uses: actions/googletest@release-1.11.0 
-      
-      - name: Checkout default branch
-        uses: actions/checkout@main
+        - uses: actions/checkout@v2
       
       
