@@ -5,11 +5,19 @@ jobs:
   build-gcc:
     runs-on: ubuntu-latest
     steps:
+        - name: Setup build environment
+          run: sudo g++ libmpdec-dev libfmt-dev cmake libboost-all-dev
+          
         - name: Checkout googletest
           uses: actions/checkout@v2
           with:
             repository: google/googletest
             ref: release-1.11.0
+            path: googletest
+            
+        - name: Build googletest
+          run: |
+            cd googletest && mkdir build && cd build && cmake ../ && make && sudo make install
             
         - name: Checkout source code
           uses: actions/checkout@v2
