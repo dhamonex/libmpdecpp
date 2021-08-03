@@ -5,7 +5,7 @@ jobs:
   build-gcc:
     runs-on: ubuntu-latest
     steps:
-        - name: Setup build environment
+        - name: Setup Build Environment
           run: sudo apt-get install -y g++ libmpdec-dev libfmt-dev cmake libboost-all-dev
           
         - name: Checkout googletest
@@ -19,7 +19,7 @@ jobs:
           run: |
             cd googletest && mkdir build && cd build && cmake ../ && make && sudo make install
             
-        - name: Checkout source code
+        - name: Checkout Source Code
           uses: actions/checkout@v2
           
         - name: Build libmpdec
@@ -29,7 +29,13 @@ jobs:
             cmake -DBUILD_TESTS=ON ../
             make
             
-        - name: Run tests
+        - name: Run Tests
           run: cd build && ctest
+          
+        - name: Publish Unit Test Results
+          uses: EnricoMi/publish-unit-test-result-action@v1
+          if: always()
+          with:
+            files: build/test/gtestresult/*.xml
       
       
