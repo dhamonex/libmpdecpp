@@ -251,3 +251,4 @@ namespace mpdecpp
 } // namespace mpdecpp
 
 #endif // H_D0E32AA72D1A43D0941D5D5A56FED376
+

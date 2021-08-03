@@ -1,5 +1,5 @@
 language: cpp
-dist: bionic
+dist: precise
 
 compiler:
   - clang
@@ -29,7 +29,7 @@ addons:
     sourceline: 'ppa:ubuntu-toolchain-r/test'
     
 before_script:
-  - git clone -b v1.8.x https://github.com/google/googletest.git gtest
+  - git clone -b release-1.11.0 https://github.com/google/googletest.git gtest
   - cd gtest && mkdir build && cd build && cmake ../ && make && sudo make install
   - cd ../../
   
