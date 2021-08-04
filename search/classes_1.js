@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['notinitialized',['NotInitialized',['../structmpdecpp_1_1NotInitialized.html',1,'mpdecpp']]]
+  ['notinitialized_95',['NotInitialized',['../structmpdecpp_1_1NotInitialized.html',1,'mpdecpp']]]
 ];
