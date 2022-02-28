@@ -89,76 +89,76 @@ $(function() {
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;  <span class="keyword">struct </span><a class="code" href="libmpdecpp__export_8h.html#ae4be42521f663654b01c8aae99a45019">LIBMPDECPP_NO_EXPORT</a> DecimalPrivate</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;  {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">enum class</span> ErrorCheckMode</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;      <a class="code" href="namespacempdecpp.html#a38b02975623960886119ad32106f545da7a1920d61156abc05a60135aefe8bc67">Default</a>,</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;      IgnoreInexactRounding</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    };</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;      <span class="keyword">enum class</span> ErrorCheckMode</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;      {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="namespacempdecpp.html#a38b02975623960886119ad32106f545da7a1920d61156abc05a60135aefe8bc67">Default</a>,</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        IgnoreInexactRounding</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;      };</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    DecimalPrivate();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;      DecimalPrivate();</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    DecimalPrivate( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;      DecimalPrivate( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> setDecNumberValue( int32_t value );</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> setDecNumberValue( int64_t value );</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> setDecNumberValue( uint32_t value );</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> setDecNumberValue( uint64_t value );</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> setDecNumberValue( std::string_view value );</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;      <span class="keywordtype">void</span> setDecNumberValue( int32_t value );</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;      <span class="keywordtype">void</span> setDecNumberValue( int64_t value );</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;      <span class="keywordtype">void</span> setDecNumberValue( uint32_t value );</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;      <span class="keywordtype">void</span> setDecNumberValue( uint64_t value );</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;      <span class="keywordtype">void</span> setDecNumberValue( std::string_view value );</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    std::string toString( <a class="code" href="namespacempdecpp.html#a38b02975623960886119ad32106f545d">RoundMode</a> roundMode ) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    std::string toString( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> precision, <a class="code" href="namespacempdecpp.html#a38b02975623960886119ad32106f545d">RoundMode</a> roundMode ) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    std::string toString( <span class="keyword">const</span> std::string &amp;format, <a class="code" href="namespacempdecpp.html#a38b02975623960886119ad32106f545d">RoundMode</a> roundMode ) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    std::string toSciString( <a class="code" href="namespacempdecpp.html#a1c03315bc94ce02594588a241a0c8756">SciEngStringConversionFormatFlag</a> format ) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    std::string toEngString( <a class="code" href="namespacempdecpp.html#a1c03315bc94ce02594588a241a0c8756">SciEngStringConversionFormatFlag</a> format ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;      std::string toString( <a class="code" href="namespacempdecpp.html#a38b02975623960886119ad32106f545d">RoundMode</a> roundMode ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;      std::string toString( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> precision, <a class="code" href="namespacempdecpp.html#a38b02975623960886119ad32106f545d">RoundMode</a> roundMode ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;      std::string toString( <span class="keyword">const</span> std::string &amp;format, <a class="code" href="namespacempdecpp.html#a38b02975623960886119ad32106f545d">RoundMode</a> roundMode ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;      std::string toSciString( <a class="code" href="namespacempdecpp.html#a1c03315bc94ce02594588a241a0c8756">SciEngStringConversionFormatFlag</a> format ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;      std::string toEngString( <a class="code" href="namespacempdecpp.html#a1c03315bc94ce02594588a241a0c8756">SciEngStringConversionFormatFlag</a> format ) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    int32_t toInt32() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    int64_t toInt64() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    uint32_t toUInt32() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    uint64_t toUInt64() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;      int32_t toInt32() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;      int64_t toInt64() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;      uint32_t toUInt32() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;      uint64_t toUInt64() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    ComparisonResult compareToOtherValue( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;      ComparisonResult compareToOtherValue( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> multiplyAssign( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> divideAssign( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> addAssign( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> subtractAssing( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> remainderNearAssign( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> divideModAssign( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> expAndAssign();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> lnAndAssign();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> log10AndAssign();</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> powAndAssign( <span class="keyword">const</span> DecimalPrivate &amp;<a class="code" href="operations_8cpp.html#aa649145f88d92e3383f3d96e062b8a85">exp</a> );</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> sqrtAndAssign();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="operations_8cpp.html#ade4555ef7654c98eb9bc0e35021daa62">abs</a>();</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> minusAssign();</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> plusAssign();</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> nextMinusAssign();</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> nextPlusAssing();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> nextTowardAssign( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> quantizeAssign( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> floorAssign();</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> ceilAssign();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      <span class="keywordtype">void</span> multiplyAssign( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      <span class="keywordtype">void</span> divideAssign( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;      <span class="keywordtype">void</span> addAssign( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;      <span class="keywordtype">void</span> subtractAssing( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;      <span class="keywordtype">void</span> remainderNearAssign( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;      <span class="keywordtype">void</span> divideModAssign( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;      <span class="keywordtype">void</span> expAndAssign();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;      <span class="keywordtype">void</span> lnAndAssign();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;      <span class="keywordtype">void</span> log10AndAssign();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;      <span class="keywordtype">void</span> powAndAssign( <span class="keyword">const</span> DecimalPrivate &amp;<a class="code" href="operations_8cpp.html#aa649145f88d92e3383f3d96e062b8a85">exp</a> );</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;      <span class="keywordtype">void</span> sqrtAndAssign();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      <span class="keywordtype">void</span> <a class="code" href="operations_8cpp.html#ade4555ef7654c98eb9bc0e35021daa62">abs</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      <span class="keywordtype">void</span> minusAssign();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      <span class="keywordtype">void</span> plusAssign();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      <span class="keywordtype">void</span> nextMinusAssign();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;      <span class="keywordtype">void</span> nextPlusAssing();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      <span class="keywordtype">void</span> nextTowardAssign( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      <span class="keywordtype">void</span> quantizeAssign( <span class="keyword">const</span> DecimalPrivate &amp;other );</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;      <span class="keywordtype">void</span> floorAssign();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;      <span class="keywordtype">void</span> ceilAssign();</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> F, <span class="keyword">class</span>... Args&gt;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> applyMpdecimalOperation( F <span class="keyword">function</span>, DecimalPrivate::ErrorCheckMode checkMode,</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                                  std::string_view errorMessageFormat, Args &amp;&amp;... args );</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;      <span class="keyword">template</span> &lt;<span class="keyword">typename</span> F, <span class="keyword">class</span>... Args&gt;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;      <span class="keywordtype">void</span> applyMpdecimalOperation( F <span class="keyword">function</span>, DecimalPrivate::ErrorCheckMode checkMode,</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                                    std::string_view errorMessageFormat, Args &amp;&amp;...args );</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    MPDDecimalPointer mpdDecimal;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;      MPDDecimalPointer mpdDecimal;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">static</span> MPDDecimalPointer createDecimal();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      <span class="keyword">static</span> MPDDecimalPointer createDecimal();</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">static</span> mpd_context_t *threadLocalContext();</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> setContextRoundMode( mpd_context_t *context, <a class="code" href="namespacempdecpp.html#a38b02975623960886119ad32106f545d">RoundMode</a> roundMode );</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      <span class="keyword">static</span> mpd_context_t *threadLocalContext();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      <span class="keyword">static</span> <span class="keywordtype">void</span> setContextRoundMode( mpd_context_t *context, <a class="code" href="namespacempdecpp.html#a38b02975623960886119ad32106f545d">RoundMode</a> roundMode );</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">static</span> std::string statusFlags( uint32_t status );</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      <span class="keyword">static</span> std::string statusFlags( uint32_t status );</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">static</span> constexpr <span class="keywordtype">int</span> convertFormatFlag( <a class="code" href="namespacempdecpp.html#a1c03315bc94ce02594588a241a0c8756">SciEngStringConversionFormatFlag</a> format );</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;      <span class="keyword">static</span> constexpr <span class="keywordtype">int</span> convertFormatFlag( <a class="code" href="namespacempdecpp.html#a1c03315bc94ce02594588a241a0c8756">SciEngStringConversionFormatFlag</a> format );</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> mpd_ssize_t precision = 0;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> mpd_context_t defaultContext;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="namespacempdecpp.html#a38b02975623960886119ad32106f545d">RoundMode</a> defaultRoundMode = RoundMode::Default;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;      <span class="keyword">static</span> <span class="keyword">inline</span> mpd_ssize_t precision = 0;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;      <span class="keyword">static</span> <span class="keyword">inline</span> mpd_context_t defaultContext;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;      <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code" href="namespacempdecpp.html#a38b02975623960886119ad32106f545d">RoundMode</a> defaultRoundMode = RoundMode::Default;</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keyword">static</span> constexpr <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> charBufferSize = 1000;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      <span class="keyword">static</span> constexpr <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> charBufferSize = 1000;</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  };</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="keyword">inline</span> std::string getString( <span class="keyword">const</span> DecimalPrivate &amp;decimal )</div>
@@ -174,7 +174,7 @@ $(function() {
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> F, <span class="keyword">class</span>... Args&gt;</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  <span class="keywordtype">void</span></div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  DecimalPrivate::applyMpdecimalOperation( F <span class="keyword">function</span>, DecimalPrivate::ErrorCheckMode checkMode,</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                                           std::string_view errorMessageFormat, Args &amp;&amp;... args )</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                                           std::string_view errorMessageFormat, Args &amp;&amp;...args )</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  {</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keyword">auto</span> result = DecimalPrivate::createDecimal();</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    mpd_status_t status{ 0 };</div>
