@@ -15,25 +15,25 @@ namespace detail
 {
   struct RoundModeGuard
   {
-    RoundModeGuard( mpd_context_t *context, RoundMode roundMode )
-      : guardContext{ context }
-      , resetRoundMode{ false }
-    {
-      if ( roundMode != RoundMode::Default ) {
-        DecimalPrivate::setContextRoundMode( guardContext, roundMode );
-        resetRoundMode = true;
+      RoundModeGuard( mpd_context_t *context, RoundMode roundMode )
+        : guardContext{ context }
+        , resetRoundMode{ false }
+      {
+        if ( roundMode != RoundMode::Default ) {
+          DecimalPrivate::setContextRoundMode( guardContext, roundMode );
+          resetRoundMode = true;
+        }
       }
-    }
 
-    ~RoundModeGuard()
-    {
-      if ( resetRoundMode ) {
-        DecimalPrivate::setContextRoundMode( guardContext, DecimalPrivate::defaultRoundMode );
+      ~RoundModeGuard()
+      {
+        if ( resetRoundMode ) {
+          DecimalPrivate::setContextRoundMode( guardContext, DecimalPrivate::defaultRoundMode );
+        }
       }
-    }
 
-    mpd_context_t *guardContext;
-    bool resetRoundMode;
+      mpd_context_t *guardContext;
+      bool resetRoundMode;
   };
 
   mpd_context_t *DecimalPrivate::threadLocalContext()

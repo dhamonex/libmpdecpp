@@ -10,18 +10,18 @@ namespace mpdecpp
   {
     struct MPDecimalDeleter
     {
-      void operator()( mpd_t *decimal )
-      {
-        mpd_del( decimal );
-      }
+        void operator()( mpd_t *decimal )
+        {
+          mpd_del( decimal );
+        }
     };
 
     struct MPDecimalCharDeleter
     {
-      void operator()( char *decimalString )
-      {
-        mpd_free( decimalString );
-      }
+        void operator()( char *decimalString )
+        {
+          mpd_free( decimalString );
+        }
     };
 
     using MPDDecimalPointer = std::unique_ptr<mpd_t, MPDecimalDeleter>;
